@@ -1,0 +1,40 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "addon_widget_set_proto",
+    srcs = ["addon_widget_set.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "extension_point_proto",
+    srcs = ["extension_point.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:wrappers_proto"],
+)
+
+proto_library(
+    name = "script_manifest_proto",
+    srcs = ["script_manifest.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/apps/script/type:type_proto",
+        "@com_google_protobuf//:struct_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "addon_widget_set_proto_ts",
+    proto = ":addon_widget_set_proto",
+)
+
+ts_proto_library(
+    name = "extension_point_proto_ts",
+    proto = ":extension_point_proto",
+)
+
+ts_proto_library(
+    name = "script_manifest_proto_ts",
+    proto = ":script_manifest_proto",
+)

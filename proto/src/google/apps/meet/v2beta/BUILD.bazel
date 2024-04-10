@@ -1,0 +1,35 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "resource_proto",
+    srcs = ["resource.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "service_proto",
+    srcs = ["service.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/apps/meet/v2beta:v2beta_proto",
+        "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:field_mask_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "resource_proto_ts",
+    proto = ":resource_proto",
+)
+
+ts_proto_library(
+    name = "service_proto_ts",
+    has_services = True,
+    proto = ":service_proto",
+)

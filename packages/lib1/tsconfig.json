@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": [
+    "src",
+  ],
+
+  "compilerOptions": {
+    "outDir": "build",
+    "rootDir": "src",
+    "resolveJsonModule": true
+  },
+
+  "types": ["node", "mocha"],
+  "exclude": ["node_modules", "build"],
+}

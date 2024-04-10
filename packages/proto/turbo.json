@@ -1,0 +1,10 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "extends": ["//"],
+  "pipeline": {
+    "codegen": {
+      "inputs": ["buf.gen.yaml", "buf.work.yaml", "protosrc/**"],
+      "outputs": ["gen/**"]
+    }
+  }
+}

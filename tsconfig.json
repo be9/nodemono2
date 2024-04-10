@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "lib": ["es2019", "es2020.promise", "es2020.bigint", "es2020.string"],
+    "module": "commonjs",
+    "target": "es2019",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "baseUrl": ".",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "strict": true,
+    "composite": true,
+
+    "preserveConstEnums": true,
+    "noUnusedLocals": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "paths": {
+      "@nodemono2/lib1": ["./packages/lib1"],
+      "@nodemono2/lib2": ["./packages/lib2"],
+      "@nodemono2/proto": ["./packages/proto"],
+    }
+  }
+}

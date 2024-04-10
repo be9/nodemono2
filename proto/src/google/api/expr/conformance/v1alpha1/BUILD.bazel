@@ -1,0 +1,19 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "conformance_service_proto",
+    srcs = ["conformance_service.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/api/expr/v1alpha1:v1alpha1_proto",
+        "//google/rpc:rpc_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "conformance_service_proto_ts",
+    has_services = True,
+    proto = ":conformance_service_proto",
+)

@@ -1,0 +1,18 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "embedded_assistant_proto",
+    srcs = ["embedded_assistant.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/rpc:rpc_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "embedded_assistant_proto_ts",
+    has_services = True,
+    proto = ":embedded_assistant_proto",
+)

@@ -1,0 +1,68 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "common_proto",
+    srcs = ["common.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "error_group_service_proto",
+    srcs = ["error_group_service.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/devtools/clouderrorreporting/v1beta1:v1beta1_proto",
+    ],
+)
+
+proto_library(
+    name = "error_stats_service_proto",
+    srcs = ["error_stats_service.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/devtools/clouderrorreporting/v1beta1:v1beta1_proto",
+        "@com_google_protobuf//:duration_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "report_errors_service_proto",
+    srcs = ["report_errors_service.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/devtools/clouderrorreporting/v1beta1:v1beta1_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "common_proto_ts",
+    proto = ":common_proto",
+)
+
+ts_proto_library(
+    name = "error_group_service_proto_ts",
+    has_services = True,
+    proto = ":error_group_service_proto",
+)
+
+ts_proto_library(
+    name = "error_stats_service_proto_ts",
+    has_services = True,
+    proto = ":error_stats_service_proto",
+)
+
+ts_proto_library(
+    name = "report_errors_service_proto_ts",
+    has_services = True,
+    proto = ":report_errors_service_proto",
+)

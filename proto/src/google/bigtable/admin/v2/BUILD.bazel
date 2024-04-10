@@ -1,0 +1,103 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "bigtable_instance_admin_proto",
+    srcs = ["bigtable_instance_admin.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/bigtable/admin/v2:v2_proto",
+        "//google/iam/v1:v1_proto",
+        "//google/longrunning:longrunning_proto",
+        "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:field_mask_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "bigtable_table_admin_proto",
+    srcs = ["bigtable_table_admin.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/bigtable/admin/v2:v2_proto",
+        "//google/iam/v1:v1_proto",
+        "//google/longrunning:longrunning_proto",
+        "@com_google_protobuf//:duration_proto",
+        "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:field_mask_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "common_proto",
+    srcs = ["common.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:timestamp_proto"],
+)
+
+proto_library(
+    name = "instance_proto",
+    srcs = ["instance.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/bigtable/admin/v2:v2_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "table_proto",
+    srcs = ["table.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/bigtable/admin/v2:v2_proto",
+        "//google/rpc:rpc_proto",
+        "@com_google_protobuf//:duration_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "types_proto",
+    srcs = ["types.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+ts_proto_library(
+    name = "bigtable_instance_admin_proto_ts",
+    has_services = True,
+    proto = ":bigtable_instance_admin_proto",
+)
+
+ts_proto_library(
+    name = "bigtable_table_admin_proto_ts",
+    has_services = True,
+    proto = ":bigtable_table_admin_proto",
+)
+
+ts_proto_library(
+    name = "common_proto_ts",
+    proto = ":common_proto",
+)
+
+ts_proto_library(
+    name = "instance_proto_ts",
+    proto = ":instance_proto",
+)
+
+ts_proto_library(
+    name = "table_proto_ts",
+    proto = ":table_proto",
+)
+
+ts_proto_library(
+    name = "types_proto_ts",
+    proto = ":types_proto",
+)

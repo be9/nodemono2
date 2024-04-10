@@ -1,0 +1,14 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "build_proto",
+    srcs = ["build.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/devtools/containeranalysis/v1beta1/provenance:provenance_proto"],
+)
+
+ts_proto_library(
+    name = "build_proto_ts",
+    proto = ":build_proto",
+)

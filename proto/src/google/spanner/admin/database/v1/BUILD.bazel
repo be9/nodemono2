@@ -1,0 +1,57 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "backup_proto",
+    srcs = ["backup.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/longrunning:longrunning_proto",
+        "//google/spanner/admin/database/v1:v1_proto",
+        "@com_google_protobuf//:field_mask_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "common_proto",
+    srcs = ["common.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/rpc:rpc_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "spanner_database_admin_proto",
+    srcs = ["spanner_database_admin.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/iam/v1:v1_proto",
+        "//google/longrunning:longrunning_proto",
+        "//google/spanner/admin/database/v1:v1_proto",
+        "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:field_mask_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "backup_proto_ts",
+    proto = ":backup_proto",
+)
+
+ts_proto_library(
+    name = "common_proto_ts",
+    proto = ":common_proto",
+)
+
+ts_proto_library(
+    name = "spanner_database_admin_proto_ts",
+    has_services = True,
+    proto = ":spanner_database_admin_proto",
+)

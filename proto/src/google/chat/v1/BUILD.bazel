@@ -1,0 +1,227 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "action_status_proto",
+    srcs = ["action_status.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/rpc:rpc_proto"],
+)
+
+proto_library(
+    name = "annotation_proto",
+    srcs = ["annotation.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/chat/v1:v1_proto"],
+)
+
+proto_library(
+    name = "attachment_proto",
+    srcs = ["attachment.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "chat_service_proto",
+    srcs = ["chat_service.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/chat/v1:v1_proto",
+        "@com_google_protobuf//:empty_proto",
+    ],
+)
+
+proto_library(
+    name = "contextual_addon_proto",
+    srcs = ["contextual_addon.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/chat/v1:v1_proto"],
+)
+
+proto_library(
+    name = "deletion_metadata_proto",
+    srcs = ["deletion_metadata.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "group_proto",
+    srcs = ["group.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "history_state_proto",
+    srcs = ["history_state.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "matched_url_proto",
+    srcs = ["matched_url.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "membership_proto",
+    srcs = ["membership.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/chat/v1:v1_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "message_proto",
+    srcs = ["message.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/apps/card/v1:v1_proto",
+        "//google/chat/v1:v1_proto",
+        "@com_google_protobuf//:field_mask_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "reaction_proto",
+    srcs = ["reaction.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/chat/v1:v1_proto",
+    ],
+)
+
+proto_library(
+    name = "slash_command_proto",
+    srcs = ["slash_command.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "space_proto",
+    srcs = ["space.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/chat/v1:v1_proto",
+        "@com_google_protobuf//:field_mask_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "space_setup_proto",
+    srcs = ["space_setup.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/chat/v1:v1_proto",
+    ],
+)
+
+proto_library(
+    name = "user_proto",
+    srcs = ["user.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "widgets_proto",
+    srcs = ["widgets.proto"],
+    visibility = ["//visibility:public"],
+)
+
+ts_proto_library(
+    name = "action_status_proto_ts",
+    proto = ":action_status_proto",
+)
+
+ts_proto_library(
+    name = "annotation_proto_ts",
+    proto = ":annotation_proto",
+)
+
+ts_proto_library(
+    name = "attachment_proto_ts",
+    proto = ":attachment_proto",
+)
+
+ts_proto_library(
+    name = "chat_service_proto_ts",
+    has_services = True,
+    proto = ":chat_service_proto",
+)
+
+ts_proto_library(
+    name = "contextual_addon_proto_ts",
+    proto = ":contextual_addon_proto",
+)
+
+ts_proto_library(
+    name = "deletion_metadata_proto_ts",
+    proto = ":deletion_metadata_proto",
+)
+
+ts_proto_library(
+    name = "group_proto_ts",
+    proto = ":group_proto",
+)
+
+ts_proto_library(
+    name = "history_state_proto_ts",
+    proto = ":history_state_proto",
+)
+
+ts_proto_library(
+    name = "matched_url_proto_ts",
+    proto = ":matched_url_proto",
+)
+
+ts_proto_library(
+    name = "membership_proto_ts",
+    proto = ":membership_proto",
+)
+
+ts_proto_library(
+    name = "message_proto_ts",
+    proto = ":message_proto",
+)
+
+ts_proto_library(
+    name = "reaction_proto_ts",
+    proto = ":reaction_proto",
+)
+
+ts_proto_library(
+    name = "slash_command_proto_ts",
+    proto = ":slash_command_proto",
+)
+
+ts_proto_library(
+    name = "space_proto_ts",
+    proto = ":space_proto",
+)
+
+ts_proto_library(
+    name = "space_setup_proto_ts",
+    proto = ":space_setup_proto",
+)
+
+ts_proto_library(
+    name = "user_proto_ts",
+    proto = ":user_proto",
+)
+
+ts_proto_library(
+    name = "widgets_proto_ts",
+    proto = ":widgets_proto",
+)

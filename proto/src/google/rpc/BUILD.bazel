@@ -1,0 +1,48 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "code_proto",
+    srcs = ["code.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "error_details_proto",
+    srcs = ["error_details.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:duration_proto"],
+)
+
+proto_library(
+    name = "http_proto",
+    srcs = ["http.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "status_proto",
+    srcs = ["status.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:any_proto"],
+)
+
+ts_proto_library(
+    name = "code_proto_ts",
+    proto = ":code_proto",
+)
+
+ts_proto_library(
+    name = "error_details_proto_ts",
+    proto = ":error_details_proto",
+)
+
+ts_proto_library(
+    name = "http_proto_ts",
+    proto = ":http_proto",
+)
+
+ts_proto_library(
+    name = "status_proto_ts",
+    proto = ":status_proto",
+)

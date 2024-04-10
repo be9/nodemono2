@@ -1,0 +1,70 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "decl_proto",
+    srcs = ["decl.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api/expr/v1beta1:v1beta1_proto"],
+)
+
+proto_library(
+    name = "eval_proto",
+    srcs = ["eval.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api/expr/v1beta1:v1beta1_proto",
+        "//google/rpc:rpc_proto",
+    ],
+)
+
+proto_library(
+    name = "expr_proto",
+    srcs = ["expr.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api/expr/v1beta1:v1beta1_proto",
+        "@com_google_protobuf//:struct_proto",
+    ],
+)
+
+proto_library(
+    name = "source_proto",
+    srcs = ["source.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "value_proto",
+    srcs = ["value.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_google_protobuf//:any_proto",
+        "@com_google_protobuf//:struct_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "decl_proto_ts",
+    proto = ":decl_proto",
+)
+
+ts_proto_library(
+    name = "eval_proto_ts",
+    proto = ":eval_proto",
+)
+
+ts_proto_library(
+    name = "expr_proto_ts",
+    proto = ":expr_proto",
+)
+
+ts_proto_library(
+    name = "source_proto_ts",
+    proto = ":source_proto",
+)
+
+ts_proto_library(
+    name = "value_proto_ts",
+    proto = ":value_proto",
+)

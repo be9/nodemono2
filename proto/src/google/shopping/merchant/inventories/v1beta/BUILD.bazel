@@ -1,0 +1,38 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "localinventory_proto",
+    srcs = ["localinventory.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/shopping/type:type_proto",
+        "//google/type:type_proto",
+        "@com_google_protobuf//:empty_proto",
+    ],
+)
+
+proto_library(
+    name = "regionalinventory_proto",
+    srcs = ["regionalinventory.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/shopping/type:type_proto",
+        "//google/type:type_proto",
+        "@com_google_protobuf//:empty_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "localinventory_proto_ts",
+    has_services = True,
+    proto = ":localinventory_proto",
+)
+
+ts_proto_library(
+    name = "regionalinventory_proto_ts",
+    has_services = True,
+    proto = ":regionalinventory_proto",
+)

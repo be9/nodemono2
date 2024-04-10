@@ -1,0 +1,48 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "access_report_proto",
+    srcs = ["access_report.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "analytics_admin_proto",
+    srcs = ["analytics_admin.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/analytics/admin/v1beta:v1beta_proto",
+        "//google/api:api_proto",
+        "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:field_mask_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "resources_proto",
+    srcs = ["resources.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "@com_google_protobuf//:timestamp_proto",
+        "@com_google_protobuf//:wrappers_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "access_report_proto_ts",
+    proto = ":access_report_proto",
+)
+
+ts_proto_library(
+    name = "analytics_admin_proto_ts",
+    has_services = True,
+    proto = ":analytics_admin_proto",
+)
+
+ts_proto_library(
+    name = "resources_proto_ts",
+    proto = ":resources_proto",
+)

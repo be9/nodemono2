@@ -1,0 +1,62 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "data_source_proto",
+    srcs = ["data_source.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "dataset_proto",
+    srcs = ["dataset.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/maps/mapsplatformdatasets/v1alpha:v1alpha_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "maps_platform_datasets_alpha_service_proto",
+    srcs = ["maps_platform_datasets_alpha_service.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/maps/mapsplatformdatasets/v1alpha:v1alpha_proto",
+        "@com_google_protobuf//:empty_proto",
+    ],
+)
+
+proto_library(
+    name = "maps_platform_datasets_proto",
+    srcs = ["maps_platform_datasets.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/maps/mapsplatformdatasets/v1alpha:v1alpha_proto",
+        "@com_google_protobuf//:field_mask_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "data_source_proto_ts",
+    proto = ":data_source_proto",
+)
+
+ts_proto_library(
+    name = "dataset_proto_ts",
+    proto = ":dataset_proto",
+)
+
+ts_proto_library(
+    name = "maps_platform_datasets_alpha_service_proto_ts",
+    has_services = True,
+    proto = ":maps_platform_datasets_alpha_service_proto",
+)
+
+ts_proto_library(
+    name = "maps_platform_datasets_proto_ts",
+    proto = ":maps_platform_datasets_proto",
+)

@@ -1,0 +1,25 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "http_request_proto",
+    srcs = ["http_request.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:duration_proto"],
+)
+
+proto_library(
+    name = "log_severity_proto",
+    srcs = ["log_severity.proto"],
+    visibility = ["//visibility:public"],
+)
+
+ts_proto_library(
+    name = "http_request_proto_ts",
+    proto = ":http_request_proto",
+)
+
+ts_proto_library(
+    name = "log_severity_proto_ts",
+    proto = ":log_severity_proto",
+)

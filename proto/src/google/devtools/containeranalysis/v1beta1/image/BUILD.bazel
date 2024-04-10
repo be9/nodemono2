@@ -1,0 +1,13 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "image_proto",
+    srcs = ["image.proto"],
+    visibility = ["//visibility:public"],
+)
+
+ts_proto_library(
+    name = "image_proto_ts",
+    proto = ":image_proto",
+)

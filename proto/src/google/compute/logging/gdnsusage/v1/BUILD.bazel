@@ -1,0 +1,13 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "gdns_vm_usage_proto",
+    srcs = ["gdns_vm_usage.proto"],
+    visibility = ["//visibility:public"],
+)
+
+ts_proto_library(
+    name = "gdns_vm_usage_proto_ts",
+    proto = ":gdns_vm_usage_proto",
+)

@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.json",
+
+  "compilerOptions": {
+    "outDir": "build",
+    "rootDir": "gen",
+
+    "noUnusedLocals": false
+  },
+
+  "include": [ "gen/**/*" ],
+
+  "exclude": [
+    "node_modules",
+    "build",
+  ]
+}

@@ -1,0 +1,122 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "attribution_proto",
+    srcs = ["attribution.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "ev_charging_proto",
+    srcs = ["ev_charging.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:timestamp_proto"],
+)
+
+proto_library(
+    name = "fuel_options_proto",
+    srcs = ["fuel_options.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/type:type_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "geometry_proto",
+    srcs = ["geometry.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/type:type_proto",
+    ],
+)
+
+proto_library(
+    name = "photo_proto",
+    srcs = ["photo.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/maps/places/v1:v1_proto",
+    ],
+)
+
+proto_library(
+    name = "place_proto",
+    srcs = ["place.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/geo/type:type_proto",
+        "//google/maps/places/v1:v1_proto",
+        "//google/type:type_proto",
+    ],
+)
+
+proto_library(
+    name = "places_service_proto",
+    srcs = ["places_service.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/geo/type:type_proto",
+        "//google/maps/places/v1:v1_proto",
+        "//google/type:type_proto",
+    ],
+)
+
+proto_library(
+    name = "review_proto",
+    srcs = ["review.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/maps/places/v1:v1_proto",
+        "//google/type:type_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "attribution_proto_ts",
+    proto = ":attribution_proto",
+)
+
+ts_proto_library(
+    name = "ev_charging_proto_ts",
+    proto = ":ev_charging_proto",
+)
+
+ts_proto_library(
+    name = "fuel_options_proto_ts",
+    proto = ":fuel_options_proto",
+)
+
+ts_proto_library(
+    name = "geometry_proto_ts",
+    proto = ":geometry_proto",
+)
+
+ts_proto_library(
+    name = "photo_proto_ts",
+    proto = ":photo_proto",
+)
+
+ts_proto_library(
+    name = "place_proto_ts",
+    proto = ":place_proto",
+)
+
+ts_proto_library(
+    name = "places_service_proto_ts",
+    has_services = True,
+    proto = ":places_service_proto",
+)
+
+ts_proto_library(
+    name = "review_proto_ts",
+    proto = ":review_proto",
+)

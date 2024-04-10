@@ -1,0 +1,293 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "alertchart_proto",
+    srcs = ["alertchart.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "collapsible_group_proto",
+    srcs = ["collapsible_group.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "common_proto",
+    srcs = ["common.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/type:type_proto",
+        "@com_google_protobuf//:duration_proto",
+    ],
+)
+
+proto_library(
+    name = "dashboard_filter_proto",
+    srcs = ["dashboard_filter.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "dashboard_proto",
+    srcs = ["dashboard.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/monitoring/dashboard/v1:v1_proto",
+    ],
+)
+
+proto_library(
+    name = "dashboards_service_proto",
+    srcs = ["dashboards_service.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/monitoring/dashboard/v1:v1_proto",
+        "@com_google_protobuf//:empty_proto",
+    ],
+)
+
+proto_library(
+    name = "drilldowns_proto",
+    srcs = ["drilldowns.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "error_reporting_panel_proto",
+    srcs = ["error_reporting_panel.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "incident_list_proto",
+    srcs = ["incident_list.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "layouts_proto",
+    srcs = ["layouts.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/monitoring/dashboard/v1:v1_proto"],
+)
+
+proto_library(
+    name = "logs_panel_proto",
+    srcs = ["logs_panel.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "metrics_proto",
+    srcs = ["metrics.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/monitoring/dashboard/v1:v1_proto",
+    ],
+)
+
+proto_library(
+    name = "piechart_proto",
+    srcs = ["piechart.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/monitoring/dashboard/v1:v1_proto",
+        "@com_google_protobuf//:duration_proto",
+    ],
+)
+
+proto_library(
+    name = "scorecard_proto",
+    srcs = ["scorecard.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/monitoring/dashboard/v1:v1_proto",
+        "@com_google_protobuf//:duration_proto",
+        "@com_google_protobuf//:empty_proto",
+    ],
+)
+
+proto_library(
+    name = "section_header_proto",
+    srcs = ["section_header.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "service_proto",
+    srcs = ["service.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "single_view_group_proto",
+    srcs = ["single_view_group.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "table_display_options_proto",
+    srcs = ["table_display_options.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "table_proto",
+    srcs = ["table.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/monitoring/dashboard/v1:v1_proto",
+        "@com_google_protobuf//:duration_proto",
+    ],
+)
+
+proto_library(
+    name = "text_proto",
+    srcs = ["text.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "widget_proto",
+    srcs = ["widget.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/monitoring/dashboard/v1:v1_proto",
+        "@com_google_protobuf//:empty_proto",
+    ],
+)
+
+proto_library(
+    name = "xychart_proto",
+    srcs = ["xychart.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/monitoring/dashboard/v1:v1_proto",
+        "@com_google_protobuf//:duration_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "alertchart_proto_ts",
+    proto = ":alertchart_proto",
+)
+
+ts_proto_library(
+    name = "collapsible_group_proto_ts",
+    proto = ":collapsible_group_proto",
+)
+
+ts_proto_library(
+    name = "common_proto_ts",
+    proto = ":common_proto",
+)
+
+ts_proto_library(
+    name = "dashboard_filter_proto_ts",
+    proto = ":dashboard_filter_proto",
+)
+
+ts_proto_library(
+    name = "dashboard_proto_ts",
+    proto = ":dashboard_proto",
+)
+
+ts_proto_library(
+    name = "dashboards_service_proto_ts",
+    has_services = True,
+    proto = ":dashboards_service_proto",
+)
+
+ts_proto_library(
+    name = "drilldowns_proto_ts",
+    proto = ":drilldowns_proto",
+)
+
+ts_proto_library(
+    name = "error_reporting_panel_proto_ts",
+    proto = ":error_reporting_panel_proto",
+)
+
+ts_proto_library(
+    name = "incident_list_proto_ts",
+    proto = ":incident_list_proto",
+)
+
+ts_proto_library(
+    name = "layouts_proto_ts",
+    proto = ":layouts_proto",
+)
+
+ts_proto_library(
+    name = "logs_panel_proto_ts",
+    proto = ":logs_panel_proto",
+)
+
+ts_proto_library(
+    name = "metrics_proto_ts",
+    proto = ":metrics_proto",
+)
+
+ts_proto_library(
+    name = "piechart_proto_ts",
+    proto = ":piechart_proto",
+)
+
+ts_proto_library(
+    name = "scorecard_proto_ts",
+    proto = ":scorecard_proto",
+)
+
+ts_proto_library(
+    name = "section_header_proto_ts",
+    proto = ":section_header_proto",
+)
+
+ts_proto_library(
+    name = "service_proto_ts",
+    proto = ":service_proto",
+)
+
+ts_proto_library(
+    name = "single_view_group_proto_ts",
+    proto = ":single_view_group_proto",
+)
+
+ts_proto_library(
+    name = "table_display_options_proto_ts",
+    proto = ":table_display_options_proto",
+)
+
+ts_proto_library(
+    name = "table_proto_ts",
+    proto = ":table_proto",
+)
+
+ts_proto_library(
+    name = "text_proto_ts",
+    proto = ":text_proto",
+)
+
+ts_proto_library(
+    name = "widget_proto_ts",
+    proto = ":widget_proto",
+)
+
+ts_proto_library(
+    name = "xychart_proto_ts",
+    proto = ":xychart_proto",
+)

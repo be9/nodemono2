@@ -1,0 +1,134 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "citation_proto",
+    srcs = ["citation.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "discuss_service_proto",
+    srcs = ["discuss_service.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/ai/generativelanguage/v1beta3:v1beta3_proto",
+        "//google/api:api_proto",
+    ],
+)
+
+proto_library(
+    name = "model_proto",
+    srcs = ["model.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "model_service_proto",
+    srcs = ["model_service.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/ai/generativelanguage/v1beta3:v1beta3_proto",
+        "//google/api:api_proto",
+        "//google/longrunning:longrunning_proto",
+        "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:field_mask_proto",
+    ],
+)
+
+proto_library(
+    name = "permission_proto",
+    srcs = ["permission.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "permission_service_proto",
+    srcs = ["permission_service.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/ai/generativelanguage/v1beta3:v1beta3_proto",
+        "//google/api:api_proto",
+        "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:field_mask_proto",
+    ],
+)
+
+proto_library(
+    name = "safety_proto",
+    srcs = ["safety.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "text_service_proto",
+    srcs = ["text_service.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/ai/generativelanguage/v1beta3:v1beta3_proto",
+        "//google/api:api_proto",
+    ],
+)
+
+proto_library(
+    name = "tuned_model_proto",
+    srcs = ["tuned_model.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "citation_proto_ts",
+    proto = ":citation_proto",
+)
+
+ts_proto_library(
+    name = "discuss_service_proto_ts",
+    has_services = True,
+    proto = ":discuss_service_proto",
+)
+
+ts_proto_library(
+    name = "model_proto_ts",
+    proto = ":model_proto",
+)
+
+ts_proto_library(
+    name = "model_service_proto_ts",
+    has_services = True,
+    proto = ":model_service_proto",
+)
+
+ts_proto_library(
+    name = "permission_proto_ts",
+    proto = ":permission_proto",
+)
+
+ts_proto_library(
+    name = "permission_service_proto_ts",
+    has_services = True,
+    proto = ":permission_service_proto",
+)
+
+ts_proto_library(
+    name = "safety_proto_ts",
+    proto = ":safety_proto",
+)
+
+ts_proto_library(
+    name = "text_service_proto_ts",
+    has_services = True,
+    proto = ":text_service_proto",
+)
+
+ts_proto_library(
+    name = "tuned_model_proto_ts",
+    proto = ":tuned_model_proto",
+)

@@ -1,0 +1,191 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "annotations_proto",
+    srcs = ["annotations.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/rpc:rpc_proto",
+        "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:field_mask_proto",
+        "@com_google_protobuf//:struct_proto",
+        "@com_google_protobuf//:wrappers_proto",
+    ],
+)
+
+proto_library(
+    name = "cigar_proto",
+    srcs = ["cigar.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "datasets_proto",
+    srcs = ["datasets.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/iam/v1:v1_proto",
+        "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:field_mask_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "operations_proto",
+    srcs = ["operations.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "@com_google_protobuf//:any_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "position_proto",
+    srcs = ["position.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "range_proto",
+    srcs = ["range.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "readalignment_proto",
+    srcs = ["readalignment.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/genomics/v1:v1_proto",
+        "@com_google_protobuf//:struct_proto",
+    ],
+)
+
+proto_library(
+    name = "readgroup_proto",
+    srcs = ["readgroup.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "@com_google_protobuf//:struct_proto",
+    ],
+)
+
+proto_library(
+    name = "readgroupset_proto",
+    srcs = ["readgroupset.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/genomics/v1:v1_proto",
+        "@com_google_protobuf//:struct_proto",
+    ],
+)
+
+proto_library(
+    name = "reads_proto",
+    srcs = ["reads.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/genomics/v1:v1_proto",
+        "//google/longrunning:longrunning_proto",
+        "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:field_mask_proto",
+    ],
+)
+
+proto_library(
+    name = "references_proto",
+    srcs = ["references.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "variants_proto",
+    srcs = ["variants.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/longrunning:longrunning_proto",
+        "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:field_mask_proto",
+        "@com_google_protobuf//:struct_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "annotations_proto_ts",
+    has_services = True,
+    proto = ":annotations_proto",
+)
+
+ts_proto_library(
+    name = "cigar_proto_ts",
+    proto = ":cigar_proto",
+)
+
+ts_proto_library(
+    name = "datasets_proto_ts",
+    has_services = True,
+    proto = ":datasets_proto",
+)
+
+ts_proto_library(
+    name = "operations_proto_ts",
+    proto = ":operations_proto",
+)
+
+ts_proto_library(
+    name = "position_proto_ts",
+    proto = ":position_proto",
+)
+
+ts_proto_library(
+    name = "range_proto_ts",
+    proto = ":range_proto",
+)
+
+ts_proto_library(
+    name = "readalignment_proto_ts",
+    proto = ":readalignment_proto",
+)
+
+ts_proto_library(
+    name = "readgroup_proto_ts",
+    proto = ":readgroup_proto",
+)
+
+ts_proto_library(
+    name = "readgroupset_proto_ts",
+    proto = ":readgroupset_proto",
+)
+
+ts_proto_library(
+    name = "reads_proto_ts",
+    has_services = True,
+    proto = ":reads_proto",
+)
+
+ts_proto_library(
+    name = "references_proto_ts",
+    has_services = True,
+    proto = ":references_proto",
+)
+
+ts_proto_library(
+    name = "variants_proto_ts",
+    has_services = True,
+    proto = ":variants_proto",
+)

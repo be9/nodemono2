@@ -1,0 +1,17 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "slides_addon_manifest_proto",
+    srcs = ["slides_addon_manifest.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/apps/script/type:type_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "slides_addon_manifest_proto_ts",
+    proto = ":slides_addon_manifest_proto",
+)

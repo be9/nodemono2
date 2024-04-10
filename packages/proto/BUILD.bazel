@@ -1,0 +1,9 @@
+load("//bzl:defs.bzl", "monorepo_package")
+
+monorepo_package(
+    name = "proto",
+    deps = [
+        # These are taken from package.json
+        "//packages/proto:node_modules/@protobuf-ts/plugin",
+    ],
+)

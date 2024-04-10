@@ -1,0 +1,29 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "grafeas_proto",
+    srcs = ["grafeas.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/devtools/containeranalysis/v1beta1/attestation:attestation_proto",
+        "//google/devtools/containeranalysis/v1beta1/build:build_proto",
+        "//google/devtools/containeranalysis/v1beta1/common:common_proto",
+        "//google/devtools/containeranalysis/v1beta1/deployment:deployment_proto",
+        "//google/devtools/containeranalysis/v1beta1/discovery:discovery_proto",
+        "//google/devtools/containeranalysis/v1beta1/image:image_proto",
+        "//google/devtools/containeranalysis/v1beta1/package:package_proto",
+        "//google/devtools/containeranalysis/v1beta1/provenance:provenance_proto",
+        "//google/devtools/containeranalysis/v1beta1/vulnerability:vulnerability_proto",
+        "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:field_mask_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "grafeas_proto_ts",
+    has_services = True,
+    proto = ":grafeas_proto",
+)

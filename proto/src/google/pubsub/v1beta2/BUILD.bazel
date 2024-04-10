@@ -1,0 +1,15 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "pubsub_proto",
+    srcs = ["pubsub.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:empty_proto"],
+)
+
+ts_proto_library(
+    name = "pubsub_proto_ts",
+    has_services = True,
+    proto = ":pubsub_proto",
+)

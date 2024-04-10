@@ -1,0 +1,71 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "address_proto",
+    srcs = ["address.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/type:type_proto",
+    ],
+)
+
+proto_library(
+    name = "address_validation_service_proto",
+    srcs = ["address_validation_service.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/maps/addressvalidation/v1:v1_proto",
+        "//google/type:type_proto",
+    ],
+)
+
+proto_library(
+    name = "geocode_proto",
+    srcs = ["geocode.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/geo/type:type_proto",
+        "//google/type:type_proto",
+    ],
+)
+
+proto_library(
+    name = "metadata_proto",
+    srcs = ["metadata.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "usps_data_proto",
+    srcs = ["usps_data.proto"],
+    visibility = ["//visibility:public"],
+)
+
+ts_proto_library(
+    name = "address_proto_ts",
+    proto = ":address_proto",
+)
+
+ts_proto_library(
+    name = "address_validation_service_proto_ts",
+    has_services = True,
+    proto = ":address_validation_service_proto",
+)
+
+ts_proto_library(
+    name = "geocode_proto_ts",
+    proto = ":geocode_proto",
+)
+
+ts_proto_library(
+    name = "metadata_proto_ts",
+    proto = ":metadata_proto",
+)
+
+ts_proto_library(
+    name = "usps_data_proto_ts",
+    proto = ":usps_data_proto",
+)

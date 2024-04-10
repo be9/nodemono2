@@ -1,0 +1,13 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "device_resources_proto",
+    srcs = ["device_resources.proto"],
+    visibility = ["//visibility:public"],
+)
+
+ts_proto_library(
+    name = "device_resources_proto_ts",
+    proto = ":device_resources_proto",
+)

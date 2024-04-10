@@ -1,0 +1,15 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "ui_detection_proto",
+    srcs = ["ui_detection.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+ts_proto_library(
+    name = "ui_detection_proto_ts",
+    has_services = True,
+    proto = ":ui_detection_proto",
+)

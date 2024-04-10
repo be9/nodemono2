@@ -1,0 +1,7 @@
+node_modules
+*.tsbuildinfo
+packages/*/build
+.idea
+.turbo
+bazel-*
+.ijwb

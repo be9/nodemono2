@@ -1,0 +1,19 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "aerial_view_proto",
+    srcs = ["aerial_view.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/type:type_proto",
+        "@com_google_protobuf//:duration_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "aerial_view_proto_ts",
+    has_services = True,
+    proto = ":aerial_view_proto",
+)

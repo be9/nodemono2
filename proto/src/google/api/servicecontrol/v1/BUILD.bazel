@@ -1,0 +1,121 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "check_error_proto",
+    srcs = ["check_error.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/rpc:rpc_proto"],
+)
+
+proto_library(
+    name = "distribution_proto",
+    srcs = ["distribution.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "http_request_proto",
+    srcs = ["http_request.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:duration_proto"],
+)
+
+proto_library(
+    name = "log_entry_proto",
+    srcs = ["log_entry.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api/servicecontrol/v1:v1_proto",
+        "//google/logging/type:type_proto",
+        "@com_google_protobuf//:any_proto",
+        "@com_google_protobuf//:struct_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "metric_value_proto",
+    srcs = ["metric_value.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api/servicecontrol/v1:v1_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "operation_proto",
+    srcs = ["operation.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api/servicecontrol/v1:v1_proto",
+        "@com_google_protobuf//:any_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "quota_controller_proto",
+    srcs = ["quota_controller.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/api/servicecontrol/v1:v1_proto",
+        "//google/rpc:rpc_proto",
+    ],
+)
+
+proto_library(
+    name = "service_controller_proto",
+    srcs = ["service_controller.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/api/servicecontrol/v1:v1_proto",
+        "//google/rpc:rpc_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "check_error_proto_ts",
+    proto = ":check_error_proto",
+)
+
+ts_proto_library(
+    name = "distribution_proto_ts",
+    proto = ":distribution_proto",
+)
+
+ts_proto_library(
+    name = "http_request_proto_ts",
+    proto = ":http_request_proto",
+)
+
+ts_proto_library(
+    name = "log_entry_proto_ts",
+    proto = ":log_entry_proto",
+)
+
+ts_proto_library(
+    name = "metric_value_proto_ts",
+    proto = ":metric_value_proto",
+)
+
+ts_proto_library(
+    name = "operation_proto_ts",
+    proto = ":operation_proto",
+)
+
+ts_proto_library(
+    name = "quota_controller_proto_ts",
+    has_services = True,
+    proto = ":quota_controller_proto",
+)
+
+ts_proto_library(
+    name = "service_controller_proto_ts",
+    has_services = True,
+    proto = ":service_controller_proto",
+)

@@ -1,0 +1,34 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "resources_proto",
+    srcs = ["resources.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "@com_google_protobuf//:api_proto",
+    ],
+)
+
+proto_library(
+    name = "serviceusage_proto",
+    srcs = ["serviceusage.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/api/serviceusage/v1:v1_proto",
+        "//google/longrunning:longrunning_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "resources_proto_ts",
+    proto = ":resources_proto",
+)
+
+ts_proto_library(
+    name = "serviceusage_proto_ts",
+    has_services = True,
+    proto = ":serviceusage_proto",
+)

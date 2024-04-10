@@ -1,0 +1,83 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "accounts_labels_proto",
+    srcs = ["accounts_labels.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "@com_google_protobuf//:empty_proto",
+    ],
+)
+
+proto_library(
+    name = "accounts_proto",
+    srcs = ["accounts.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "css_product_common_proto",
+    srcs = ["css_product_common.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/shopping/type:type_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "css_product_inputs_proto",
+    srcs = ["css_product_inputs.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/shopping/css/v1:v1_proto",
+        "//google/shopping/type:type_proto",
+        "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "css_products_proto",
+    srcs = ["css_products.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/shopping/css/v1:v1_proto",
+        "//google/shopping/type:type_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "accounts_labels_proto_ts",
+    has_services = True,
+    proto = ":accounts_labels_proto",
+)
+
+ts_proto_library(
+    name = "accounts_proto_ts",
+    has_services = True,
+    proto = ":accounts_proto",
+)
+
+ts_proto_library(
+    name = "css_product_common_proto_ts",
+    proto = ":css_product_common_proto",
+)
+
+ts_proto_library(
+    name = "css_product_inputs_proto_ts",
+    has_services = True,
+    proto = ":css_product_inputs_proto",
+)
+
+ts_proto_library(
+    name = "css_products_proto_ts",
+    has_services = True,
+    proto = ":css_products_proto",
+)

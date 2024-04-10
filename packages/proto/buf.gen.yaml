@@ -1,0 +1,9 @@
+version: v1
+plugins:
+  - name: ts
+    out: gen
+    opt:
+      - long_type_string
+      - keep_enum_prefix
+      - server_generic
+    strategy: all

@@ -1,0 +1,244 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "action_proto",
+    srcs = ["action.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/devtools/resultstore/v2:v2_proto",
+        "@com_google_protobuf//:duration_proto",
+    ],
+)
+
+proto_library(
+    name = "common_proto",
+    srcs = ["common.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "@com_google_protobuf//:duration_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "configuration_proto",
+    srcs = ["configuration.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/devtools/resultstore/v2:v2_proto",
+    ],
+)
+
+proto_library(
+    name = "configured_target_proto",
+    srcs = ["configured_target.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/devtools/resultstore/v2:v2_proto",
+        "@com_google_protobuf//:duration_proto",
+    ],
+)
+
+proto_library(
+    name = "coverage_proto",
+    srcs = ["coverage.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "coverage_summary_proto",
+    srcs = ["coverage_summary.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/devtools/resultstore/v2:v2_proto"],
+)
+
+proto_library(
+    name = "download_metadata_proto",
+    srcs = ["download_metadata.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/devtools/resultstore/v2:v2_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "file_processing_error_proto",
+    srcs = ["file_processing_error.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "file_proto",
+    srcs = ["file.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:wrappers_proto"],
+)
+
+proto_library(
+    name = "file_set_proto",
+    srcs = ["file_set.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/devtools/resultstore/v2:v2_proto",
+    ],
+)
+
+proto_library(
+    name = "invocation_proto",
+    srcs = ["invocation.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/devtools/resultstore/v2:v2_proto",
+    ],
+)
+
+proto_library(
+    name = "resultstore_download_proto",
+    srcs = ["resultstore_download.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/devtools/resultstore/v2:v2_proto",
+    ],
+)
+
+proto_library(
+    name = "resultstore_file_download_proto",
+    srcs = ["resultstore_file_download.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "resultstore_upload_proto",
+    srcs = ["resultstore_upload.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/devtools/resultstore/v2:v2_proto",
+        "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:field_mask_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "target_proto",
+    srcs = ["target.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/devtools/resultstore/v2:v2_proto",
+    ],
+)
+
+proto_library(
+    name = "test_suite_proto",
+    srcs = ["test_suite.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/devtools/resultstore/v2:v2_proto"],
+)
+
+proto_library(
+    name = "upload_metadata_proto",
+    srcs = ["upload_metadata.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+ts_proto_library(
+    name = "action_proto_ts",
+    proto = ":action_proto",
+)
+
+ts_proto_library(
+    name = "common_proto_ts",
+    proto = ":common_proto",
+)
+
+ts_proto_library(
+    name = "configuration_proto_ts",
+    proto = ":configuration_proto",
+)
+
+ts_proto_library(
+    name = "configured_target_proto_ts",
+    proto = ":configured_target_proto",
+)
+
+ts_proto_library(
+    name = "coverage_proto_ts",
+    proto = ":coverage_proto",
+)
+
+ts_proto_library(
+    name = "coverage_summary_proto_ts",
+    proto = ":coverage_summary_proto",
+)
+
+ts_proto_library(
+    name = "download_metadata_proto_ts",
+    proto = ":download_metadata_proto",
+)
+
+ts_proto_library(
+    name = "file_processing_error_proto_ts",
+    proto = ":file_processing_error_proto",
+)
+
+ts_proto_library(
+    name = "file_proto_ts",
+    proto = ":file_proto",
+)
+
+ts_proto_library(
+    name = "file_set_proto_ts",
+    proto = ":file_set_proto",
+)
+
+ts_proto_library(
+    name = "invocation_proto_ts",
+    proto = ":invocation_proto",
+)
+
+ts_proto_library(
+    name = "resultstore_download_proto_ts",
+    has_services = True,
+    proto = ":resultstore_download_proto",
+)
+
+ts_proto_library(
+    name = "resultstore_file_download_proto_ts",
+    has_services = True,
+    proto = ":resultstore_file_download_proto",
+)
+
+ts_proto_library(
+    name = "resultstore_upload_proto_ts",
+    has_services = True,
+    proto = ":resultstore_upload_proto",
+)
+
+ts_proto_library(
+    name = "target_proto_ts",
+    proto = ":target_proto",
+)
+
+ts_proto_library(
+    name = "test_suite_proto_ts",
+    proto = ":test_suite_proto",
+)
+
+ts_proto_library(
+    name = "upload_metadata_proto_ts",
+    proto = ":upload_metadata_proto",
+)

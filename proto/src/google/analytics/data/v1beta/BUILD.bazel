@@ -1,0 +1,31 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "analytics_data_api_proto",
+    srcs = ["analytics_data_api.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/analytics/data/v1beta:v1beta_proto",
+        "//google/api:api_proto",
+        "//google/longrunning:longrunning_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "data_proto",
+    srcs = ["data.proto"],
+    visibility = ["//visibility:public"],
+)
+
+ts_proto_library(
+    name = "analytics_data_api_proto_ts",
+    has_services = True,
+    proto = ":analytics_data_api_proto",
+)
+
+ts_proto_library(
+    name = "data_proto_ts",
+    proto = ":data_proto",
+)

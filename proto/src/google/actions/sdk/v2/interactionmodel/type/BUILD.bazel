@@ -1,0 +1,83 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "class_reference_proto",
+    srcs = ["class_reference.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "entity_display_proto",
+    srcs = ["entity_display.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "free_text_type_proto",
+    srcs = ["free_text_type.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/actions/sdk/v2/interactionmodel/type:type_proto",
+        "//google/api:api_proto",
+    ],
+)
+
+proto_library(
+    name = "regular_expression_type_proto",
+    srcs = ["regular_expression_type.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/actions/sdk/v2/interactionmodel/type:type_proto",
+        "//google/api:api_proto",
+    ],
+)
+
+proto_library(
+    name = "synonym_type_proto",
+    srcs = ["synonym_type.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/actions/sdk/v2/interactionmodel/type:type_proto",
+        "//google/api:api_proto",
+    ],
+)
+
+proto_library(
+    name = "type_proto",
+    srcs = ["type.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/actions/sdk/v2/interactionmodel/type:type_proto"],
+)
+
+ts_proto_library(
+    name = "class_reference_proto_ts",
+    proto = ":class_reference_proto",
+)
+
+ts_proto_library(
+    name = "entity_display_proto_ts",
+    proto = ":entity_display_proto",
+)
+
+ts_proto_library(
+    name = "free_text_type_proto_ts",
+    proto = ":free_text_type_proto",
+)
+
+ts_proto_library(
+    name = "regular_expression_type_proto_ts",
+    proto = ":regular_expression_type_proto",
+)
+
+ts_proto_library(
+    name = "synonym_type_proto_ts",
+    proto = ":synonym_type_proto",
+)
+
+ts_proto_library(
+    name = "type_proto_ts",
+    proto = ":type_proto",
+)

@@ -1,0 +1,160 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "common_proto",
+    srcs = ["common.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/type:type_proto",
+    ],
+)
+
+proto_library(
+    name = "error_details_proto",
+    srcs = ["error_details.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "exception_detail_proto",
+    srcs = ["exception_detail.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "field_proto",
+    srcs = ["field.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/apps/drive/labels/v2beta:v2beta_proto",
+        "//google/type:type_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "label_limits_proto",
+    srcs = ["label_limits.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/type:type_proto",
+    ],
+)
+
+proto_library(
+    name = "label_lock_proto",
+    srcs = ["label_lock.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/apps/drive/labels/v2beta:v2beta_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "label_permission_proto",
+    srcs = ["label_permission.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "label_proto",
+    srcs = ["label.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/apps/drive/labels/v2beta:v2beta_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "label_service_proto",
+    srcs = ["label_service.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/apps/drive/labels/v2beta:v2beta_proto",
+        "@com_google_protobuf//:empty_proto",
+    ],
+)
+
+proto_library(
+    name = "requests_proto",
+    srcs = ["requests.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/apps/drive/labels/v2beta:v2beta_proto",
+        "@com_google_protobuf//:field_mask_proto",
+    ],
+)
+
+proto_library(
+    name = "user_capabilities_proto",
+    srcs = ["user_capabilities.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+ts_proto_library(
+    name = "common_proto_ts",
+    proto = ":common_proto",
+)
+
+ts_proto_library(
+    name = "error_details_proto_ts",
+    proto = ":error_details_proto",
+)
+
+ts_proto_library(
+    name = "exception_detail_proto_ts",
+    proto = ":exception_detail_proto",
+)
+
+ts_proto_library(
+    name = "field_proto_ts",
+    proto = ":field_proto",
+)
+
+ts_proto_library(
+    name = "label_limits_proto_ts",
+    proto = ":label_limits_proto",
+)
+
+ts_proto_library(
+    name = "label_lock_proto_ts",
+    proto = ":label_lock_proto",
+)
+
+ts_proto_library(
+    name = "label_permission_proto_ts",
+    proto = ":label_permission_proto",
+)
+
+ts_proto_library(
+    name = "label_proto_ts",
+    proto = ":label_proto",
+)
+
+ts_proto_library(
+    name = "label_service_proto_ts",
+    has_services = True,
+    proto = ":label_service_proto",
+)
+
+ts_proto_library(
+    name = "requests_proto_ts",
+    proto = ":requests_proto",
+)
+
+ts_proto_library(
+    name = "user_capabilities_proto_ts",
+    proto = ":user_capabilities_proto",
+)

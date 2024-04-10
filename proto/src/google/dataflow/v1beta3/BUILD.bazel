@@ -1,0 +1,116 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "environment_proto",
+    srcs = ["environment.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "@com_google_protobuf//:any_proto",
+        "@com_google_protobuf//:struct_proto",
+    ],
+)
+
+proto_library(
+    name = "jobs_proto",
+    srcs = ["jobs.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/dataflow/v1beta3:v1beta3_proto",
+        "@com_google_protobuf//:duration_proto",
+        "@com_google_protobuf//:struct_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "messages_proto",
+    srcs = ["messages.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "@com_google_protobuf//:struct_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "metrics_proto",
+    srcs = ["metrics.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "@com_google_protobuf//:struct_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "snapshots_proto",
+    srcs = ["snapshots.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "@com_google_protobuf//:duration_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "streaming_proto",
+    srcs = ["streaming.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "templates_proto",
+    srcs = ["templates.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/dataflow/v1beta3:v1beta3_proto",
+        "//google/rpc:rpc_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "environment_proto_ts",
+    proto = ":environment_proto",
+)
+
+ts_proto_library(
+    name = "jobs_proto_ts",
+    has_services = True,
+    proto = ":jobs_proto",
+)
+
+ts_proto_library(
+    name = "messages_proto_ts",
+    has_services = True,
+    proto = ":messages_proto",
+)
+
+ts_proto_library(
+    name = "metrics_proto_ts",
+    has_services = True,
+    proto = ":metrics_proto",
+)
+
+ts_proto_library(
+    name = "snapshots_proto_ts",
+    has_services = True,
+    proto = ":snapshots_proto",
+)
+
+ts_proto_library(
+    name = "streaming_proto_ts",
+    proto = ":streaming_proto",
+)
+
+ts_proto_library(
+    name = "templates_proto_ts",
+    has_services = True,
+    proto = ":templates_proto",
+)

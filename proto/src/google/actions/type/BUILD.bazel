@@ -1,0 +1,26 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "date_range_proto",
+    srcs = ["date_range.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/type:type_proto"],
+)
+
+proto_library(
+    name = "datetime_range_proto",
+    srcs = ["datetime_range.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/type:type_proto"],
+)
+
+ts_proto_library(
+    name = "date_range_proto_ts",
+    proto = ":date_range_proto",
+)
+
+ts_proto_library(
+    name = "datetime_range_proto_ts",
+    proto = ":datetime_range_proto",
+)

@@ -1,0 +1,194 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "compute_custom_routes_request_proto",
+    srcs = ["compute_custom_routes_request.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/maps/routes/v1:v1_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "compute_custom_routes_response_proto",
+    srcs = ["compute_custom_routes_response.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/maps/routes/v1:v1_proto"],
+)
+
+proto_library(
+    name = "compute_route_matrix_request_proto",
+    srcs = ["compute_route_matrix_request.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/maps/routes/v1:v1_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "compute_routes_request_proto",
+    srcs = ["compute_routes_request.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/maps/routes/v1:v1_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "compute_routes_response_proto",
+    srcs = ["compute_routes_response.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/maps/routes/v1:v1_proto"],
+)
+
+proto_library(
+    name = "custom_route_proto",
+    srcs = ["custom_route.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/maps/routes/v1:v1_proto"],
+)
+
+proto_library(
+    name = "fallback_info_proto",
+    srcs = ["fallback_info.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "polyline_proto",
+    srcs = ["polyline.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:struct_proto"],
+)
+
+proto_library(
+    name = "route_matrix_element_proto",
+    srcs = ["route_matrix_element.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/maps/routes/v1:v1_proto",
+        "//google/rpc:rpc_proto",
+        "@com_google_protobuf//:duration_proto",
+    ],
+)
+
+proto_library(
+    name = "route_proto",
+    srcs = ["route.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/geo/type:type_proto",
+        "//google/maps/routes/v1:v1_proto",
+        "//google/type:type_proto",
+        "@com_google_protobuf//:duration_proto",
+    ],
+)
+
+proto_library(
+    name = "route_service_proto",
+    srcs = ["route_service.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/maps/routes/v1:v1_proto",
+    ],
+)
+
+proto_library(
+    name = "toll_passes_proto",
+    srcs = ["toll_passes.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "vehicle_emission_type_proto",
+    srcs = ["vehicle_emission_type.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "waypoint_proto",
+    srcs = ["waypoint.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/type:type_proto",
+        "@com_google_protobuf//:wrappers_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "compute_custom_routes_request_proto_ts",
+    proto = ":compute_custom_routes_request_proto",
+)
+
+ts_proto_library(
+    name = "compute_custom_routes_response_proto_ts",
+    proto = ":compute_custom_routes_response_proto",
+)
+
+ts_proto_library(
+    name = "compute_route_matrix_request_proto_ts",
+    proto = ":compute_route_matrix_request_proto",
+)
+
+ts_proto_library(
+    name = "compute_routes_request_proto_ts",
+    proto = ":compute_routes_request_proto",
+)
+
+ts_proto_library(
+    name = "compute_routes_response_proto_ts",
+    proto = ":compute_routes_response_proto",
+)
+
+ts_proto_library(
+    name = "custom_route_proto_ts",
+    proto = ":custom_route_proto",
+)
+
+ts_proto_library(
+    name = "fallback_info_proto_ts",
+    proto = ":fallback_info_proto",
+)
+
+ts_proto_library(
+    name = "polyline_proto_ts",
+    proto = ":polyline_proto",
+)
+
+ts_proto_library(
+    name = "route_matrix_element_proto_ts",
+    proto = ":route_matrix_element_proto",
+)
+
+ts_proto_library(
+    name = "route_proto_ts",
+    proto = ":route_proto",
+)
+
+ts_proto_library(
+    name = "route_service_proto_ts",
+    has_services = True,
+    proto = ":route_service_proto",
+)
+
+ts_proto_library(
+    name = "toll_passes_proto_ts",
+    proto = ":toll_passes_proto",
+)
+
+ts_proto_library(
+    name = "vehicle_emission_type_proto_ts",
+    proto = ":vehicle_emission_type_proto",
+)
+
+ts_proto_library(
+    name = "waypoint_proto_ts",
+    proto = ":waypoint_proto",
+)

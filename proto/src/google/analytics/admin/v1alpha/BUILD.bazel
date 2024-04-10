@@ -1,0 +1,115 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "access_report_proto",
+    srcs = ["access_report.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "analytics_admin_proto",
+    srcs = ["analytics_admin.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/analytics/admin/v1alpha:v1alpha_proto",
+        "//google/api:api_proto",
+        "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:field_mask_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "audience_proto",
+    srcs = ["audience.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "@com_google_protobuf//:duration_proto",
+    ],
+)
+
+proto_library(
+    name = "channel_group_proto",
+    srcs = ["channel_group.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "event_create_and_edit_proto",
+    srcs = ["event_create_and_edit.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "expanded_data_set_proto",
+    srcs = ["expanded_data_set.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "resources_proto",
+    srcs = ["resources.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/analytics/admin/v1alpha:v1alpha_proto",
+        "//google/api:api_proto",
+        "@com_google_protobuf//:timestamp_proto",
+        "@com_google_protobuf//:wrappers_proto",
+    ],
+)
+
+proto_library(
+    name = "subproperty_event_filter_proto",
+    srcs = ["subproperty_event_filter.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+ts_proto_library(
+    name = "access_report_proto_ts",
+    proto = ":access_report_proto",
+)
+
+ts_proto_library(
+    name = "analytics_admin_proto_ts",
+    has_services = True,
+    proto = ":analytics_admin_proto",
+)
+
+ts_proto_library(
+    name = "audience_proto_ts",
+    proto = ":audience_proto",
+)
+
+ts_proto_library(
+    name = "channel_group_proto_ts",
+    proto = ":channel_group_proto",
+)
+
+ts_proto_library(
+    name = "event_create_and_edit_proto_ts",
+    proto = ":event_create_and_edit_proto",
+)
+
+ts_proto_library(
+    name = "expanded_data_set_proto_ts",
+    proto = ":expanded_data_set_proto",
+)
+
+ts_proto_library(
+    name = "resources_proto_ts",
+    proto = ":resources_proto",
+)
+
+ts_proto_library(
+    name = "subproperty_event_filter_proto_ts",
+    proto = ":subproperty_event_filter_proto",
+)

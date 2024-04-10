@@ -1,0 +1,48 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "firestore_admin_proto",
+    srcs = ["firestore_admin.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/firestore/admin/v1beta1:v1beta1_proto",
+        "//google/longrunning:longrunning_proto",
+        "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "index_proto",
+    srcs = ["index.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "location_proto",
+    srcs = ["location.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/type:type_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "firestore_admin_proto_ts",
+    has_services = True,
+    proto = ":firestore_admin_proto",
+)
+
+ts_proto_library(
+    name = "index_proto_ts",
+    proto = ":index_proto",
+)
+
+ts_proto_library(
+    name = "location_proto_ts",
+    proto = ":location_proto",
+)

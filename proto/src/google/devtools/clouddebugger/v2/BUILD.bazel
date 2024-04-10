@@ -1,0 +1,51 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "controller_proto",
+    srcs = ["controller.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/devtools/clouddebugger/v2:v2_proto",
+    ],
+)
+
+proto_library(
+    name = "data_proto",
+    srcs = ["data.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/devtools/source/v1:v1_proto",
+        "@com_google_protobuf//:timestamp_proto",
+        "@com_google_protobuf//:wrappers_proto",
+    ],
+)
+
+proto_library(
+    name = "debugger_proto",
+    srcs = ["debugger.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/devtools/clouddebugger/v2:v2_proto",
+        "@com_google_protobuf//:empty_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "controller_proto_ts",
+    has_services = True,
+    proto = ":controller_proto",
+)
+
+ts_proto_library(
+    name = "data_proto_ts",
+    proto = ":data_proto",
+)
+
+ts_proto_library(
+    name = "debugger_proto_ts",
+    has_services = True,
+    proto = ":debugger_proto",
+)

@@ -1,0 +1,37 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "cloudbuild_proto",
+    srcs = ["cloudbuild.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "repositories_proto",
+    srcs = ["repositories.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/devtools/cloudbuild/v2:v2_proto",
+        "//google/longrunning:longrunning_proto",
+        "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:field_mask_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "cloudbuild_proto_ts",
+    proto = ":cloudbuild_proto",
+)
+
+ts_proto_library(
+    name = "repositories_proto_ts",
+    has_services = True,
+    proto = ":repositories_proto",
+)

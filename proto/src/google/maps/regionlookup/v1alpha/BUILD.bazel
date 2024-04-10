@@ -1,0 +1,56 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "region_identifier_proto",
+    srcs = ["region_identifier.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "region_lookup_service_proto",
+    srcs = ["region_lookup_service.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/maps/regionlookup/v1alpha:v1alpha_proto",
+    ],
+)
+
+proto_library(
+    name = "region_match_proto",
+    srcs = ["region_match.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "region_search_values_proto",
+    srcs = ["region_search_values.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/type:type_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "region_identifier_proto_ts",
+    proto = ":region_identifier_proto",
+)
+
+ts_proto_library(
+    name = "region_lookup_service_proto_ts",
+    has_services = True,
+    proto = ":region_lookup_service_proto",
+)
+
+ts_proto_library(
+    name = "region_match_proto_ts",
+    proto = ":region_match_proto",
+)
+
+ts_proto_library(
+    name = "region_search_values_proto_ts",
+    proto = ":region_search_values_proto",
+)

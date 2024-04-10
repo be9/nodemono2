@@ -1,0 +1,102 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "common_proto",
+    srcs = ["common.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/type:type_proto",
+        "@com_google_protobuf//:timestamp_proto",
+        "@com_google_protobuf//:wrappers_proto",
+    ],
+)
+
+proto_library(
+    name = "delivery_api_proto",
+    srcs = ["delivery_api.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/geo/type:type_proto",
+        "//google/maps/fleetengine/delivery/v1:v1_proto",
+        "@com_google_protobuf//:field_mask_proto",
+    ],
+)
+
+proto_library(
+    name = "delivery_vehicles_proto",
+    srcs = ["delivery_vehicles.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/maps/fleetengine/delivery/v1:v1_proto",
+        "//google/type:type_proto",
+        "@com_google_protobuf//:duration_proto",
+        "@com_google_protobuf//:wrappers_proto",
+    ],
+)
+
+proto_library(
+    name = "header_proto",
+    srcs = ["header.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "task_tracking_info_proto",
+    srcs = ["task_tracking_info.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/maps/fleetengine/delivery/v1:v1_proto",
+        "//google/type:type_proto",
+        "@com_google_protobuf//:timestamp_proto",
+        "@com_google_protobuf//:wrappers_proto",
+    ],
+)
+
+proto_library(
+    name = "tasks_proto",
+    srcs = ["tasks.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/maps/fleetengine/delivery/v1:v1_proto",
+        "@com_google_protobuf//:duration_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "common_proto_ts",
+    proto = ":common_proto",
+)
+
+ts_proto_library(
+    name = "delivery_api_proto_ts",
+    has_services = True,
+    proto = ":delivery_api_proto",
+)
+
+ts_proto_library(
+    name = "delivery_vehicles_proto_ts",
+    proto = ":delivery_vehicles_proto",
+)
+
+ts_proto_library(
+    name = "header_proto_ts",
+    proto = ":header_proto",
+)
+
+ts_proto_library(
+    name = "task_tracking_info_proto_ts",
+    proto = ":task_tracking_info_proto",
+)
+
+ts_proto_library(
+    name = "tasks_proto_ts",
+    proto = ":tasks_proto",
+)

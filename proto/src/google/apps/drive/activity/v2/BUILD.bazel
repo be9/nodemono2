@@ -1,0 +1,94 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "action_proto",
+    srcs = ["action.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/apps/drive/activity/v2:v2_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "actor_proto",
+    srcs = ["actor.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "common_proto",
+    srcs = ["common.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:timestamp_proto"],
+)
+
+proto_library(
+    name = "drive_activity_service_proto",
+    srcs = ["drive_activity_service.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/apps/drive/activity/v2:v2_proto",
+    ],
+)
+
+proto_library(
+    name = "query_drive_activity_request_proto",
+    srcs = ["query_drive_activity_request.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "query_drive_activity_response_proto",
+    srcs = ["query_drive_activity_response.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/apps/drive/activity/v2:v2_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "target_proto",
+    srcs = ["target.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/apps/drive/activity/v2:v2_proto"],
+)
+
+ts_proto_library(
+    name = "action_proto_ts",
+    proto = ":action_proto",
+)
+
+ts_proto_library(
+    name = "actor_proto_ts",
+    proto = ":actor_proto",
+)
+
+ts_proto_library(
+    name = "common_proto_ts",
+    proto = ":common_proto",
+)
+
+ts_proto_library(
+    name = "drive_activity_service_proto_ts",
+    has_services = True,
+    proto = ":drive_activity_service_proto",
+)
+
+ts_proto_library(
+    name = "query_drive_activity_request_proto_ts",
+    proto = ":query_drive_activity_request_proto",
+)
+
+ts_proto_library(
+    name = "query_drive_activity_response_proto_ts",
+    proto = ":query_drive_activity_response_proto",
+)
+
+ts_proto_library(
+    name = "target_proto_ts",
+    proto = ":target_proto",
+)

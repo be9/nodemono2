@@ -1,0 +1,23 @@
+{
+  "name": "nodemono2",
+  "version": "1.0.0",
+  "description": "Experimental Node monorepo",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "packageManager": "pnpm@8.15.5+sha256.4b4efa12490e5055d59b9b9fc9438b7d581a6b7af3b5675eb5c5f447cee1a589",
+  "devDependencies": {
+    "turbo": "^1.13.0",
+    "typescript": "^5.4.3",
+    "rimraf": "^5.0.5"
+  },
+  "pnpm": {
+    "packageExtensions": {
+      "cpu-features": {
+        "optionalDependencies": {
+          "node-gyp": "*"
+        }
+      }
+    }
+  }
+}

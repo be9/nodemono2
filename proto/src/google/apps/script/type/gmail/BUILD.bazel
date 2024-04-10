@@ -1,0 +1,14 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "gmail_addon_manifest_proto",
+    srcs = ["gmail_addon_manifest.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/apps/script/type:type_proto"],
+)
+
+ts_proto_library(
+    name = "gmail_addon_manifest_proto_ts",
+    proto = ":gmail_addon_manifest_proto",
+)

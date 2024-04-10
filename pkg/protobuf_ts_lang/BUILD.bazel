@@ -1,0 +1,18 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "protobuf_ts_lang",
+    srcs = [
+        "lang.go",
+        "proto.go",
+    ],
+    importpath = "github.com/be9/nodemono2/pkg/protobuf_ts_lang",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_jhump_protoreflect//desc/protoparse",
+        "@com_github_jhump_protoreflect//desc/protoparse/ast",
+        "@gazelle//label:go_default_library",
+        "@gazelle//language:go_default_library",
+        "@gazelle//rule:go_default_library",
+    ],
+)

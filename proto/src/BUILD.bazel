@@ -1,0 +1,2 @@
+# gazelle:lang proto,protobuf_ts
+# gazelle:proto file

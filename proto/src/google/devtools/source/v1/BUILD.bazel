@@ -1,0 +1,13 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "source_context_proto",
+    srcs = ["source_context.proto"],
+    visibility = ["//visibility:public"],
+)
+
+ts_proto_library(
+    name = "source_context_proto_ts",
+    proto = ":source_context_proto",
+)

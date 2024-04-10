@@ -1,0 +1,51 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "build_events_proto",
+    srcs = ["build_events.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/devtools/build/v1:v1_proto",
+        "@com_google_protobuf//:any_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "build_status_proto",
+    srcs = ["build_status.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_google_protobuf//:any_proto",
+        "@com_google_protobuf//:wrappers_proto",
+    ],
+)
+
+proto_library(
+    name = "publish_build_event_proto",
+    srcs = ["publish_build_event.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/devtools/build/v1:v1_proto",
+        "@com_google_protobuf//:duration_proto",
+        "@com_google_protobuf//:empty_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "build_events_proto_ts",
+    proto = ":build_events_proto",
+)
+
+ts_proto_library(
+    name = "build_status_proto_ts",
+    proto = ":build_status_proto",
+)
+
+ts_proto_library(
+    name = "publish_build_event_proto_ts",
+    has_services = True,
+    proto = ":publish_build_event_proto",
+)

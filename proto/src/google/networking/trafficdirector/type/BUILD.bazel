@@ -1,0 +1,13 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "traffic_director_log_entry_proto",
+    srcs = ["traffic_director_log_entry.proto"],
+    visibility = ["//visibility:public"],
+)
+
+ts_proto_library(
+    name = "traffic_director_log_entry_proto_ts",
+    proto = ":traffic_director_log_entry_proto",
+)

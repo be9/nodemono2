@@ -1,0 +1,15 @@
+{
+  "name": "@nodemono2/lib1",
+  "main": "build/index.js",
+  "description": "the library which depends on puppeteer",
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "rimraf build tsconfig.tsbuildinfo",
+    "watch": "tsc --build --watch --preserveWatchOutput",
+    "build:self": "tsc"
+  },
+  "typings": "build/index.d.ts",
+  "dependencies": {
+    "puppeteer": "^22.6.1"
+  }
+}

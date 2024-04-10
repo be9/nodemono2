@@ -1,0 +1,192 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "calendar_period_proto",
+    srcs = ["calendar_period.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "color_proto",
+    srcs = ["color.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:wrappers_proto"],
+)
+
+proto_library(
+    name = "date_proto",
+    srcs = ["date.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "datetime_proto",
+    srcs = ["datetime.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:duration_proto"],
+)
+
+proto_library(
+    name = "dayofweek_proto",
+    srcs = ["dayofweek.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "decimal_proto",
+    srcs = ["decimal.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "expr_proto",
+    srcs = ["expr.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "fraction_proto",
+    srcs = ["fraction.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "interval_proto",
+    srcs = ["interval.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:timestamp_proto"],
+)
+
+proto_library(
+    name = "latlng_proto",
+    srcs = ["latlng.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "localized_text_proto",
+    srcs = ["localized_text.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "money_proto",
+    srcs = ["money.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "month_proto",
+    srcs = ["month.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "phone_number_proto",
+    srcs = ["phone_number.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "postal_address_proto",
+    srcs = ["postal_address.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "quaternion_proto",
+    srcs = ["quaternion.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "timeofday_proto",
+    srcs = ["timeofday.proto"],
+    visibility = ["//visibility:public"],
+)
+
+ts_proto_library(
+    name = "calendar_period_proto_ts",
+    proto = ":calendar_period_proto",
+)
+
+ts_proto_library(
+    name = "color_proto_ts",
+    proto = ":color_proto",
+)
+
+ts_proto_library(
+    name = "date_proto_ts",
+    proto = ":date_proto",
+)
+
+ts_proto_library(
+    name = "datetime_proto_ts",
+    proto = ":datetime_proto",
+)
+
+ts_proto_library(
+    name = "dayofweek_proto_ts",
+    proto = ":dayofweek_proto",
+)
+
+ts_proto_library(
+    name = "decimal_proto_ts",
+    proto = ":decimal_proto",
+)
+
+ts_proto_library(
+    name = "expr_proto_ts",
+    proto = ":expr_proto",
+)
+
+ts_proto_library(
+    name = "fraction_proto_ts",
+    proto = ":fraction_proto",
+)
+
+ts_proto_library(
+    name = "interval_proto_ts",
+    proto = ":interval_proto",
+)
+
+ts_proto_library(
+    name = "latlng_proto_ts",
+    proto = ":latlng_proto",
+)
+
+ts_proto_library(
+    name = "localized_text_proto_ts",
+    proto = ":localized_text_proto",
+)
+
+ts_proto_library(
+    name = "money_proto_ts",
+    proto = ":money_proto",
+)
+
+ts_proto_library(
+    name = "month_proto_ts",
+    proto = ":month_proto",
+)
+
+ts_proto_library(
+    name = "phone_number_proto_ts",
+    proto = ":phone_number_proto",
+)
+
+ts_proto_library(
+    name = "postal_address_proto_ts",
+    proto = ":postal_address_proto",
+)
+
+ts_proto_library(
+    name = "quaternion_proto_ts",
+    proto = ":quaternion_proto",
+)
+
+ts_proto_library(
+    name = "timeofday_proto_ts",
+    proto = ":timeofday_proto",
+)

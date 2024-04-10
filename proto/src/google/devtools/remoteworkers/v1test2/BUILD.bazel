@@ -1,0 +1,49 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "bots_proto",
+    srcs = ["bots.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/devtools/remoteworkers/v1test2:v1test2_proto",
+        "//google/rpc:rpc_proto",
+        "@com_google_protobuf//:any_proto",
+        "@com_google_protobuf//:field_mask_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "command_proto",
+    srcs = ["command.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/rpc:rpc_proto",
+        "@com_google_protobuf//:any_proto",
+        "@com_google_protobuf//:duration_proto",
+    ],
+)
+
+proto_library(
+    name = "worker_proto",
+    srcs = ["worker.proto"],
+    visibility = ["//visibility:public"],
+)
+
+ts_proto_library(
+    name = "bots_proto_ts",
+    has_services = True,
+    proto = ":bots_proto",
+)
+
+ts_proto_library(
+    name = "command_proto_ts",
+    proto = ":command_proto",
+)
+
+ts_proto_library(
+    name = "worker_proto_ts",
+    proto = ":worker_proto",
+)

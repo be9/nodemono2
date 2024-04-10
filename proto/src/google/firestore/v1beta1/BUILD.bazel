@@ -1,0 +1,91 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "common_proto",
+    srcs = ["common.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:timestamp_proto"],
+)
+
+proto_library(
+    name = "document_proto",
+    srcs = ["document.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/type:type_proto",
+        "@com_google_protobuf//:struct_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "firestore_proto",
+    srcs = ["firestore.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/firestore/v1beta1:v1beta1_proto",
+        "//google/rpc:rpc_proto",
+        "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "query_proto",
+    srcs = ["query.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/firestore/v1beta1:v1beta1_proto",
+        "@com_google_protobuf//:wrappers_proto",
+    ],
+)
+
+proto_library(
+    name = "undeliverable_first_gen_event_proto",
+    srcs = ["undeliverable_first_gen_event.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:timestamp_proto"],
+)
+
+proto_library(
+    name = "write_proto",
+    srcs = ["write.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/firestore/v1beta1:v1beta1_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "common_proto_ts",
+    proto = ":common_proto",
+)
+
+ts_proto_library(
+    name = "document_proto_ts",
+    proto = ":document_proto",
+)
+
+ts_proto_library(
+    name = "firestore_proto_ts",
+    has_services = True,
+    proto = ":firestore_proto",
+)
+
+ts_proto_library(
+    name = "query_proto_ts",
+    proto = ":query_proto",
+)
+
+ts_proto_library(
+    name = "undeliverable_first_gen_event_proto_ts",
+    proto = ":undeliverable_first_gen_event_proto",
+)
+
+ts_proto_library(
+    name = "write_proto_ts",
+    proto = ":write_proto",
+)

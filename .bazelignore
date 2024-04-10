@@ -1,0 +1,7 @@
+node_modules
+packages/app1/node_modules
+packages/lib1/node_modules
+packages/lib2/node_modules
+packages/next-app/node_modules
+packages/proto/node_modules
+packages/proto/protosrc

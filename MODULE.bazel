@@ -1,0 +1,53 @@
+module(
+    name = "nodemono2",
+)
+
+bazel_dep(name = "rules_nodejs", version = "6.0.5")
+bazel_dep(name = "aspect_rules_js", version = "1.40.1")
+bazel_dep(name = "aspect_rules_ts", version = "2.2.0")
+bazel_dep(name = "aspect_bazel_lib", version = "2.7.0")
+bazel_dep(name = "rules_go", version = "0.46.0")
+bazel_dep(name = "gazelle", version = "0.35.0")
+bazel_dep(name = "rules_proto", version = "6.0.0-rc2")
+bazel_dep(name = "protobuf", version = "23.1", repo_name = "com_google_protobuf")
+
+node = use_extension("@rules_nodejs//nodejs:extensions.bzl", "node")
+
+# 20.12.0 is not released yet https://github.com/bazelbuild/rules_nodejs/commit/6199ad0804cb9cf54deb73f761e0ec4f18347ccb
+node.toolchain(node_version = "20.11.1")
+
+npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm", dev_dependency = True)
+npm.npm_translate_lock(
+    name = "npm",
+    pnpm_lock = "//:pnpm-lock.yaml",
+    verify_node_modules_ignored = "//:.bazelignore",
+)
+use_repo(npm, "npm")
+
+rules_ts_ext = use_extension(
+    "@aspect_rules_ts//ts:extensions.bzl",
+    "ext",
+    dev_dependency = True,
+)
+rules_ts_ext.deps()
+use_repo(rules_ts_ext, "npm_typescript")
+
+bazel_dep(name = "protosrc")
+local_path_override(
+    module_name = "protosrc",
+    path = "proto/src",
+)
+
+go_deps = use_extension("@gazelle//:extensions.bzl", "go_deps")
+go_deps.from_file(go_mod = "//:go.mod")
+use_repo(
+    go_deps,
+    "com_github_jhump_protoreflect",
+    "org_golang_google_api",
+)
+go_deps.gazelle_override(
+    directives = [
+        "gazelle:proto disable",
+    ],
+    path = "google.golang.org/protobuf",
+)

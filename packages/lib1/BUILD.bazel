@@ -1,0 +1,9 @@
+load("//bzl:defs.bzl", "monorepo_package")
+
+monorepo_package(
+    name = "lib1",
+    deps = [
+        # These are taken from package.json
+        "//packages/lib1:node_modules/puppeteer",
+    ],
+)

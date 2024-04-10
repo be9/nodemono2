@@ -1,0 +1,20 @@
+load("@aspect_rules_js//npm:defs.bzl", "npm_link_package")
+load("@aspect_rules_ts//ts:defs.bzl", "ts_config")
+load("@gazelle//:def.bzl", "gazelle")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+
+ts_config(
+    name = "tsconfig",
+    src = "tsconfig.json",
+    visibility = [":__subpackages__"],
+)
+
+npm_link_all_packages(name = "node_modules")
+
+# gazelle:prefix github.com/be9/nodemono2
+gazelle(
+    name = "gazelle",
+    gazelle = "//bzl/gazelle",
+)
+
+# gazelle:ignore

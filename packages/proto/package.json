@@ -1,0 +1,18 @@
+{
+  "name": "@nodemono2/proto",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "clean": "rimraf gen/* build tsconfig.tsbuildinfo",
+    "codegen": "pnpm run -s clean && buf generate --timeout=30m",
+    "build:self": "tsc"
+  },
+  "dependencies": {
+    "@protobuf-ts/runtime": "^2.9.4",
+    "@protobuf-ts/runtime-rpc": "^2.9.4"
+  },
+  "devDependencies": {
+    "@protobuf-ts/plugin": "^2.9.4"
+  }
+}

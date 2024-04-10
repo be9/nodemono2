@@ -1,0 +1,17 @@
+{
+  "name": "@nodemono2/app1",
+  "version": "1.0.0",
+  "scripts": {
+    "clean": "rimraf build tsconfig.tsbuildinfo",
+    "build": "tsc -b",
+    "build:self": "tsc",
+    "watch": "tsc --build --watch --preserveWatchOutput",
+    "serve": "node build/index.js"
+  },
+  "dependencies": {
+    "@nodemono2/lib1": "workspace:^",
+    "@nodemono2/lib2": "workspace:^",
+    "@nodemono2/proto": "workspace:^",
+    "fastify": "^4.26.2"
+  }
+}

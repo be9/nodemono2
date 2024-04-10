@@ -1,0 +1,29 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "resources_proto",
+    srcs = ["resources.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "services_proto",
+    srcs = ["services.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/apps/market/v2:v2_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "resources_proto_ts",
+    proto = ":resources_proto",
+)
+
+ts_proto_library(
+    name = "services_proto_ts",
+    has_services = True,
+    proto = ":services_proto",
+)

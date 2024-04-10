@@ -1,0 +1,243 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "account_linking_proto",
+    srcs = ["account_linking.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "account_linking_secret_proto",
+    srcs = ["account_linking_secret.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "action_proto",
+    srcs = ["action.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "actions_sdk_proto",
+    srcs = ["actions_sdk.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/actions/sdk/v2:v2_proto",
+        "//google/api:api_proto",
+        "@com_google_protobuf//:wrappers_proto",
+    ],
+)
+
+proto_library(
+    name = "actions_testing_proto",
+    srcs = ["actions_testing.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/actions/sdk/v2:v2_proto",
+        "//google/actions/sdk/v2/conversation:conversation_proto",
+        "//google/actions/sdk/v2/conversation/prompt:prompt_proto",
+        "//google/actions/sdk/v2/conversation/prompt/content:content_proto",
+        "//google/api:api_proto",
+        "//google/type:type_proto",
+        "@com_google_protobuf//:empty_proto",
+    ],
+)
+
+proto_library(
+    name = "config_file_proto",
+    srcs = ["config_file.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/actions/sdk/v2:v2_proto",
+        "//google/actions/sdk/v2/interactionmodel:interactionmodel_proto",
+        "//google/actions/sdk/v2/interactionmodel/prompt:prompt_proto",
+        "//google/actions/sdk/v2/interactionmodel/type:type_proto",
+        "@com_google_protobuf//:struct_proto",
+    ],
+)
+
+proto_library(
+    name = "data_file_proto",
+    srcs = ["data_file.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "event_logs_proto",
+    srcs = ["event_logs.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/actions/sdk/v2/conversation:conversation_proto",
+        "//google/actions/sdk/v2/conversation/prompt:prompt_proto",
+        "//google/rpc:rpc_proto",
+        "@com_google_protobuf//:struct_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "files_proto",
+    srcs = ["files.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/actions/sdk/v2:v2_proto"],
+)
+
+proto_library(
+    name = "localized_settings_proto",
+    srcs = ["localized_settings.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/actions/sdk/v2:v2_proto",
+        "//google/api:api_proto",
+    ],
+)
+
+proto_library(
+    name = "manifest_proto",
+    srcs = ["manifest.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "release_channel_proto",
+    srcs = ["release_channel.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "settings_proto",
+    srcs = ["settings.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/actions/sdk/v2:v2_proto"],
+)
+
+proto_library(
+    name = "surface_proto",
+    srcs = ["surface.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "theme_customization_proto",
+    srcs = ["theme_customization.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "validation_results_proto",
+    srcs = ["validation_results.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "version_proto",
+    srcs = ["version.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
+    name = "webhook_proto",
+    srcs = ["webhook.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+ts_proto_library(
+    name = "account_linking_proto_ts",
+    proto = ":account_linking_proto",
+)
+
+ts_proto_library(
+    name = "account_linking_secret_proto_ts",
+    proto = ":account_linking_secret_proto",
+)
+
+ts_proto_library(
+    name = "action_proto_ts",
+    proto = ":action_proto",
+)
+
+ts_proto_library(
+    name = "actions_sdk_proto_ts",
+    has_services = True,
+    proto = ":actions_sdk_proto",
+)
+
+ts_proto_library(
+    name = "actions_testing_proto_ts",
+    has_services = True,
+    proto = ":actions_testing_proto",
+)
+
+ts_proto_library(
+    name = "config_file_proto_ts",
+    proto = ":config_file_proto",
+)
+
+ts_proto_library(
+    name = "data_file_proto_ts",
+    proto = ":data_file_proto",
+)
+
+ts_proto_library(
+    name = "event_logs_proto_ts",
+    proto = ":event_logs_proto",
+)
+
+ts_proto_library(
+    name = "files_proto_ts",
+    proto = ":files_proto",
+)
+
+ts_proto_library(
+    name = "localized_settings_proto_ts",
+    proto = ":localized_settings_proto",
+)
+
+ts_proto_library(
+    name = "manifest_proto_ts",
+    proto = ":manifest_proto",
+)
+
+ts_proto_library(
+    name = "release_channel_proto_ts",
+    proto = ":release_channel_proto",
+)
+
+ts_proto_library(
+    name = "settings_proto_ts",
+    proto = ":settings_proto",
+)
+
+ts_proto_library(
+    name = "surface_proto_ts",
+    proto = ":surface_proto",
+)
+
+ts_proto_library(
+    name = "theme_customization_proto_ts",
+    proto = ":theme_customization_proto",
+)
+
+ts_proto_library(
+    name = "validation_results_proto_ts",
+    proto = ":validation_results_proto",
+)
+
+ts_proto_library(
+    name = "version_proto_ts",
+    proto = ":version_proto",
+)
+
+ts_proto_library(
+    name = "webhook_proto_ts",
+    proto = ":webhook_proto",
+)

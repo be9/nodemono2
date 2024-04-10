@@ -1,0 +1,14 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "viewport_proto",
+    srcs = ["viewport.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/type:type_proto"],
+)
+
+ts_proto_library(
+    name = "viewport_proto_ts",
+    proto = ":viewport_proto",
+)

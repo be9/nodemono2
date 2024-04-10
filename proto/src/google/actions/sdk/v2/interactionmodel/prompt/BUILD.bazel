@@ -1,0 +1,54 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "static_prompt_proto",
+    srcs = ["static_prompt.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/actions/sdk/v2/interactionmodel/prompt:prompt_proto",
+        "//google/actions/sdk/v2/interactionmodel/prompt/content:content_proto",
+        "//google/api:api_proto",
+    ],
+)
+
+proto_library(
+    name = "static_simple_prompt_proto",
+    srcs = ["static_simple_prompt.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "suggestion_proto",
+    srcs = ["suggestion.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "surface_capabilities_proto",
+    srcs = ["surface_capabilities.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+ts_proto_library(
+    name = "static_prompt_proto_ts",
+    proto = ":static_prompt_proto",
+)
+
+ts_proto_library(
+    name = "static_simple_prompt_proto_ts",
+    proto = ":static_simple_prompt_proto",
+)
+
+ts_proto_library(
+    name = "suggestion_proto_ts",
+    proto = ":suggestion_proto",
+)
+
+ts_proto_library(
+    name = "surface_capabilities_proto_ts",
+    proto = ":surface_capabilities_proto",
+)

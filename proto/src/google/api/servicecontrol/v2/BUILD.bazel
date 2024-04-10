@@ -1,0 +1,19 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "service_controller_proto",
+    srcs = ["service_controller.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "//google/rpc:rpc_proto",
+        "//google/rpc/context:context_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "service_controller_proto_ts",
+    has_services = True,
+    proto = ":service_controller_proto",
+)

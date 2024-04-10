@@ -1,0 +1,15 @@
+load("//bzl:defs.bzl", "monorepo_package")
+
+monorepo_package(
+    name = "lib2",
+    deps = [
+        # These are taken from package.json
+        "//packages/lib2:node_modules/node-sass",
+        "//packages/lib2:node_modules/cpu-features",
+        "//packages/lib2:node_modules/sqlite3",
+        "//packages/lib2:node_modules/ssh2",
+        "//packages/lib2:node_modules/@types/node-sass",
+        "//packages/lib2:node_modules/@types/cpu-features",
+        "//packages/lib2:node_modules/@types/ssh2",
+    ],
+)

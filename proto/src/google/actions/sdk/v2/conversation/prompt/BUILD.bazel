@@ -1,0 +1,39 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "prompt_proto",
+    srcs = ["prompt.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/actions/sdk/v2/conversation/prompt:prompt_proto",
+        "//google/actions/sdk/v2/conversation/prompt/content:content_proto",
+    ],
+)
+
+proto_library(
+    name = "simple_proto",
+    srcs = ["simple.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "suggestion_proto",
+    srcs = ["suggestion.proto"],
+    visibility = ["//visibility:public"],
+)
+
+ts_proto_library(
+    name = "prompt_proto_ts",
+    proto = ":prompt_proto",
+)
+
+ts_proto_library(
+    name = "simple_proto_ts",
+    proto = ":simple_proto",
+)
+
+ts_proto_library(
+    name = "suggestion_proto_ts",
+    proto = ":suggestion_proto",
+)

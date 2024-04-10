@@ -1,0 +1,142 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+
+proto_library(
+    name = "static_canvas_prompt_proto",
+    srcs = ["static_canvas_prompt.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/api:api_proto",
+        "@com_google_protobuf//:struct_proto",
+    ],
+)
+
+proto_library(
+    name = "static_card_prompt_proto",
+    srcs = ["static_card_prompt.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/actions/sdk/v2/interactionmodel/prompt/content:content_proto",
+        "//google/api:api_proto",
+    ],
+)
+
+proto_library(
+    name = "static_collection_browse_prompt_proto",
+    srcs = ["static_collection_browse_prompt.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/actions/sdk/v2/interactionmodel/prompt/content:content_proto",
+        "//google/api:api_proto",
+    ],
+)
+
+proto_library(
+    name = "static_collection_prompt_proto",
+    srcs = ["static_collection_prompt.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/actions/sdk/v2/interactionmodel/prompt/content:content_proto",
+        "//google/api:api_proto",
+    ],
+)
+
+proto_library(
+    name = "static_content_prompt_proto",
+    srcs = ["static_content_prompt.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/actions/sdk/v2/interactionmodel/prompt/content:content_proto"],
+)
+
+proto_library(
+    name = "static_image_prompt_proto",
+    srcs = ["static_image_prompt.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["//google/api:api_proto"],
+)
+
+proto_library(
+    name = "static_link_prompt_proto",
+    srcs = ["static_link_prompt.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "static_list_prompt_proto",
+    srcs = ["static_list_prompt.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/actions/sdk/v2/interactionmodel/prompt/content:content_proto",
+        "//google/api:api_proto",
+    ],
+)
+
+proto_library(
+    name = "static_media_prompt_proto",
+    srcs = ["static_media_prompt.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/actions/sdk/v2/interactionmodel/prompt/content:content_proto",
+        "@com_google_protobuf//:duration_proto",
+    ],
+)
+
+proto_library(
+    name = "static_table_prompt_proto",
+    srcs = ["static_table_prompt.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//google/actions/sdk/v2/interactionmodel/prompt/content:content_proto",
+        "//google/api:api_proto",
+    ],
+)
+
+ts_proto_library(
+    name = "static_canvas_prompt_proto_ts",
+    proto = ":static_canvas_prompt_proto",
+)
+
+ts_proto_library(
+    name = "static_card_prompt_proto_ts",
+    proto = ":static_card_prompt_proto",
+)
+
+ts_proto_library(
+    name = "static_collection_browse_prompt_proto_ts",
+    proto = ":static_collection_browse_prompt_proto",
+)
+
+ts_proto_library(
+    name = "static_collection_prompt_proto_ts",
+    proto = ":static_collection_prompt_proto",
+)
+
+ts_proto_library(
+    name = "static_content_prompt_proto_ts",
+    proto = ":static_content_prompt_proto",
+)
+
+ts_proto_library(
+    name = "static_image_prompt_proto_ts",
+    proto = ":static_image_prompt_proto",
+)
+
+ts_proto_library(
+    name = "static_link_prompt_proto_ts",
+    proto = ":static_link_prompt_proto",
+)
+
+ts_proto_library(
+    name = "static_list_prompt_proto_ts",
+    proto = ":static_list_prompt_proto",
+)
+
+ts_proto_library(
+    name = "static_media_prompt_proto_ts",
+    proto = ":static_media_prompt_proto",
+)
+
+ts_proto_library(
+    name = "static_table_prompt_proto_ts",
+    proto = ":static_table_prompt_proto",
+)
