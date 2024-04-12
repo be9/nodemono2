@@ -130,9 +130,6 @@ Properly handling `packages/proto` appeared to be much harder:
 * Gazelle can generate `proto_library`; however in default mode, it generates a single `proto_library` rule per directory.
   Given the fact that every `*.proto` source maps to either 1 or 3 `*.ts` files, we need per-file granularity, therefore
   `gazelle:proto file` mode had to be used.
-* Gazelle doesn't understand relative file names (at least, all attempts to use `proto_import_prefix` and 
-  `proto_strip_import_prefix` were futile). `proto/src` was thus made a separate workspace where `import "foo/bar.proto"` 
-  indeed corresponds to `//foo:bar`.
 * To handle `*.ts` generation, the `ts_proto_library` rule (see `/bzl/defs.bzl`) was created by hacking the [rule with the same name](https://github.com/aspect-build/rules_ts/blob/main/ts/proto.bzl) 
   from `rules_ts`. By coincidence, `rules_ts` use [`protobuf-es`](https://github.com/bufbuild/protobuf-es) created by the same
   `protobuf-ts` author (timostamm); the difference is that `protobuf-ts` generates `*.ts` that yet needs to be compiled, where
@@ -142,38 +139,7 @@ Properly handling `packages/proto` appeared to be much harder:
 
 ### Problems 
 
-The current biggest blocker is Gazelle possibly malfunctioning in `gazelle:proto file` mode. While it correctly generates
-`proto_library` invocations, the deps are incorrect. For example:
-
-```protobuf
-// proto/src/google/actions/sdk/v2/account_linking.proto
-
-syntax = "proto3";
-
-package google.actions.sdk.v2;
-
-import "google/api/field_behavior.proto";
-
-// ...
-```
-but:
-
-```python
-# proto/src/google/actions/sdk/v2/BUILD.bazel
-load("@rules_proto//proto:defs.bzl", "proto_library")
-load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
-
-proto_library(
-    name = "account_linking_proto",
-    srcs = ["account_linking.proto"],
-    visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
-)
-
-# ...
-```
-The `//google/api:api_proto` target does not exist; `//google/api:field_behavior_proto` should be generated instead.
-`//google/api:api_proto` would only exist in `gazelle:proto default` mode which we cannot use. 
+...
 
 ### Work to do
 

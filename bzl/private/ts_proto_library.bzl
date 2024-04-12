@@ -18,7 +18,7 @@ def _protoc_action(ctx, proto_info, outputs, options = {}):
     inputs = depset(proto_info.direct_sources, transitive = [proto_info.transitive_descriptor_sets])
 
     args = ctx.actions.args()
-    args.add_joined(["--plugin", "protoc-gen-ts", ctx.executable.protoc_gen_es.path], join_with = "=")
+    args.add_joined(["--plugin", "protoc-gen-ts", ctx.executable.protoc_gen_ts.path], join_with = "=")
     for (key, value) in options.items():
         args.add_joined(["--ts_opt", key, value], join_with = "=")
     args.add_joined(["--ts_out", ctx.bin_dir.path], join_with = "=")
