@@ -4,6 +4,7 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "app_yaml_proto",
     srcs = ["app_yaml.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:duration_proto"],
 )
@@ -11,11 +12,20 @@ proto_library(
 proto_library(
     name = "appengine_proto",
     srcs = ["appengine.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/appengine/v1beta:v1beta_proto",
-        "//google/longrunning:longrunning_proto",
+        ":application_proto",
+        ":certificate_proto",
+        ":domain_mapping_proto",
+        ":domain_proto",
+        ":firewall_proto",
+        ":instance_proto",
+        ":service_proto",
+        ":version_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/longrunning:operations_proto",
         "@com_google_protobuf//:empty_proto",
         "@com_google_protobuf//:field_mask_proto",
     ],
@@ -24,6 +34,7 @@ proto_library(
 proto_library(
     name = "application_proto",
     srcs = ["application.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:duration_proto"],
 )
@@ -31,13 +42,15 @@ proto_library(
 proto_library(
     name = "audit_data_proto",
     srcs = ["audit_data.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/appengine/v1beta:v1beta_proto"],
+    deps = [":appengine_proto"],
 )
 
 proto_library(
     name = "certificate_proto",
     srcs = ["certificate.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:timestamp_proto"],
 )
@@ -45,6 +58,7 @@ proto_library(
 proto_library(
     name = "deploy_proto",
     srcs = ["deploy.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:duration_proto"],
 )
@@ -52,27 +66,32 @@ proto_library(
 proto_library(
     name = "domain_mapping_proto",
     srcs = ["domain_mapping.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "domain_proto",
     srcs = ["domain.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "firewall_proto",
     srcs = ["firewall.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "instance_proto",
     srcs = ["instance.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -80,19 +99,22 @@ proto_library(
 proto_library(
     name = "location_proto",
     srcs = ["location.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = ["//proto/src/google/api:field_behavior_proto"],
 )
 
 proto_library(
     name = "network_settings_proto",
     srcs = ["network_settings.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "operation_proto",
     srcs = ["operation.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:timestamp_proto"],
 )
@@ -100,16 +122,20 @@ proto_library(
 proto_library(
     name = "service_proto",
     srcs = ["service.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/appengine/v1beta:v1beta_proto"],
+    deps = [":network_settings_proto"],
 )
 
 proto_library(
     name = "version_proto",
     srcs = ["version.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/appengine/v1beta:v1beta_proto",
+        ":app_yaml_proto",
+        ":deploy_proto",
+        ":network_settings_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],

@@ -4,19 +4,23 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "apt_artifact_proto",
     srcs = ["apt_artifact.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/rpc:rpc_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/rpc:status_proto",
     ],
 )
 
 proto_library(
     name = "artifact_proto",
     srcs = ["artifact.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -24,9 +28,11 @@ proto_library(
 proto_library(
     name = "file_proto",
     srcs = ["file.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -34,9 +40,11 @@ proto_library(
 proto_library(
     name = "package_proto",
     srcs = ["package.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -44,9 +52,11 @@ proto_library(
 proto_library(
     name = "repository_proto",
     srcs = ["repository.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:field_mask_proto",
         "@com_google_protobuf//:timestamp_proto",
@@ -56,12 +66,24 @@ proto_library(
 proto_library(
     name = "service_proto",
     srcs = ["service.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/devtools/artifactregistry/v1:v1_proto",
-        "//google/iam/v1:v1_proto",
-        "//google/longrunning:longrunning_proto",
+        ":apt_artifact_proto",
+        ":artifact_proto",
+        ":file_proto",
+        ":package_proto",
+        ":repository_proto",
+        ":settings_proto",
+        ":tag_proto",
+        ":version_proto",
+        ":vpcsc_config_proto",
+        ":yum_artifact_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/iam/v1:iam_policy_proto",
+        "//proto/src/google/iam/v1:policy_proto",
+        "//proto/src/google/longrunning:operations_proto",
         "@com_google_protobuf//:empty_proto",
     ],
 )
@@ -69,9 +91,11 @@ proto_library(
 proto_library(
     name = "settings_proto",
     srcs = ["settings.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:field_mask_proto",
     ],
 )
@@ -79,9 +103,10 @@ proto_library(
 proto_library(
     name = "tag_proto",
     srcs = ["tag.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:field_mask_proto",
     ],
 )
@@ -89,10 +114,12 @@ proto_library(
 proto_library(
     name = "version_proto",
     srcs = ["version.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/devtools/artifactregistry/v1:v1_proto",
+        ":tag_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:struct_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
@@ -101,9 +128,11 @@ proto_library(
 proto_library(
     name = "vpcsc_config_proto",
     srcs = ["vpcsc_config.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:field_mask_proto",
     ],
 )
@@ -111,10 +140,12 @@ proto_library(
 proto_library(
     name = "yum_artifact_proto",
     srcs = ["yum_artifact.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/rpc:rpc_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/rpc:status_proto",
     ],
 )
 

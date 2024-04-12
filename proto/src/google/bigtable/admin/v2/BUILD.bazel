@@ -4,12 +4,17 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "bigtable_instance_admin_proto",
     srcs = ["bigtable_instance_admin.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/bigtable/admin/v2:v2_proto",
-        "//google/iam/v1:v1_proto",
-        "//google/longrunning:longrunning_proto",
+        ":instance_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/iam/v1:iam_policy_proto",
+        "//proto/src/google/iam/v1:policy_proto",
+        "//proto/src/google/longrunning:operations_proto",
         "@com_google_protobuf//:empty_proto",
         "@com_google_protobuf//:field_mask_proto",
         "@com_google_protobuf//:timestamp_proto",
@@ -19,12 +24,18 @@ proto_library(
 proto_library(
     name = "bigtable_table_admin_proto",
     srcs = ["bigtable_table_admin.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/bigtable/admin/v2:v2_proto",
-        "//google/iam/v1:v1_proto",
-        "//google/longrunning:longrunning_proto",
+        ":common_proto",
+        ":table_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/iam/v1:iam_policy_proto",
+        "//proto/src/google/iam/v1:policy_proto",
+        "//proto/src/google/longrunning:operations_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:empty_proto",
         "@com_google_protobuf//:field_mask_proto",
@@ -35,6 +46,7 @@ proto_library(
 proto_library(
     name = "common_proto",
     srcs = ["common.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:timestamp_proto"],
 )
@@ -42,10 +54,12 @@ proto_library(
 proto_library(
     name = "instance_proto",
     srcs = ["instance.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/bigtable/admin/v2:v2_proto",
+        ":common_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -53,11 +67,13 @@ proto_library(
 proto_library(
     name = "table_proto",
     srcs = ["table.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/bigtable/admin/v2:v2_proto",
-        "//google/rpc:rpc_proto",
+        ":types_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/rpc:status_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
@@ -66,8 +82,9 @@ proto_library(
 proto_library(
     name = "types_proto",
     srcs = ["types.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = ["//proto/src/google/api:field_behavior_proto"],
 )
 
 ts_proto_library(

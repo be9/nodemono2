@@ -4,33 +4,41 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "static_prompt_proto",
     srcs = ["static_prompt.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/actions/sdk/v2/interactionmodel/prompt:prompt_proto",
-        "//google/actions/sdk/v2/interactionmodel/prompt/content:content_proto",
-        "//google/api:api_proto",
+        ":static_simple_prompt_proto",
+        ":suggestion_proto",
+        ":surface_capabilities_proto",
+        "//proto/src/google/actions/sdk/v2/interactionmodel/prompt/content:static_canvas_prompt_proto",
+        "//proto/src/google/actions/sdk/v2/interactionmodel/prompt/content:static_content_prompt_proto",
+        "//proto/src/google/actions/sdk/v2/interactionmodel/prompt/content:static_link_prompt_proto",
+        "//proto/src/google/api:field_behavior_proto",
     ],
 )
 
 proto_library(
     name = "static_simple_prompt_proto",
     srcs = ["static_simple_prompt.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = ["//proto/src/google/api:field_behavior_proto"],
 )
 
 proto_library(
     name = "suggestion_proto",
     srcs = ["suggestion.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = ["//proto/src/google/api:field_behavior_proto"],
 )
 
 proto_library(
     name = "surface_capabilities_proto",
     srcs = ["surface_capabilities.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = ["//proto/src/google/api:field_behavior_proto"],
 )
 
 ts_proto_library(

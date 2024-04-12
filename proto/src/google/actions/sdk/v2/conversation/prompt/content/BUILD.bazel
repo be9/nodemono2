@@ -4,6 +4,7 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "canvas_proto",
     srcs = ["canvas.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:struct_proto"],
 )
@@ -11,48 +12,66 @@ proto_library(
 proto_library(
     name = "card_proto",
     srcs = ["card.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/actions/sdk/v2/conversation/prompt/content:content_proto"],
+    deps = [
+        ":image_proto",
+        ":link_proto",
+    ],
 )
 
 proto_library(
     name = "collection_proto",
     srcs = ["collection.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/actions/sdk/v2/conversation/prompt/content:content_proto"],
+    deps = [":image_proto"],
 )
 
 proto_library(
     name = "content_proto",
     srcs = ["content.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/actions/sdk/v2/conversation/prompt/content:content_proto"],
+    deps = [
+        ":canvas_proto",
+        ":card_proto",
+        ":collection_proto",
+        ":image_proto",
+        ":list_proto",
+        ":media_proto",
+        ":table_proto",
+    ],
 )
 
 proto_library(
     name = "image_proto",
     srcs = ["image.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "link_proto",
     srcs = ["link.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "list_proto",
     srcs = ["list.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "media_proto",
     srcs = ["media.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/actions/sdk/v2/conversation/prompt/content:content_proto",
+        ":image_proto",
         "@com_google_protobuf//:duration_proto",
     ],
 )
@@ -60,8 +79,12 @@ proto_library(
 proto_library(
     name = "table_proto",
     srcs = ["table.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/actions/sdk/v2/conversation/prompt/content:content_proto"],
+    deps = [
+        ":image_proto",
+        ":link_proto",
+    ],
 )
 
 ts_proto_library(

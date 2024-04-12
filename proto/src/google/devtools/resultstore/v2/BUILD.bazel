@@ -4,10 +4,15 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "action_proto",
     srcs = ["action.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/devtools/resultstore/v2:v2_proto",
+        ":common_proto",
+        ":coverage_proto",
+        ":file_processing_error_proto",
+        ":file_proto",
+        ":test_suite_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:duration_proto",
     ],
 )
@@ -15,9 +20,10 @@ proto_library(
 proto_library(
     name = "common_proto",
     srcs = ["common.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:field_behavior_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
@@ -26,20 +32,23 @@ proto_library(
 proto_library(
     name = "configuration_proto",
     srcs = ["configuration.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/devtools/resultstore/v2:v2_proto",
+        ":common_proto",
+        "//proto/src/google/api:resource_proto",
     ],
 )
 
 proto_library(
     name = "configured_target_proto",
     srcs = ["configured_target.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/devtools/resultstore/v2:v2_proto",
+        ":common_proto",
+        ":file_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:duration_proto",
     ],
 )
@@ -47,23 +56,26 @@ proto_library(
 proto_library(
     name = "coverage_proto",
     srcs = ["coverage.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "coverage_summary_proto",
     srcs = ["coverage_summary.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/devtools/resultstore/v2:v2_proto"],
+    deps = [":common_proto"],
 )
 
 proto_library(
     name = "download_metadata_proto",
     srcs = ["download_metadata.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/devtools/resultstore/v2:v2_proto",
+        ":common_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -71,12 +83,14 @@ proto_library(
 proto_library(
     name = "file_processing_error_proto",
     srcs = ["file_processing_error.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "file_proto",
     srcs = ["file.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:wrappers_proto"],
 )
@@ -84,47 +98,78 @@ proto_library(
 proto_library(
     name = "file_set_proto",
     srcs = ["file_set.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/devtools/resultstore/v2:v2_proto",
+        ":file_proto",
+        "//proto/src/google/api:resource_proto",
     ],
 )
 
 proto_library(
     name = "invocation_proto",
     srcs = ["invocation.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/devtools/resultstore/v2:v2_proto",
+        ":common_proto",
+        ":coverage_proto",
+        ":coverage_summary_proto",
+        ":file_processing_error_proto",
+        ":file_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
     ],
 )
 
 proto_library(
     name = "resultstore_download_proto",
     srcs = ["resultstore_download.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/devtools/resultstore/v2:v2_proto",
+        ":action_proto",
+        ":configuration_proto",
+        ":configured_target_proto",
+        ":download_metadata_proto",
+        ":file_set_proto",
+        ":invocation_proto",
+        ":target_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
     ],
 )
 
 proto_library(
     name = "resultstore_file_download_proto",
     srcs = ["resultstore_file_download.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = [
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+    ],
 )
 
 proto_library(
     name = "resultstore_upload_proto",
     srcs = ["resultstore_upload.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/devtools/resultstore/v2:v2_proto",
+        ":action_proto",
+        ":configuration_proto",
+        ":configured_target_proto",
+        ":file_set_proto",
+        ":invocation_proto",
+        ":target_proto",
+        ":upload_metadata_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:empty_proto",
         "@com_google_protobuf//:field_mask_proto",
         "@com_google_protobuf//:timestamp_proto",
@@ -134,25 +179,32 @@ proto_library(
 proto_library(
     name = "target_proto",
     srcs = ["target.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/devtools/resultstore/v2:v2_proto",
+        ":common_proto",
+        ":file_proto",
+        "//proto/src/google/api:resource_proto",
     ],
 )
 
 proto_library(
     name = "test_suite_proto",
     srcs = ["test_suite.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/devtools/resultstore/v2:v2_proto"],
+    deps = [
+        ":common_proto",
+        ":file_proto",
+    ],
 )
 
 proto_library(
     name = "upload_metadata_proto",
     srcs = ["upload_metadata.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = ["//proto/src/google/api:resource_proto"],
 )
 
 ts_proto_library(

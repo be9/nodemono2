@@ -4,6 +4,7 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "disaster_recovery_event_proto",
     srcs = ["disaster_recovery_event.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 

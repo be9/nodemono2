@@ -3,5 +3,7 @@ node_modules
 packages/*/build
 .idea
 .turbo
-bazel-*
-.ijwb
+/bazel-*
+/.ijwb/
+/.aswb/
+/.clwb/

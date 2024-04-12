@@ -4,31 +4,47 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "action_status_proto",
     srcs = ["action_status.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/rpc:rpc_proto"],
+    deps = ["//proto/src/google/rpc:code_proto"],
 )
 
 proto_library(
     name = "annotation_proto",
     srcs = ["annotation.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/chat/v1:v1_proto"],
+    deps = [
+        ":attachment_proto",
+        ":user_proto",
+    ],
 )
 
 proto_library(
     name = "attachment_proto",
     srcs = ["attachment.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = [
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+    ],
 )
 
 proto_library(
     name = "chat_service_proto",
     srcs = ["chat_service.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/chat/v1:v1_proto",
+        ":attachment_proto",
+        ":membership_proto",
+        ":message_proto",
+        ":reaction_proto",
+        ":space_proto",
+        ":space_setup_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
         "@com_google_protobuf//:empty_proto",
     ],
 )
@@ -36,42 +52,50 @@ proto_library(
 proto_library(
     name = "contextual_addon_proto",
     srcs = ["contextual_addon.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/chat/v1:v1_proto"],
+    deps = [":widgets_proto"],
 )
 
 proto_library(
     name = "deletion_metadata_proto",
     srcs = ["deletion_metadata.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "group_proto",
     srcs = ["group.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "history_state_proto",
     srcs = ["history_state.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "matched_url_proto",
     srcs = ["matched_url.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = ["//proto/src/google/api:field_behavior_proto"],
 )
 
 proto_library(
     name = "membership_proto",
     srcs = ["membership.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/chat/v1:v1_proto",
+        ":group_proto",
+        ":user_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -79,11 +103,22 @@ proto_library(
 proto_library(
     name = "message_proto",
     srcs = ["message.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/apps/card/v1:v1_proto",
-        "//google/chat/v1:v1_proto",
+        ":action_status_proto",
+        ":annotation_proto",
+        ":attachment_proto",
+        ":contextual_addon_proto",
+        ":deletion_metadata_proto",
+        ":matched_url_proto",
+        ":reaction_proto",
+        ":slash_command_proto",
+        ":space_proto",
+        ":user_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/apps/card/v1:card_proto",
         "@com_google_protobuf//:field_mask_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
@@ -92,26 +127,31 @@ proto_library(
 proto_library(
     name = "reaction_proto",
     srcs = ["reaction.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/chat/v1:v1_proto",
+        ":user_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
     ],
 )
 
 proto_library(
     name = "slash_command_proto",
     srcs = ["slash_command.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "space_proto",
     srcs = ["space.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/chat/v1:v1_proto",
+        ":history_state_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:field_mask_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
@@ -120,23 +160,30 @@ proto_library(
 proto_library(
     name = "space_setup_proto",
     srcs = ["space_setup.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/chat/v1:v1_proto",
+        ":membership_proto",
+        ":space_proto",
+        "//proto/src/google/api:field_behavior_proto",
     ],
 )
 
 proto_library(
     name = "user_proto",
     srcs = ["user.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = [
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+    ],
 )
 
 proto_library(
     name = "widgets_proto",
     srcs = ["widgets.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 

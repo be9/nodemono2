@@ -4,12 +4,18 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "dlp_proto",
     srcs = ["dlp.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/privacy/dlp/v2:v2_proto",
-        "//google/rpc:rpc_proto",
-        "//google/type:type_proto",
+        ":storage_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/rpc:status_proto",
+        "//proto/src/google/type:date_proto",
+        "//proto/src/google/type:dayofweek_proto",
+        "//proto/src/google/type:timeofday_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:empty_proto",
         "@com_google_protobuf//:field_mask_proto",
@@ -20,9 +26,10 @@ proto_library(
 proto_library(
     name = "storage_proto",
     srcs = ["storage.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )

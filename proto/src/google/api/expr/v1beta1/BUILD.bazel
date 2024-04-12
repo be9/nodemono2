@@ -4,26 +4,29 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "decl_proto",
     srcs = ["decl.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api/expr/v1beta1:v1beta1_proto"],
+    deps = [":expr_proto"],
 )
 
 proto_library(
     name = "eval_proto",
     srcs = ["eval.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api/expr/v1beta1:v1beta1_proto",
-        "//google/rpc:rpc_proto",
+        ":value_proto",
+        "//proto/src/google/rpc:status_proto",
     ],
 )
 
 proto_library(
     name = "expr_proto",
     srcs = ["expr.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api/expr/v1beta1:v1beta1_proto",
+        ":source_proto",
         "@com_google_protobuf//:struct_proto",
     ],
 )
@@ -31,12 +34,14 @@ proto_library(
 proto_library(
     name = "source_proto",
     srcs = ["source.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "value_proto",
     srcs = ["value.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
         "@com_google_protobuf//:any_proto",

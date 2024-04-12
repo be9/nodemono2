@@ -4,9 +4,11 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "device_proto",
     srcs = ["device.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:struct_proto",
     ],
 )
@@ -14,9 +16,11 @@ proto_library(
 proto_library(
     name = "site_proto",
     srcs = ["site.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:struct_proto",
     ],
 )
@@ -24,10 +28,15 @@ proto_library(
 proto_library(
     name = "smart_device_management_service_proto",
     srcs = ["smart_device_management_service.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/home/enterprise/sdm/v1:v1_proto",
+        ":device_proto",
+        ":site_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:struct_proto",
     ],
 )

@@ -4,9 +4,13 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "accounts_labels_proto",
     srcs = ["accounts_labels.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:empty_proto",
     ],
 )
@@ -14,17 +18,24 @@ proto_library(
 proto_library(
     name = "accounts_proto",
     srcs = ["accounts.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = [
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+    ],
 )
 
 proto_library(
     name = "css_product_common_proto",
     srcs = ["css_product_common.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/shopping/type:type_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/shopping/type:types_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -32,11 +43,15 @@ proto_library(
 proto_library(
     name = "css_product_inputs_proto",
     srcs = ["css_product_inputs.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/shopping/css/v1:v1_proto",
-        "//google/shopping/type:type_proto",
+        ":css_product_common_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/shopping/type:types_proto",
         "@com_google_protobuf//:empty_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
@@ -45,11 +60,15 @@ proto_library(
 proto_library(
     name = "css_products_proto",
     srcs = ["css_products.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/shopping/css/v1:v1_proto",
-        "//google/shopping/type:type_proto",
+        ":css_product_common_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/shopping/type:types_proto",
     ],
 )
 

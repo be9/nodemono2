@@ -4,12 +4,14 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "attribution_proto",
     srcs = ["attribution.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "ev_charging_proto",
     srcs = ["ev_charging.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:timestamp_proto"],
 )
@@ -17,9 +19,10 @@ proto_library(
 proto_library(
     name = "fuel_options_proto",
     srcs = ["fuel_options.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/type:type_proto",
+        "//proto/src/google/type:money_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -27,55 +30,71 @@ proto_library(
 proto_library(
     name = "geometry_proto",
     srcs = ["geometry.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/type:type_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/type:latlng_proto",
     ],
 )
 
 proto_library(
     name = "photo_proto",
     srcs = ["photo.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/maps/places/v1:v1_proto",
+        ":attribution_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
     ],
 )
 
 proto_library(
     name = "place_proto",
     srcs = ["place.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/geo/type:type_proto",
-        "//google/maps/places/v1:v1_proto",
-        "//google/type:type_proto",
+        ":ev_charging_proto",
+        ":fuel_options_proto",
+        ":photo_proto",
+        ":review_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/geo/type:viewport_proto",
+        "//proto/src/google/type:date_proto",
+        "//proto/src/google/type:latlng_proto",
+        "//proto/src/google/type:localized_text_proto",
     ],
 )
 
 proto_library(
     name = "places_service_proto",
     srcs = ["places_service.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/geo/type:type_proto",
-        "//google/maps/places/v1:v1_proto",
-        "//google/type:type_proto",
+        ":ev_charging_proto",
+        ":geometry_proto",
+        ":place_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/geo/type:viewport_proto",
+        "//proto/src/google/type:latlng_proto",
     ],
 )
 
 proto_library(
     name = "review_proto",
     srcs = ["review.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/maps/places/v1:v1_proto",
-        "//google/type:type_proto",
+        ":attribution_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/type:localized_text_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )

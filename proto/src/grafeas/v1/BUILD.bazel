@@ -4,39 +4,49 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "attestation_proto",
     srcs = ["attestation.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//grafeas/v1:v1_proto"],
+    deps = [":common_proto"],
 )
 
 proto_library(
     name = "build_proto",
     srcs = ["build.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//grafeas/v1:v1_proto"],
+    deps = [
+        ":intoto_provenance_proto",
+        ":intoto_statement_proto",
+        ":provenance_proto",
+    ],
 )
 
 proto_library(
     name = "common_proto",
     srcs = ["common.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "compliance_proto",
     srcs = ["compliance.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//grafeas/v1:v1_proto"],
+    deps = [":severity_proto"],
 )
 
 proto_library(
     name = "cvss_proto",
     srcs = ["cvss.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "deployment_proto",
     srcs = ["deployment.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:timestamp_proto"],
 )
@@ -44,11 +54,12 @@ proto_library(
 proto_library(
     name = "discovery_proto",
     srcs = ["discovery.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/rpc:rpc_proto",
-        "//grafeas/v1:v1_proto",
+        ":common_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/rpc:status_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -56,17 +67,37 @@ proto_library(
 proto_library(
     name = "dsse_attestation_proto",
     srcs = ["dsse_attestation.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//grafeas/v1:v1_proto"],
+    deps = [
+        ":common_proto",
+        ":intoto_statement_proto",
+    ],
 )
 
 proto_library(
     name = "grafeas_proto",
     srcs = ["grafeas.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//grafeas/v1:v1_proto",
+        ":attestation_proto",
+        ":build_proto",
+        ":common_proto",
+        ":compliance_proto",
+        ":deployment_proto",
+        ":discovery_proto",
+        ":dsse_attestation_proto",
+        ":image_proto",
+        ":package_proto",
+        ":sbom_proto",
+        ":upgrade_proto",
+        ":vex_proto",
+        ":vulnerability_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:empty_proto",
         "@com_google_protobuf//:field_mask_proto",
         "@com_google_protobuf//:timestamp_proto",
@@ -76,12 +107,14 @@ proto_library(
 proto_library(
     name = "image_proto",
     srcs = ["image.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "intoto_provenance_proto",
     srcs = ["intoto_provenance.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
         "@com_google_protobuf//:any_proto",
@@ -92,9 +125,12 @@ proto_library(
 proto_library(
     name = "intoto_statement_proto",
     srcs = ["intoto_statement.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//grafeas/v1:v1_proto",
+        ":intoto_provenance_proto",
+        ":slsa_provenance_proto",
+        ":slsa_provenance_zero_two_proto",
         "@com_google_protobuf//:struct_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
@@ -103,16 +139,18 @@ proto_library(
 proto_library(
     name = "package_proto",
     srcs = ["package.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//grafeas/v1:v1_proto",
+        ":common_proto",
+        "//proto/src/google/api:field_behavior_proto",
     ],
 )
 
 proto_library(
     name = "provenance_proto",
     srcs = ["provenance.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:timestamp_proto"],
 )
@@ -120,19 +158,25 @@ proto_library(
 proto_library(
     name = "sbom_proto",
     srcs = ["sbom.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//grafeas/v1:v1_proto"],
+    deps = [
+        ":common_proto",
+        ":intoto_statement_proto",
+    ],
 )
 
 proto_library(
     name = "severity_proto",
     srcs = ["severity.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "slsa_provenance_proto",
     srcs = ["slsa_provenance.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
         "@com_google_protobuf//:any_proto",
@@ -143,6 +187,7 @@ proto_library(
 proto_library(
     name = "slsa_provenance_zero_two_proto",
     srcs = ["slsa_provenance_zero_two.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
         "@com_google_protobuf//:struct_proto",
@@ -153,9 +198,10 @@ proto_library(
 proto_library(
     name = "upgrade_proto",
     srcs = ["upgrade.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//grafeas/v1:v1_proto",
+        ":package_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -163,17 +209,23 @@ proto_library(
 proto_library(
     name = "vex_proto",
     srcs = ["vex.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//grafeas/v1:v1_proto"],
+    deps = [":common_proto"],
 )
 
 proto_library(
     name = "vulnerability_proto",
     srcs = ["vulnerability.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//grafeas/v1:v1_proto",
+        ":common_proto",
+        ":cvss_proto",
+        ":package_proto",
+        ":severity_proto",
+        ":vex_proto",
+        "//proto/src/google/api:field_behavior_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )

@@ -4,16 +4,27 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "access_report_proto",
     srcs = ["access_report.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "analytics_admin_proto",
     srcs = ["analytics_admin.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/analytics/admin/v1alpha:v1alpha_proto",
-        "//google/api:api_proto",
+        ":access_report_proto",
+        ":audience_proto",
+        ":channel_group_proto",
+        ":event_create_and_edit_proto",
+        ":expanded_data_set_proto",
+        ":resources_proto",
+        ":subproperty_event_filter_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:empty_proto",
         "@com_google_protobuf//:field_mask_proto",
         "@com_google_protobuf//:timestamp_proto",
@@ -23,9 +34,11 @@ proto_library(
 proto_library(
     name = "audience_proto",
     srcs = ["audience.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:duration_proto",
     ],
 )
@@ -33,23 +46,33 @@ proto_library(
 proto_library(
     name = "channel_group_proto",
     srcs = ["channel_group.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = [
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+    ],
 )
 
 proto_library(
     name = "event_create_and_edit_proto",
     srcs = ["event_create_and_edit.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = [
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+    ],
 )
 
 proto_library(
     name = "expanded_data_set_proto",
     srcs = ["expanded_data_set.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -57,10 +80,15 @@ proto_library(
 proto_library(
     name = "resources_proto",
     srcs = ["resources.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/analytics/admin/v1alpha:v1alpha_proto",
-        "//google/api:api_proto",
+        ":audience_proto",
+        ":channel_group_proto",
+        ":event_create_and_edit_proto",
+        ":expanded_data_set_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:timestamp_proto",
         "@com_google_protobuf//:wrappers_proto",
     ],
@@ -69,8 +97,12 @@ proto_library(
 proto_library(
     name = "subproperty_event_filter_proto",
     srcs = ["subproperty_event_filter.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = [
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+    ],
 )
 
 ts_proto_library(

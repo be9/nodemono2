@@ -4,10 +4,11 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "annotations_proto",
     srcs = ["annotations.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/rpc:rpc_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/rpc:status_proto",
         "@com_google_protobuf//:empty_proto",
         "@com_google_protobuf//:field_mask_proto",
         "@com_google_protobuf//:struct_proto",
@@ -18,17 +19,20 @@ proto_library(
 proto_library(
     name = "cigar_proto",
     srcs = ["cigar.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = ["//proto/src/google/api:annotations_proto"],
 )
 
 proto_library(
     name = "datasets_proto",
     srcs = ["datasets.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/iam/v1:v1_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/iam/v1:iam_policy_proto",
+        "//proto/src/google/iam/v1:policy_proto",
         "@com_google_protobuf//:empty_proto",
         "@com_google_protobuf//:field_mask_proto",
         "@com_google_protobuf//:timestamp_proto",
@@ -38,9 +42,10 @@ proto_library(
 proto_library(
     name = "operations_proto",
     srcs = ["operations.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:annotations_proto",
         "@com_google_protobuf//:any_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
@@ -49,24 +54,28 @@ proto_library(
 proto_library(
     name = "position_proto",
     srcs = ["position.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = ["//proto/src/google/api:annotations_proto"],
 )
 
 proto_library(
     name = "range_proto",
     srcs = ["range.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = ["//proto/src/google/api:annotations_proto"],
 )
 
 proto_library(
     name = "readalignment_proto",
     srcs = ["readalignment.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/genomics/v1:v1_proto",
+        ":cigar_proto",
+        ":position_proto",
+        "//proto/src/google/api:annotations_proto",
         "@com_google_protobuf//:struct_proto",
     ],
 )
@@ -74,9 +83,10 @@ proto_library(
 proto_library(
     name = "readgroup_proto",
     srcs = ["readgroup.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:annotations_proto",
         "@com_google_protobuf//:struct_proto",
     ],
 )
@@ -84,10 +94,11 @@ proto_library(
 proto_library(
     name = "readgroupset_proto",
     srcs = ["readgroupset.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/genomics/v1:v1_proto",
+        ":readgroup_proto",
+        "//proto/src/google/api:annotations_proto",
         "@com_google_protobuf//:struct_proto",
     ],
 )
@@ -95,11 +106,14 @@ proto_library(
 proto_library(
     name = "reads_proto",
     srcs = ["reads.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/genomics/v1:v1_proto",
-        "//google/longrunning:longrunning_proto",
+        ":range_proto",
+        ":readalignment_proto",
+        ":readgroupset_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/longrunning:operations_proto",
         "@com_google_protobuf//:empty_proto",
         "@com_google_protobuf//:field_mask_proto",
     ],
@@ -108,17 +122,19 @@ proto_library(
 proto_library(
     name = "references_proto",
     srcs = ["references.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = ["//proto/src/google/api:annotations_proto"],
 )
 
 proto_library(
     name = "variants_proto",
     srcs = ["variants.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/longrunning:longrunning_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/longrunning:operations_proto",
         "@com_google_protobuf//:empty_proto",
         "@com_google_protobuf//:field_mask_proto",
         "@com_google_protobuf//:struct_proto",

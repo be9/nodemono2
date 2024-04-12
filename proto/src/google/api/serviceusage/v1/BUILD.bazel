@@ -4,9 +4,17 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "resources_proto",
     srcs = ["resources.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:auth_proto",
+        "//proto/src/google/api:documentation_proto",
+        "//proto/src/google/api:endpoint_proto",
+        "//proto/src/google/api:monitored_resource_proto",
+        "//proto/src/google/api:monitoring_proto",
+        "//proto/src/google/api:quota_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/api:usage_proto",
         "@com_google_protobuf//:api_proto",
     ],
 )
@@ -14,11 +22,13 @@ proto_library(
 proto_library(
     name = "serviceusage_proto",
     srcs = ["serviceusage.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/api/serviceusage/v1:v1_proto",
-        "//google/longrunning:longrunning_proto",
+        ":resources_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/longrunning:operations_proto",
     ],
 )
 

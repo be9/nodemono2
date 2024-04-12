@@ -4,12 +4,14 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "code_proto",
     srcs = ["code.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "error_details_proto",
     srcs = ["error_details.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:duration_proto"],
 )
@@ -17,12 +19,14 @@ proto_library(
 proto_library(
     name = "http_proto",
     srcs = ["http.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "status_proto",
     srcs = ["status.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:any_proto"],
 )

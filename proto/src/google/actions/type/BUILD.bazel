@@ -4,15 +4,17 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "date_range_proto",
     srcs = ["date_range.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/type:type_proto"],
+    deps = ["//proto/src/google/type:date_proto"],
 )
 
 proto_library(
     name = "datetime_range_proto",
     srcs = ["datetime_range.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/type:type_proto"],
+    deps = ["//proto/src/google/type:datetime_proto"],
 )
 
 ts_proto_library(

@@ -4,12 +4,14 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "addon_widget_set_proto",
     srcs = ["addon_widget_set.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "extension_point_proto",
     srcs = ["extension_point.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:wrappers_proto"],
 )
@@ -17,9 +19,11 @@ proto_library(
 proto_library(
     name = "script_manifest_proto",
     srcs = ["script_manifest.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/apps/script/type:type_proto",
+        ":addon_widget_set_proto",
+        ":extension_point_proto",
         "@com_google_protobuf//:struct_proto",
     ],
 )

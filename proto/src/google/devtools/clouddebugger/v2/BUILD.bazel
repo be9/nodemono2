@@ -4,19 +4,23 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "controller_proto",
     srcs = ["controller.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/devtools/clouddebugger/v2:v2_proto",
+        ":data_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
     ],
 )
 
 proto_library(
     name = "data_proto",
     srcs = ["data.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/devtools/source/v1:v1_proto",
+        "//proto/src/google/devtools/source/v1:source_context_proto",
         "@com_google_protobuf//:timestamp_proto",
         "@com_google_protobuf//:wrappers_proto",
     ],
@@ -25,10 +29,13 @@ proto_library(
 proto_library(
     name = "debugger_proto",
     srcs = ["debugger.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/devtools/clouddebugger/v2:v2_proto",
+        ":data_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
         "@com_google_protobuf//:empty_proto",
     ],
 )

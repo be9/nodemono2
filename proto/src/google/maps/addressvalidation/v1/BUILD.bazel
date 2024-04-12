@@ -4,43 +4,53 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "address_proto",
     srcs = ["address.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/type:type_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/type:postal_address_proto",
     ],
 )
 
 proto_library(
     name = "address_validation_service_proto",
     srcs = ["address_validation_service.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/maps/addressvalidation/v1:v1_proto",
-        "//google/type:type_proto",
+        ":address_proto",
+        ":geocode_proto",
+        ":metadata_proto",
+        ":usps_data_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/type:postal_address_proto",
     ],
 )
 
 proto_library(
     name = "geocode_proto",
     srcs = ["geocode.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/geo/type:type_proto",
-        "//google/type:type_proto",
+        "//proto/src/google/geo/type:viewport_proto",
+        "//proto/src/google/type:latlng_proto",
     ],
 )
 
 proto_library(
     name = "metadata_proto",
     srcs = ["metadata.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "usps_data_proto",
     srcs = ["usps_data.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 

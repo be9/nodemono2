@@ -4,11 +4,12 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "pipelines_proto",
     srcs = ["pipelines.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/longrunning:longrunning_proto",
-        "//google/rpc:rpc_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/longrunning:operations_proto",
+        "//proto/src/google/rpc:code_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:empty_proto",
         "@com_google_protobuf//:timestamp_proto",

@@ -4,22 +4,28 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "prompt_proto",
     srcs = ["prompt.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/actions/sdk/v2/conversation/prompt:prompt_proto",
-        "//google/actions/sdk/v2/conversation/prompt/content:content_proto",
+        ":simple_proto",
+        ":suggestion_proto",
+        "//proto/src/google/actions/sdk/v2/conversation/prompt/content:canvas_proto",
+        "//proto/src/google/actions/sdk/v2/conversation/prompt/content:content_proto",
+        "//proto/src/google/actions/sdk/v2/conversation/prompt/content:link_proto",
     ],
 )
 
 proto_library(
     name = "simple_proto",
     srcs = ["simple.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "suggestion_proto",
     srcs = ["suggestion.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 

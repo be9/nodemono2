@@ -4,12 +4,20 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "access_context_manager_proto",
     srcs = ["access_context_manager.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/iam/v1:v1_proto",
-        "//google/identity/accesscontextmanager/v1:v1_proto",
-        "//google/longrunning:longrunning_proto",
+        ":access_level_proto",
+        ":access_policy_proto",
+        ":gcp_user_access_binding_proto",
+        ":service_perimeter_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/iam/v1:iam_policy_proto",
+        "//proto/src/google/iam/v1:policy_proto",
+        "//proto/src/google/longrunning:operations_proto",
         "@com_google_protobuf//:field_mask_proto",
     ],
 )
@@ -17,11 +25,12 @@ proto_library(
 proto_library(
     name = "access_level_proto",
     srcs = ["access_level.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/identity/accesscontextmanager/type:type_proto",
-        "//google/type:type_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/identity/accesscontextmanager/type:device_resources_proto",
+        "//proto/src/google/type:expr_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -29,9 +38,10 @@ proto_library(
 proto_library(
     name = "access_policy_proto",
     srcs = ["access_policy.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -39,16 +49,21 @@ proto_library(
 proto_library(
     name = "gcp_user_access_binding_proto",
     srcs = ["gcp_user_access_binding.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = [
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+    ],
 )
 
 proto_library(
     name = "service_perimeter_proto",
     srcs = ["service_perimeter.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )

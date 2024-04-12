@@ -4,11 +4,15 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "analytics_data_api_proto",
     srcs = ["analytics_data_api.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/analytics/data/v1beta:v1beta_proto",
-        "//google/api:api_proto",
-        "//google/longrunning:longrunning_proto",
+        ":data_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/longrunning:operations_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -16,6 +20,7 @@ proto_library(
 proto_library(
     name = "data_proto",
     srcs = ["data.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 

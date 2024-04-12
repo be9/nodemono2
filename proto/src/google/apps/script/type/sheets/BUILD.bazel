@@ -4,10 +4,11 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "sheets_addon_manifest_proto",
     srcs = ["sheets_addon_manifest.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/apps/script/type:type_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/apps/script/type:extension_point_proto",
     ],
 )
 

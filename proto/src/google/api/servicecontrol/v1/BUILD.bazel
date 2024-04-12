@@ -4,20 +4,23 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "check_error_proto",
     srcs = ["check_error.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/rpc:rpc_proto"],
+    deps = ["//proto/src/google/rpc:status_proto"],
 )
 
 proto_library(
     name = "distribution_proto",
     srcs = ["distribution.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = ["//proto/src/google/api:distribution_proto"],
 )
 
 proto_library(
     name = "http_request_proto",
     srcs = ["http_request.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:duration_proto"],
 )
@@ -25,10 +28,11 @@ proto_library(
 proto_library(
     name = "log_entry_proto",
     srcs = ["log_entry.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api/servicecontrol/v1:v1_proto",
-        "//google/logging/type:type_proto",
+        ":http_request_proto",
+        "//proto/src/google/logging/type:log_severity_proto",
         "@com_google_protobuf//:any_proto",
         "@com_google_protobuf//:struct_proto",
         "@com_google_protobuf//:timestamp_proto",
@@ -38,9 +42,10 @@ proto_library(
 proto_library(
     name = "metric_value_proto",
     srcs = ["metric_value.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api/servicecontrol/v1:v1_proto",
+        ":distribution_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -48,9 +53,11 @@ proto_library(
 proto_library(
     name = "operation_proto",
     srcs = ["operation.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api/servicecontrol/v1:v1_proto",
+        ":log_entry_proto",
+        ":metric_value_proto",
         "@com_google_protobuf//:any_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
@@ -59,22 +66,27 @@ proto_library(
 proto_library(
     name = "quota_controller_proto",
     srcs = ["quota_controller.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/api/servicecontrol/v1:v1_proto",
-        "//google/rpc:rpc_proto",
+        ":metric_value_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/rpc:status_proto",
     ],
 )
 
 proto_library(
     name = "service_controller_proto",
     srcs = ["service_controller.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/api/servicecontrol/v1:v1_proto",
-        "//google/rpc:rpc_proto",
+        ":check_error_proto",
+        ":operation_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/rpc:status_proto",
     ],
 )
 

@@ -4,12 +4,14 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "calendar_period_proto",
     srcs = ["calendar_period.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "color_proto",
     srcs = ["color.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:wrappers_proto"],
 )
@@ -17,12 +19,14 @@ proto_library(
 proto_library(
     name = "date_proto",
     srcs = ["date.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "datetime_proto",
     srcs = ["datetime.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:duration_proto"],
 )
@@ -30,30 +34,35 @@ proto_library(
 proto_library(
     name = "dayofweek_proto",
     srcs = ["dayofweek.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "decimal_proto",
     srcs = ["decimal.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "expr_proto",
     srcs = ["expr.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "fraction_proto",
     srcs = ["fraction.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "interval_proto",
     srcs = ["interval.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:timestamp_proto"],
 )
@@ -61,48 +70,56 @@ proto_library(
 proto_library(
     name = "latlng_proto",
     srcs = ["latlng.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "localized_text_proto",
     srcs = ["localized_text.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "money_proto",
     srcs = ["money.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "month_proto",
     srcs = ["month.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "phone_number_proto",
     srcs = ["phone_number.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "postal_address_proto",
     srcs = ["postal_address.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "quaternion_proto",
     srcs = ["quaternion.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "timeofday_proto",
     srcs = ["timeofday.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 

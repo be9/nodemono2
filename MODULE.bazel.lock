@@ -1,6 +1,6 @@
 {
   "lockFileVersion": 3,
-  "moduleFileHash": "d83ab0a2b19da39917ca595ab66738c351a332227d52a268177f274df30facb3",
+  "moduleFileHash": "aab5a428c6be0b16c4b340b8ab669eea4509b7c9728bb9188568b6e1add8b252",
   "flags": {
     "cmdRegistries": [
       "https://bcr.bazel.build/"
@@ -13,7 +13,6 @@
     "compatibilityMode": "ERROR"
   },
   "localOverrideHashes": {
-    "protosrc": "b75e152b4d02e121b78df67dfd15ad665d7234174be129cf89a20ca6ed7814b4",
     "bazel_tools": "922ea6752dc9105de5af957f7a99a6933c0a6a712d23df6aad16a9c399f7e787"
   },
   "moduleDepGraph": {
@@ -123,7 +122,7 @@
           "usingModule": "<root>",
           "location": {
             "file": "@@//:MODULE.bazel",
-            "line": 41,
+            "line": 35,
             "column": 24
           },
           "imports": {
@@ -140,7 +139,7 @@
               "devDependency": false,
               "location": {
                 "file": "@@//:MODULE.bazel",
-                "line": 42,
+                "line": 36,
                 "column": 18
               }
             },
@@ -155,7 +154,7 @@
               "devDependency": false,
               "location": {
                 "file": "@@//:MODULE.bazel",
-                "line": 48,
+                "line": 42,
                 "column": 25
               }
             }
@@ -173,7 +172,6 @@
         "gazelle": "gazelle@0.35.0",
         "rules_proto": "rules_proto@6.0.0-rc2",
         "com_google_protobuf": "protobuf@23.1",
-        "protosrc": "protosrc@_",
         "bazel_tools": "bazel_tools@_",
         "local_config_platform": "local_config_platform@_"
       }
@@ -919,22 +917,6 @@
           },
           "remote_patch_strip": 1
         }
-      }
-    },
-    "protosrc@_": {
-      "name": "protosrc",
-      "version": "",
-      "key": "protosrc@_",
-      "repoName": "protosrc",
-      "executionPlatformsToRegister": [],
-      "toolchainsToRegister": [],
-      "extensionUsages": [],
-      "deps": {
-        "rules_proto": "rules_proto@6.0.0-rc2",
-        "com_google_protobuf": "protobuf@23.1",
-        "nodemono2": "<root>",
-        "bazel_tools": "bazel_tools@_",
-        "local_config_platform": "local_config_platform@_"
       }
     },
     "bazel_tools@_": {

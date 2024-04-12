@@ -4,16 +4,19 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "data_source_proto",
     srcs = ["data_source.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "dataset_proto",
     srcs = ["dataset.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/maps/mapsplatformdatasets/v1:v1_proto",
+        ":data_source_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -21,10 +24,13 @@ proto_library(
 proto_library(
     name = "maps_platform_datasets_proto",
     srcs = ["maps_platform_datasets.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/maps/mapsplatformdatasets/v1:v1_proto",
+        ":data_source_proto",
+        ":dataset_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:field_mask_proto",
     ],
 )
@@ -32,10 +38,13 @@ proto_library(
 proto_library(
     name = "maps_platform_datasets_service_proto",
     srcs = ["maps_platform_datasets_service.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/maps/mapsplatformdatasets/v1:v1_proto",
+        ":dataset_proto",
+        ":maps_platform_datasets_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
         "@com_google_protobuf//:empty_proto",
     ],
 )

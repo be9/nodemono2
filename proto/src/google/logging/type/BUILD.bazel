@@ -4,6 +4,7 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "http_request_proto",
     srcs = ["http_request.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:duration_proto"],
 )
@@ -11,6 +12,7 @@ proto_library(
 proto_library(
     name = "log_severity_proto",
     srcs = ["log_severity.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 

@@ -4,9 +4,10 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "environment_proto",
     srcs = ["environment.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:field_behavior_proto",
         "@com_google_protobuf//:any_proto",
         "@com_google_protobuf//:struct_proto",
     ],
@@ -15,10 +16,13 @@ proto_library(
 proto_library(
     name = "jobs_proto",
     srcs = ["jobs.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/dataflow/v1beta3:v1beta3_proto",
+        ":environment_proto",
+        ":snapshots_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:struct_proto",
         "@com_google_protobuf//:timestamp_proto",
@@ -28,9 +32,11 @@ proto_library(
 proto_library(
     name = "messages_proto",
     srcs = ["messages.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
         "@com_google_protobuf//:struct_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
@@ -39,9 +45,11 @@ proto_library(
 proto_library(
     name = "metrics_proto",
     srcs = ["metrics.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
         "@com_google_protobuf//:struct_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
@@ -50,9 +58,11 @@ proto_library(
 proto_library(
     name = "snapshots_proto",
     srcs = ["snapshots.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
@@ -61,17 +71,21 @@ proto_library(
 proto_library(
     name = "streaming_proto",
     srcs = ["streaming.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "templates_proto",
     srcs = ["templates.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/dataflow/v1beta3:v1beta3_proto",
-        "//google/rpc:rpc_proto",
+        ":environment_proto",
+        ":jobs_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/rpc:status_proto",
     ],
 )
 

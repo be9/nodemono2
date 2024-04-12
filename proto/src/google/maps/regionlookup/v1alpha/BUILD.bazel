@@ -4,33 +4,40 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "region_identifier_proto",
     srcs = ["region_identifier.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = ["//proto/src/google/api:field_behavior_proto"],
 )
 
 proto_library(
     name = "region_lookup_service_proto",
     srcs = ["region_lookup_service.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/maps/regionlookup/v1alpha:v1alpha_proto",
+        ":region_identifier_proto",
+        ":region_match_proto",
+        ":region_search_values_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
     ],
 )
 
 proto_library(
     name = "region_match_proto",
     srcs = ["region_match.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "region_search_values_proto",
     srcs = ["region_search_values.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/type:type_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/type:latlng_proto",
     ],
 )
 

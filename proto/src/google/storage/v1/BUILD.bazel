@@ -4,11 +4,12 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "storage_proto",
     srcs = ["storage.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/iam/v1:v1_proto",
-        "//google/storage/v1:v1_proto",
+        ":storage_resources_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/iam/v1:iam_policy_proto",
         "@com_google_protobuf//:field_mask_proto",
         "@com_google_protobuf//:wrappers_proto",
     ],
@@ -17,6 +18,7 @@ proto_library(
 proto_library(
     name = "storage_resources_proto",
     srcs = ["storage_resources.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
         "@com_google_protobuf//:timestamp_proto",

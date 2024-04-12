@@ -4,20 +4,23 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "datastore_proto",
     srcs = ["datastore.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/datastore/v1beta3:v1beta3_proto",
+        ":entity_proto",
+        ":query_proto",
+        "//proto/src/google/api:annotations_proto",
     ],
 )
 
 proto_library(
     name = "entity_proto",
     srcs = ["entity.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/type:type_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/type:latlng_proto",
         "@com_google_protobuf//:struct_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
@@ -26,11 +29,12 @@ proto_library(
 proto_library(
     name = "query_proto",
     srcs = ["query.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/datastore/v1beta3:v1beta3_proto",
-        "//google/type:type_proto",
+        ":entity_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/type:latlng_proto",
         "@com_google_protobuf//:wrappers_proto",
     ],
 )

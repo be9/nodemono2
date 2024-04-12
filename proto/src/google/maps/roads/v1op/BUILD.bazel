@@ -4,10 +4,11 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "roads_proto",
     srcs = ["roads.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/type:type_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/type:latlng_proto",
         "@com_google_protobuf//:wrappers_proto",
     ],
 )

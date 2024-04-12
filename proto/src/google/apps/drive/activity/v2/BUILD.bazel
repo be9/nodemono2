@@ -4,9 +4,12 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "action_proto",
     srcs = ["action.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/apps/drive/activity/v2:v2_proto",
+        ":actor_proto",
+        ":common_proto",
+        ":target_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -14,12 +17,14 @@ proto_library(
 proto_library(
     name = "actor_proto",
     srcs = ["actor.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "common_proto",
     srcs = ["common.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:timestamp_proto"],
 )
@@ -27,25 +32,33 @@ proto_library(
 proto_library(
     name = "drive_activity_service_proto",
     srcs = ["drive_activity_service.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/apps/drive/activity/v2:v2_proto",
+        ":query_drive_activity_request_proto",
+        ":query_drive_activity_response_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
     ],
 )
 
 proto_library(
     name = "query_drive_activity_request_proto",
     srcs = ["query_drive_activity_request.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "query_drive_activity_response_proto",
     srcs = ["query_drive_activity_response.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/apps/drive/activity/v2:v2_proto",
+        ":action_proto",
+        ":actor_proto",
+        ":common_proto",
+        ":target_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -53,8 +66,12 @@ proto_library(
 proto_library(
     name = "target_proto",
     srcs = ["target.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/apps/drive/activity/v2:v2_proto"],
+    deps = [
+        ":actor_proto",
+        ":common_proto",
+    ],
 )
 
 ts_proto_library(

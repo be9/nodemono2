@@ -4,29 +4,33 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "fallback_info_proto",
     srcs = ["fallback_info.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "geocoding_results_proto",
     srcs = ["geocoding_results.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/rpc:rpc_proto"],
+    deps = ["//proto/src/google/rpc:status_proto"],
 )
 
 proto_library(
     name = "localized_time_proto",
     srcs = ["localized_time.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/type:type_proto"],
+    deps = ["//proto/src/google/type:localized_text_proto"],
 )
 
 proto_library(
     name = "location_proto",
     srcs = ["location.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/type:type_proto",
+        "//proto/src/google/type:latlng_proto",
         "@com_google_protobuf//:wrappers_proto",
     ],
 )
@@ -34,19 +38,22 @@ proto_library(
 proto_library(
     name = "maneuver_proto",
     srcs = ["maneuver.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "navigation_instruction_proto",
     srcs = ["navigation_instruction.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/maps/routing/v2:v2_proto"],
+    deps = [":maneuver_proto"],
 )
 
 proto_library(
     name = "polyline_proto",
     srcs = ["polyline.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:struct_proto"],
 )
@@ -54,24 +61,39 @@ proto_library(
 proto_library(
     name = "route_label_proto",
     srcs = ["route_label.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "route_modifiers_proto",
     srcs = ["route_modifiers.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/maps/routing/v2:v2_proto"],
+    deps = [
+        ":toll_passes_proto",
+        ":vehicle_info_proto",
+    ],
 )
 
 proto_library(
     name = "route_proto",
     srcs = ["route.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/geo/type:type_proto",
-        "//google/maps/routing/v2:v2_proto",
-        "//google/type:type_proto",
+        ":localized_time_proto",
+        ":location_proto",
+        ":navigation_instruction_proto",
+        ":polyline_proto",
+        ":route_label_proto",
+        ":route_travel_mode_proto",
+        ":speed_reading_interval_proto",
+        ":toll_info_proto",
+        ":transit_proto",
+        "//proto/src/google/geo/type:viewport_proto",
+        "//proto/src/google/type:localized_text_proto",
+        "//proto/src/google/type:money_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
@@ -80,18 +102,32 @@ proto_library(
 proto_library(
     name = "route_travel_mode_proto",
     srcs = ["route_travel_mode.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "routes_service_proto",
     srcs = ["routes_service.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/maps/routing/v2:v2_proto",
-        "//google/rpc:rpc_proto",
-        "//google/type:type_proto",
+        ":fallback_info_proto",
+        ":geocoding_results_proto",
+        ":polyline_proto",
+        ":route_modifiers_proto",
+        ":route_proto",
+        ":route_travel_mode_proto",
+        ":routing_preference_proto",
+        ":traffic_model_proto",
+        ":transit_preferences_proto",
+        ":units_proto",
+        ":waypoint_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/rpc:status_proto",
+        "//proto/src/google/type:localized_text_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
@@ -100,74 +136,85 @@ proto_library(
 proto_library(
     name = "routing_preference_proto",
     srcs = ["routing_preference.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "speed_reading_interval_proto",
     srcs = ["speed_reading_interval.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "toll_info_proto",
     srcs = ["toll_info.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/type:type_proto"],
+    deps = ["//proto/src/google/type:money_proto"],
 )
 
 proto_library(
     name = "toll_passes_proto",
     srcs = ["toll_passes.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "traffic_model_proto",
     srcs = ["traffic_model.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "transit_preferences_proto",
     srcs = ["transit_preferences.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "transit_proto",
     srcs = ["transit.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/maps/routing/v2:v2_proto",
-        "//google/type:type_proto",
+        ":location_proto",
+        "//proto/src/google/type:localized_text_proto",
     ],
 )
 
 proto_library(
     name = "units_proto",
     srcs = ["units.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "vehicle_emission_type_proto",
     srcs = ["vehicle_emission_type.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "vehicle_info_proto",
     srcs = ["vehicle_info.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/maps/routing/v2:v2_proto"],
+    deps = [":vehicle_emission_type_proto"],
 )
 
 proto_library(
     name = "waypoint_proto",
     srcs = ["waypoint.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/maps/routing/v2:v2_proto"],
+    deps = [":location_proto"],
 )
 
 ts_proto_library(

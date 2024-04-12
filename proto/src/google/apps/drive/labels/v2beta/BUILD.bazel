@@ -4,33 +4,38 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "common_proto",
     srcs = ["common.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/type:type_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/type:color_proto",
     ],
 )
 
 proto_library(
     name = "error_details_proto",
     srcs = ["error_details.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "exception_detail_proto",
     srcs = ["exception_detail.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "field_proto",
     srcs = ["field.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/apps/drive/labels/v2beta:v2beta_proto",
-        "//google/type:type_proto",
+        ":common_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/type:date_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -38,20 +43,23 @@ proto_library(
 proto_library(
     name = "label_limits_proto",
     srcs = ["label_limits.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/type:type_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/type:date_proto",
     ],
 )
 
 proto_library(
     name = "label_lock_proto",
     srcs = ["label_lock.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/apps/drive/labels/v2beta:v2beta_proto",
+        ":common_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -59,17 +67,21 @@ proto_library(
 proto_library(
     name = "label_permission_proto",
     srcs = ["label_permission.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = ["//proto/src/google/api:resource_proto"],
 )
 
 proto_library(
     name = "label_proto",
     srcs = ["label.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/apps/drive/labels/v2beta:v2beta_proto",
+        ":common_proto",
+        ":field_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
@@ -77,10 +89,16 @@ proto_library(
 proto_library(
     name = "label_service_proto",
     srcs = ["label_service.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/apps/drive/labels/v2beta:v2beta_proto",
+        ":label_limits_proto",
+        ":label_permission_proto",
+        ":label_proto",
+        ":requests_proto",
+        ":user_capabilities_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
         "@com_google_protobuf//:empty_proto",
     ],
 )
@@ -88,10 +106,16 @@ proto_library(
 proto_library(
     name = "requests_proto",
     srcs = ["requests.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/apps/drive/labels/v2beta:v2beta_proto",
+        ":common_proto",
+        ":field_proto",
+        ":label_lock_proto",
+        ":label_permission_proto",
+        ":label_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:field_mask_proto",
     ],
 )
@@ -99,8 +123,12 @@ proto_library(
 proto_library(
     name = "user_capabilities_proto",
     srcs = ["user_capabilities.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = [
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+    ],
 )
 
 ts_proto_library(

@@ -4,10 +4,11 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "common_proto",
     srcs = ["common.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/type:type_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/type:latlng_proto",
         "@com_google_protobuf//:timestamp_proto",
         "@com_google_protobuf//:wrappers_proto",
     ],
@@ -16,11 +17,19 @@ proto_library(
 proto_library(
     name = "delivery_api_proto",
     srcs = ["delivery_api.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/geo/type:type_proto",
-        "//google/maps/fleetengine/delivery/v1:v1_proto",
+        ":delivery_vehicles_proto",
+        ":header_proto",
+        ":task_tracking_info_proto",
+        ":tasks_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/api:routing_proto",
+        "//proto/src/google/geo/type:viewport_proto",
         "@com_google_protobuf//:field_mask_proto",
     ],
 )
@@ -28,11 +37,13 @@ proto_library(
 proto_library(
     name = "delivery_vehicles_proto",
     srcs = ["delivery_vehicles.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/maps/fleetengine/delivery/v1:v1_proto",
-        "//google/type:type_proto",
+        ":common_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/type:latlng_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:wrappers_proto",
     ],
@@ -41,18 +52,23 @@ proto_library(
 proto_library(
     name = "header_proto",
     srcs = ["header.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = ["//proto/src/google/api:field_behavior_proto"],
 )
 
 proto_library(
     name = "task_tracking_info_proto",
     srcs = ["task_tracking_info.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/maps/fleetengine/delivery/v1:v1_proto",
-        "//google/type:type_proto",
+        ":common_proto",
+        ":delivery_vehicles_proto",
+        ":tasks_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/type:latlng_proto",
         "@com_google_protobuf//:timestamp_proto",
         "@com_google_protobuf//:wrappers_proto",
     ],
@@ -61,10 +77,13 @@ proto_library(
 proto_library(
     name = "tasks_proto",
     srcs = ["tasks.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/maps/fleetengine/delivery/v1:v1_proto",
+        ":common_proto",
+        ":delivery_vehicles_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],

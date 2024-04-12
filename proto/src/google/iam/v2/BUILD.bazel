@@ -4,18 +4,22 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "deny_proto",
     srcs = ["deny.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/type:type_proto"],
+    deps = ["//proto/src/google/type:expr_proto"],
 )
 
 proto_library(
     name = "policy_proto",
     srcs = ["policy.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/iam/v2:v2_proto",
-        "//google/longrunning:longrunning_proto",
+        ":deny_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/longrunning:operations_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )

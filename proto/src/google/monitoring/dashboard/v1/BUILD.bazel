@@ -4,22 +4,28 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "alertchart_proto",
     srcs = ["alertchart.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = [
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+    ],
 )
 
 proto_library(
     name = "collapsible_group_proto",
     srcs = ["collapsible_group.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "common_proto",
     srcs = ["common.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/type:type_proto",
+        "//proto/src/google/type:interval_proto",
         "@com_google_protobuf//:duration_proto",
     ],
 )
@@ -27,27 +33,35 @@ proto_library(
 proto_library(
     name = "dashboard_filter_proto",
     srcs = ["dashboard_filter.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = ["//proto/src/google/api:field_behavior_proto"],
 )
 
 proto_library(
     name = "dashboard_proto",
     srcs = ["dashboard.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/monitoring/dashboard/v1:v1_proto",
+        ":dashboard_filter_proto",
+        ":layouts_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
     ],
 )
 
 proto_library(
     name = "dashboards_service_proto",
     srcs = ["dashboards_service.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/monitoring/dashboard/v1:v1_proto",
+        ":dashboard_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:empty_proto",
     ],
 )
@@ -55,52 +69,62 @@ proto_library(
 proto_library(
     name = "drilldowns_proto",
     srcs = ["drilldowns.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "error_reporting_panel_proto",
     srcs = ["error_reporting_panel.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "incident_list_proto",
     srcs = ["incident_list.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = [
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:monitored_resource_proto",
+    ],
 )
 
 proto_library(
     name = "layouts_proto",
     srcs = ["layouts.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/monitoring/dashboard/v1:v1_proto"],
+    deps = [":widget_proto"],
 )
 
 proto_library(
     name = "logs_panel_proto",
     srcs = ["logs_panel.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "metrics_proto",
     srcs = ["metrics.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/monitoring/dashboard/v1:v1_proto",
+        ":common_proto",
+        "//proto/src/google/api:field_behavior_proto",
     ],
 )
 
 proto_library(
     name = "piechart_proto",
     srcs = ["piechart.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/monitoring/dashboard/v1:v1_proto",
+        ":metrics_proto",
+        "//proto/src/google/api:field_behavior_proto",
         "@com_google_protobuf//:duration_proto",
     ],
 )
@@ -108,10 +132,11 @@ proto_library(
 proto_library(
     name = "scorecard_proto",
     srcs = ["scorecard.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/monitoring/dashboard/v1:v1_proto",
+        ":metrics_proto",
+        "//proto/src/google/api:field_behavior_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:empty_proto",
     ],
@@ -120,35 +145,41 @@ proto_library(
 proto_library(
     name = "section_header_proto",
     srcs = ["section_header.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "service_proto",
     srcs = ["service.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "single_view_group_proto",
     srcs = ["single_view_group.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "table_display_options_proto",
     srcs = ["table_display_options.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = ["//proto/src/google/api:field_behavior_proto"],
 )
 
 proto_library(
     name = "table_proto",
     srcs = ["table.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/monitoring/dashboard/v1:v1_proto",
+        ":metrics_proto",
+        ":table_display_options_proto",
+        "//proto/src/google/api:field_behavior_proto",
         "@com_google_protobuf//:duration_proto",
     ],
 )
@@ -156,16 +187,29 @@ proto_library(
 proto_library(
     name = "text_proto",
     srcs = ["text.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "widget_proto",
     srcs = ["widget.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/monitoring/dashboard/v1:v1_proto",
+        ":alertchart_proto",
+        ":collapsible_group_proto",
+        ":error_reporting_panel_proto",
+        ":incident_list_proto",
+        ":logs_panel_proto",
+        ":piechart_proto",
+        ":scorecard_proto",
+        ":section_header_proto",
+        ":single_view_group_proto",
+        ":table_proto",
+        ":text_proto",
+        ":xychart_proto",
+        "//proto/src/google/api:field_behavior_proto",
         "@com_google_protobuf//:empty_proto",
     ],
 )
@@ -173,10 +217,11 @@ proto_library(
 proto_library(
     name = "xychart_proto",
     srcs = ["xychart.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/monitoring/dashboard/v1:v1_proto",
+        ":metrics_proto",
+        "//proto/src/google/api:field_behavior_proto",
         "@com_google_protobuf//:duration_proto",
     ],
 )

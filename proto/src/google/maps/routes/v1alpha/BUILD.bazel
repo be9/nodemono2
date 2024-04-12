@@ -4,10 +4,17 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "route_service_proto",
     srcs = ["route_service.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/maps/routes/v1:v1_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/maps/routes/v1:compute_custom_routes_request_proto",
+        "//proto/src/google/maps/routes/v1:compute_custom_routes_response_proto",
+        "//proto/src/google/maps/routes/v1:compute_route_matrix_request_proto",
+        "//proto/src/google/maps/routes/v1:compute_routes_request_proto",
+        "//proto/src/google/maps/routes/v1:compute_routes_response_proto",
+        "//proto/src/google/maps/routes/v1:route_matrix_element_proto",
     ],
 )
 

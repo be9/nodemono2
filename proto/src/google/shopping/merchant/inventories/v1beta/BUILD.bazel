@@ -4,11 +4,15 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "localinventory_proto",
     srcs = ["localinventory.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/shopping/type:type_proto",
-        "//google/type:type_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/shopping/type:types_proto",
+        "//proto/src/google/type:interval_proto",
         "@com_google_protobuf//:empty_proto",
     ],
 )
@@ -16,11 +20,15 @@ proto_library(
 proto_library(
     name = "regionalinventory_proto",
     srcs = ["regionalinventory.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/shopping/type:type_proto",
-        "//google/type:type_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/shopping/type:types_proto",
+        "//proto/src/google/type:interval_proto",
         "@com_google_protobuf//:empty_proto",
     ],
 )

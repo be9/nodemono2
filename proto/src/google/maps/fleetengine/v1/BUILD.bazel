@@ -4,11 +4,12 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "fleetengine_proto",
     srcs = ["fleetengine.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/maps/fleetengine/v1:v1_proto",
-        "//google/type:type_proto",
+        ":traffic_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/type:latlng_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:timestamp_proto",
         "@com_google_protobuf//:wrappers_proto",
@@ -18,23 +19,32 @@ proto_library(
 proto_library(
     name = "header_proto",
     srcs = ["header.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = ["//proto/src/google/api:field_behavior_proto"],
 )
 
 proto_library(
     name = "traffic_proto",
     srcs = ["traffic.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "trip_api_proto",
     srcs = ["trip_api.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/maps/fleetengine/v1:v1_proto",
+        ":fleetengine_proto",
+        ":header_proto",
+        ":trips_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/api:routing_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:empty_proto",
         "@com_google_protobuf//:field_mask_proto",
@@ -45,11 +55,14 @@ proto_library(
 proto_library(
     name = "trips_proto",
     srcs = ["trips.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/maps/fleetengine/v1:v1_proto",
-        "//google/type:type_proto",
+        ":fleetengine_proto",
+        ":traffic_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/type:latlng_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:timestamp_proto",
         "@com_google_protobuf//:wrappers_proto",
@@ -59,12 +72,19 @@ proto_library(
 proto_library(
     name = "vehicle_api_proto",
     srcs = ["vehicle_api.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/geo/type:type_proto",
-        "//google/maps/fleetengine/v1:v1_proto",
-        "//google/type:type_proto",
+        ":fleetengine_proto",
+        ":header_proto",
+        ":vehicles_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
+        "//proto/src/google/api:routing_proto",
+        "//proto/src/google/geo/type:viewport_proto",
+        "//proto/src/google/type:latlng_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:field_mask_proto",
         "@com_google_protobuf//:timestamp_proto",
@@ -75,10 +95,12 @@ proto_library(
 proto_library(
     name = "vehicles_proto",
     srcs = ["vehicles.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/maps/fleetengine/v1:v1_proto",
+        ":fleetengine_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/api:resource_proto",
         "@com_google_protobuf//:timestamp_proto",
         "@com_google_protobuf//:wrappers_proto",
     ],

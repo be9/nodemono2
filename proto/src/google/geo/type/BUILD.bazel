@@ -4,8 +4,9 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "viewport_proto",
     srcs = ["viewport.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/type:type_proto"],
+    deps = ["//proto/src/google/type:latlng_proto"],
 )
 
 ts_proto_library(

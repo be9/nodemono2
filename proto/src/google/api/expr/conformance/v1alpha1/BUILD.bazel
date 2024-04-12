@@ -4,11 +4,14 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "conformance_service_proto",
     srcs = ["conformance_service.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/api/expr/v1alpha1:v1alpha1_proto",
-        "//google/rpc:rpc_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api/expr/v1alpha1:checked_proto",
+        "//proto/src/google/api/expr/v1alpha1:eval_proto",
+        "//proto/src/google/api/expr/v1alpha1:syntax_proto",
+        "//proto/src/google/rpc:status_proto",
     ],
 )
 

@@ -4,8 +4,9 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "audit_data_proto",
     srcs = ["audit_data.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/iam/v1:v1_proto"],
+    deps = ["//proto/src/google/iam/v1:policy_proto"],
 )
 
 ts_proto_library(

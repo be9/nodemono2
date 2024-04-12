@@ -4,10 +4,11 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "resources_proto",
     srcs = ["resources.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/type:type_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/type:latlng_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
@@ -16,12 +17,13 @@ proto_library(
 proto_library(
     name = "rpcmessages_proto",
     srcs = ["rpcmessages.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/longrunning:longrunning_proto",
-        "//google/rpc:rpc_proto",
-        "//google/streetview/publish/v1:v1_proto",
+        ":resources_proto",
+        "//proto/src/google/api:field_behavior_proto",
+        "//proto/src/google/longrunning:operations_proto",
+        "//proto/src/google/rpc:status_proto",
         "@com_google_protobuf//:field_mask_proto",
     ],
 )
@@ -29,11 +31,14 @@ proto_library(
 proto_library(
     name = "streetview_publish_proto",
     srcs = ["streetview_publish.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/longrunning:longrunning_proto",
-        "//google/streetview/publish/v1:v1_proto",
+        ":resources_proto",
+        ":rpcmessages_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/longrunning:operations_proto",
         "@com_google_protobuf//:empty_proto",
     ],
 )

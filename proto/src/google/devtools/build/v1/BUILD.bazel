@@ -4,9 +4,10 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "build_events_proto",
     srcs = ["build_events.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/devtools/build/v1:v1_proto",
+        ":build_status_proto",
         "@com_google_protobuf//:any_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
@@ -15,6 +16,7 @@ proto_library(
 proto_library(
     name = "build_status_proto",
     srcs = ["build_status.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
         "@com_google_protobuf//:any_proto",
@@ -25,10 +27,13 @@ proto_library(
 proto_library(
     name = "publish_build_event_proto",
     srcs = ["publish_build_event.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/devtools/build/v1:v1_proto",
+        ":build_events_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/api:field_behavior_proto",
         "@com_google_protobuf//:duration_proto",
         "@com_google_protobuf//:empty_proto",
     ],

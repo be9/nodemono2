@@ -4,21 +4,25 @@ load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
 proto_library(
     name = "field_proto",
     srcs = ["field.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/firestore/admin/v1beta2:v1beta2_proto",
+        ":index_proto",
+        "//proto/src/google/api:annotations_proto",
     ],
 )
 
 proto_library(
     name = "firestore_admin_proto",
     srcs = ["firestore_admin.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/firestore/admin/v1beta2:v1beta2_proto",
-        "//google/longrunning:longrunning_proto",
+        ":field_proto",
+        ":index_proto",
+        "//proto/src/google/api:annotations_proto",
+        "//proto/src/google/api:client_proto",
+        "//proto/src/google/longrunning:operations_proto",
         "@com_google_protobuf//:empty_proto",
         "@com_google_protobuf//:field_mask_proto",
     ],
@@ -27,17 +31,19 @@ proto_library(
 proto_library(
     name = "index_proto",
     srcs = ["index.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
-    deps = ["//google/api:api_proto"],
+    deps = ["//proto/src/google/api:annotations_proto"],
 )
 
 proto_library(
     name = "operation_proto",
     srcs = ["operation.proto"],
+    strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = [
-        "//google/api:api_proto",
-        "//google/firestore/admin/v1beta2:v1beta2_proto",
+        ":index_proto",
+        "//proto/src/google/api:annotations_proto",
         "@com_google_protobuf//:timestamp_proto",
     ],
 )
