@@ -3,10 +3,11 @@
 load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "COPY_FILE_TO_BIN_TOOLCHAINS")
 load("@aspect_rules_js//js:libs.bzl", "js_lib_helpers")
 load("@aspect_rules_js//js:providers.bzl", "JsInfo", "js_info")
+load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@rules_proto//proto:defs.bzl", "ProtoInfo", "proto_common")
 
 # buildifier: disable=function-docstring-header
-def _protoc_action(ctx, proto_info, outputs, options = {}):
+def _protoc_action(ctx, proto_info, outputs, options = []):
     """Create an action like
     bazel-out/k8-opt-exec-2B5CBBC6/bin/external/com_google_protobuf/protoc $@' '' \
       '--plugin=protoc-gen-es=bazel-out/k8-opt-exec-2B5CBBC6/bin/plugin/bufbuild/protoc-gen-es.sh' \
@@ -16,17 +17,22 @@ def _protoc_action(ctx, proto_info, outputs, options = {}):
       example/person/person.proto
     """
     inputs = depset(proto_info.direct_sources, transitive = [proto_info.transitive_descriptor_sets])
+    proto_root = proto_info.proto_source_root
+    if proto_root.startswith(ctx.bin_dir.path):
+        proto_root = proto_root[len(ctx.bin_dir.path) + 1:]
+    plugin_output = ctx.bin_dir.path + "/" + proto_root
+    proto_root = ctx.workspace_name + "/" + proto_root
 
     args = ctx.actions.args()
     args.add_joined(["--plugin", "protoc-gen-ts", ctx.executable.protoc_gen_ts.path], join_with = "=")
-    for (key, value) in options.items():
-        args.add_joined(["--ts_opt", key, value], join_with = "=")
-    args.add_joined(["--ts_out", ctx.bin_dir.path], join_with = "=")
+    for opt in options:
+        args.add_joined(["--ts_opt", opt], join_with = "=")
+    args.add_joined(["--ts_out", plugin_output], join_with = "=")
 
     args.add("--descriptor_set_in")
     args.add_joined(proto_info.transitive_descriptor_sets, join_with = ":")
 
-    args.add_all(proto_info.direct_sources)
+    args.add_all([paths.relativize(path = file.path, start = proto_info.proto_source_root) for file in proto_info.direct_sources])
 
     ctx.actions.run(
         executable = ctx.executable.protoc,
@@ -50,13 +56,13 @@ def _ts_proto_library_impl(ctx):
     info = ctx.attr.proto[ProtoInfo]
     ts_outs = _declare_outs(ctx, info, ".ts")
 
-    protoc_options = {
-        "long_type_string": "true",
-        "keep_enum_prefix": "true",
-    }
+    protoc_options = [
+        "long_type_string",
+        "keep_enum_prefix",
+    ]
     if ctx.attr.has_services:
-        protoc_options["client_generic"] = "true"
-        protoc_options["server_generic"] = "true"
+        protoc_options.append("client_generic")
+        protoc_options.append("server_generic")
 
     _protoc_action(ctx, info, ts_outs, protoc_options)
 
