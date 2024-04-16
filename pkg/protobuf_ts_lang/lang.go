@@ -98,10 +98,16 @@ func addTsProtoRule(args language.GenerateArgs, protoLibrary *rule.Rule, ruleNam
 
 	// this should work in `gazelle:proto file` mode where proto source is 1:1 mapped to proto_library name
 	protoPath := filepath.Join(args.Dir, strings.ReplaceAll(protoLibrary.Name(), "_proto", ".proto"))
-	rpc, err := doesHaveRpc(protoPath)
+	protoInfo, err := analyzeProtoFile(protoPath)
 	if err != nil {
 		log.Printf("cannot parse proto: %v", err)
-	} else if rpc {
+	}
+
+	if !protoInfo.hasMessages && !protoInfo.hasEnums && !protoInfo.hasServices {
+		return
+	}
+
+	if protoInfo.hasServices {
 		r.SetAttr("has_services", true)
 	}
 

@@ -1,5 +1,5 @@
-load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+load("@rules_proto//proto:defs.bzl", "proto_library")
 
 proto_library(
     name = "alertchart_proto",
@@ -258,11 +258,6 @@ ts_proto_library(
 )
 
 ts_proto_library(
-    name = "drilldowns_proto_ts",
-    proto = ":drilldowns_proto",
-)
-
-ts_proto_library(
     name = "error_reporting_panel_proto_ts",
     proto = ":error_reporting_panel_proto",
 )
@@ -300,11 +295,6 @@ ts_proto_library(
 ts_proto_library(
     name = "section_header_proto_ts",
     proto = ":section_header_proto",
-)
-
-ts_proto_library(
-    name = "service_proto_ts",
-    proto = ":service_proto",
 )
 
 ts_proto_library(

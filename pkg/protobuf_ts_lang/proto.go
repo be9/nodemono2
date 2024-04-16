@@ -7,23 +7,35 @@ import (
 	"github.com/jhump/protoreflect/desc/protoparse/ast"
 )
 
-// doesHaveRpc returns true if there's at least 1 rpc service declared in the proto file.
-func doesHaveRpc(protoFilePath string) (bool, error) {
+type protoFileAnalysisResult struct {
+	hasMessages bool
+	hasEnums    bool
+	hasServices bool
+}
+
+func analyzeProtoFile(protoFilePath string) (result protoFileAnalysisResult, err error) {
 	parser := &protoparse.Parser{}
-	parsed, err := parser.ParseToAST(protoFilePath)
+	var parsed []*ast.FileNode
+	parsed, err = parser.ParseToAST(protoFilePath)
 	if err != nil {
-		return false, err
+		return
 	}
 
 	if len(parsed) != 1 {
-		return false, errors.New("expected exactly one ast")
+		err = errors.New("expected exactly one ast")
+		return
 	}
 
 	for _, decl := range parsed[0].Decls {
-		if _, ok := decl.(*ast.ServiceNode); ok {
-			return true, nil
+		switch decl.(type) {
+		case *ast.ServiceNode:
+			result.hasServices = true
+		case *ast.EnumNode:
+			result.hasEnums = true
+		case *ast.MessageNode:
+			result.hasMessages = true
 		}
 	}
 
-	return false, nil
+	return
 }

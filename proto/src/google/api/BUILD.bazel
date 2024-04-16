@@ -1,5 +1,5 @@
-load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+load("@rules_proto//proto:defs.bzl", "proto_library")
 
 proto_library(
     name = "annotations_proto",
@@ -286,11 +286,6 @@ proto_library(
     strip_import_prefix = "/proto/src",
     visibility = ["//visibility:public"],
     deps = ["@com_google_protobuf//:descriptor_proto"],
-)
-
-ts_proto_library(
-    name = "annotations_proto_ts",
-    proto = ":annotations_proto",
 )
 
 ts_proto_library(

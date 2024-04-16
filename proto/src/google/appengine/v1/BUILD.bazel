@@ -1,5 +1,5 @@
-load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@nodemono2//bzl:defs.bzl", "ts_proto_library")
+load("@rules_proto//proto:defs.bzl", "proto_library")
 
 proto_library(
     name = "app_yaml_proto",
@@ -176,11 +176,6 @@ ts_proto_library(
 ts_proto_library(
     name = "deploy_proto_ts",
     proto = ":deploy_proto",
-)
-
-ts_proto_library(
-    name = "deployed_files_proto_ts",
-    proto = ":deployed_files_proto",
 )
 
 ts_proto_library(
