@@ -693,5 +693,10 @@ npm_package(
     srcs = ALL_PROTO + [
         "package.json",
     ],
+    package = "@nodemono2/proto",
+    root_paths = [
+        ".",
+        "proto/src",
+    ],
     visibility = ["//visibility:public"],
 )

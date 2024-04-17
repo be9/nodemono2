@@ -2402,7 +2402,7 @@
         "bzlTransitiveDigest": "YOqnOl0+hjkMVPhjeKa/YbtTnEBHJ0hx7k+zlePUyZU=",
         "accumulatedFileDigests": {
           "@@aspect_bazel_lib~2.7.0~toolchains~yq_darwin_arm64//:yq": "db8c11ca4c1dda8fe7c211e82e28191d48bd9ae83471b952003e819de79bcb51",
-          "@@//:pnpm-lock.yaml": "8580d17576f47cad41309621b8ba955cb4c49acf0574c608188ee386212c6d15"
+          "@@//:pnpm-lock.yaml": "5bd6494ed19c6f79a0b6001c631216cd6d70ccdbb72369a4def7c4e81300465b"
         },
         "envVariables": {},
         "generatedRepoSpecs": {
@@ -19217,6 +19217,9 @@
               "dev": false,
               "root_package": "",
               "link_packages": {
+                "packages/app1": [
+                  "@types/node"
+                ],
                 "packages/next-app": [
                   "@types/node"
                 ]
@@ -45580,6 +45583,9 @@
               "root_package": "",
               "link_workspace": "",
               "link_packages": {
+                "packages/app1": [
+                  "@types/node"
+                ],
                 "packages/next-app": [
                   "@types/node"
                 ]

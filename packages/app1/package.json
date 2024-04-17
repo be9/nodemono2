@@ -13,5 +13,8 @@
     "@nodemono2/lib2": "workspace:^",
     "@nodemono2/proto": "workspace:^",
     "fastify": "^4.26.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20"
   }
 }

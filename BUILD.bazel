@@ -6,7 +6,25 @@ load("@npm//:defs.bzl", "npm_link_all_packages")
 ts_config(
     name = "tsconfig",
     src = "tsconfig.json",
-    visibility = [":__subpackages__"],
+    visibility = ["//visibility:public"],
+)
+
+npm_link_package(
+    name = "node_modules/@nodemono2/lib1",
+    src = "//packages/lib1",
+    visibility = ["//visibility:public"],
+)
+
+npm_link_package(
+    name = "node_modules/@nodemono2/lib2",
+    src = "//packages/lib2",
+    visibility = ["//visibility:public"],
+)
+
+npm_link_package(
+    name = "node_modules/@nodemono2/proto",
+    src = "//packages/proto",
+    visibility = ["//visibility:public"],
 )
 
 npm_link_all_packages(name = "node_modules")

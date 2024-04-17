@@ -25,6 +25,8 @@ def monorepo_package(
     ts_project(
         name = ts_project_name,
         srcs = native.glob(["src/**"]),
+        out_dir = "build",
+        root_dir = "src",
         # Default settings
         composite = True,
         declaration = True,
@@ -38,6 +40,7 @@ def monorepo_package(
 
     npm_package(
         name = name,
+        package = "@nodemono2/" + name,
         srcs = [
             "package.json",
             ":" + ts_project_name,

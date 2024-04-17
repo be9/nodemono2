@@ -1,0 +1,13 @@
+load("//bzl:defs.bzl", "monorepo_package")
+
+monorepo_package(
+    name = "app1",
+    deps = [
+        # These are taken from package.json
+        ":node_modules/fastify",
+        ":node_modules/@types/node",
+        "//:node_modules/@nodemono2/lib1",
+        "//:node_modules/@nodemono2/lib2",
+        "//:node_modules/@nodemono2/proto",
+    ],
+)
