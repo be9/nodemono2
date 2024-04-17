@@ -1,5 +1,5 @@
 load("@aspect_bazel_lib//lib:directory_path.bzl", "directory_path")
-load("@aspect_rules_js//js:defs.bzl", "js_binary")
+load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_library")
 load("@aspect_rules_js//npm:defs.bzl", "npm_package")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_config", "ts_project")
 load("@npm//:defs.bzl", "npm_link_all_packages")
@@ -73,11 +73,17 @@ def ts_proto_library(name, has_services = False, **kwargs):
         data = [node_modules + "/@protobuf-ts/plugin"],
         entry_point = protoc_gen_ts_entry,
     )
+
     ts_proto_library_rule(
-        name = name,
+        name = "_{}".format(name),
         protoc_gen_ts = protoc_gen_ts_target,
         # The codegen always has a runtime dependency on the protobuf runtime
         deps = kwargs.pop("deps", []) + [node_modules + "/@protobuf-ts/runtime"],
         has_services = has_services,
         **kwargs
+    )
+    js_library(
+        name = name,
+        visibility = ["//visibility:public"],
+        srcs = [":_{}".format(name)],
     )
