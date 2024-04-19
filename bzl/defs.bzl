@@ -78,15 +78,11 @@ def ts_proto_library(name, has_services = False, **kwargs):
     )
 
     ts_proto_library_rule(
-        name = "_{}".format(name),
+        visibility = ["//visibility:public"],
+        name = name,
         protoc_gen_ts = protoc_gen_ts_target,
         # The codegen always has a runtime dependency on the protobuf runtime
         deps = kwargs.pop("deps", []) + [node_modules + "/@protobuf-ts/runtime"],
         has_services = has_services,
         **kwargs
-    )
-    js_library(
-        name = name,
-        visibility = ["//visibility:public"],
-        srcs = [":_{}".format(name)],
     )
