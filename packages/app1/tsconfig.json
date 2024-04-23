@@ -11,7 +11,7 @@
   },
 
   "types": ["node", "mocha"],
-  "exclude": ["node_modules", "build"],
+  "exclude": ["build"],
 //  "references": [
 //    { "path": "../lib1" },
 //    { "path": "../lib2" },

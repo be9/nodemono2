@@ -2402,7 +2402,7 @@
         "bzlTransitiveDigest": "YOqnOl0+hjkMVPhjeKa/YbtTnEBHJ0hx7k+zlePUyZU=",
         "accumulatedFileDigests": {
           "@@aspect_bazel_lib~2.7.0~toolchains~yq_darwin_arm64//:yq": "db8c11ca4c1dda8fe7c211e82e28191d48bd9ae83471b952003e819de79bcb51",
-          "@@//:pnpm-lock.yaml": "5bd6494ed19c6f79a0b6001c631216cd6d70ccdbb72369a4def7c4e81300465b"
+          "@@//:pnpm-lock.yaml": "036a69a16f2c80f0ac2ab36d0129af3dd7b6df98034864a83a72769f05b56a1d"
         },
         "envVariables": {},
         "generatedRepoSpecs": {
@@ -7298,7 +7298,7 @@
               "name": "aspect_rules_js~1.40.1~npm~npm__at_types_node-sass__4.11.7__links",
               "package": "@types/node-sass",
               "version": "4.11.7",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {
                 "packages/lib2": [
@@ -16721,6 +16721,9 @@
               "dev": false,
               "root_package": "",
               "link_packages": {
+                "packages/app1": [
+                  "@protobuf-ts/runtime"
+                ],
                 "packages/next-app": [
                   "@protobuf-ts/runtime"
                 ],
@@ -47004,7 +47007,7 @@
               "name": "aspect_rules_js~1.40.1~npm~npm__at_types_cpu-features__0.0.3__links",
               "package": "@types/cpu-features",
               "version": "0.0.3",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {
                 "packages/lib2": [
@@ -47580,7 +47583,7 @@
               "name": "aspect_rules_js~1.40.1~npm~npm__at_types_ssh2__1.15.0__links",
               "package": "@types/ssh2",
               "version": "1.15.0",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {
                 "packages/lib2": [
@@ -51061,6 +51064,9 @@
               "root_package": "",
               "link_workspace": "",
               "link_packages": {
+                "packages/app1": [
+                  "@protobuf-ts/runtime"
+                ],
                 "packages/next-app": [
                   "@protobuf-ts/runtime"
                 ],
@@ -52081,7 +52087,7 @@
               "name": "aspect_rules_js~1.40.1~npm~npm__at_types_node__18.19.26__links",
               "package": "@types/node",
               "version": "18.19.26",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {

@@ -71,6 +71,13 @@ def _ts_proto_library_impl(ctx):
     direct_srcs = depset(js_outs)
     direct_decls = depset(dts_outs)
 
+    npm_linked_packages = js_lib_helpers.gather_npm_linked_packages(
+        srcs = [],
+        deps = ctx.attr.deps,
+    )
+    npm_package_store_deps = js_lib_helpers.gather_npm_package_store_deps(
+        targets = ctx.attr.deps,
+    )
     return [
         DefaultInfo(
             files = direct_srcs,
@@ -93,6 +100,10 @@ def _ts_proto_library_impl(ctx):
                 sources = js_outs,
                 targets = ctx.attr.deps,
             ),
+            npm_linked_packages = npm_linked_packages.direct,
+            npm_package_store_deps = npm_package_store_deps,
+            transitive_npm_linked_package_files = npm_linked_packages.transitive_files,
+            transitive_npm_linked_packages = npm_linked_packages.transitive,
         ),
     ]
 

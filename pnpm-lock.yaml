@@ -31,6 +31,9 @@ importers:
       '@nodemono2/proto':
         specifier: workspace:^
         version: link:../proto
+      '@protobuf-ts/runtime':
+        specifier: ^2.9.4
+        version: 2.9.4
       fastify:
         specifier: ^4.26.2
         version: 4.26.2
@@ -47,6 +50,15 @@ importers:
 
   packages/lib2:
     dependencies:
+      '@types/cpu-features':
+        specifier: ^0.0.3
+        version: 0.0.3
+      '@types/node-sass':
+        specifier: ^4.11.7
+        version: 4.11.7
+      '@types/ssh2':
+        specifier: ^1.15.0
+        version: 1.15.0
       aws-crt:
         specifier: ^1.21.1
         version: 1.21.1
@@ -60,16 +72,6 @@ importers:
         specifier: ^5.1.7
         version: 5.1.7
       ssh2:
-        specifier: ^1.15.0
-        version: 1.15.0
-    devDependencies:
-      '@types/cpu-features':
-        specifier: ^0.0.3
-        version: 0.0.3
-      '@types/node-sass':
-        specifier: ^4.11.7
-        version: 4.11.7
-      '@types/ssh2':
         specifier: ^1.15.0
         version: 1.15.0
 
@@ -573,7 +575,6 @@ packages:
 
   /@types/cpu-features@0.0.3:
     resolution: {integrity: sha512-W/Ep+LDZoxMbCcH7LHRB3RN+TY4gbHl3u4uRq4XsxOh1gnpf5Lkwy5xWTBKSaJYQuMLW2XPAmRWA5Ucsy2EGVQ==}
-    dev: true
 
   /@types/eslint-scope@3.7.7:
     resolution: {integrity: sha512-MzMFlSLBqNF2gcHWO0G1vP/YQyfvrxZ0bF+u7mzUdZ1/xK4A4sru+nraZz5i3iEIk1l1uyicaDVTB4QbbEkAYg==}
@@ -609,13 +610,13 @@ packages:
     resolution: {integrity: sha512-QY0sXZGPRzJ2obo66f9zB6S0Uo9PRdcoPKPbyftSoKXub90s4ut/JK3fYHOqmhYhRRVEB3P5o5rEnq2/bWBdeg==}
     dependencies:
       '@types/node': 20.11.30
-    dev: true
+    dev: false
 
   /@types/node@18.19.26:
     resolution: {integrity: sha512-+wiMJsIwLOYCvUqSdKTrfkS8mpTp+MPINe6+Np4TAGFWWRWiBQ5kSq9nZGCSPkzx9mvT+uEukzpX4MOSCydcvw==}
     dependencies:
       undici-types: 5.26.5
-    dev: true
+    dev: false
 
   /@types/node@20.11.30:
     resolution: {integrity: sha512-dHM6ZxwlmuZaRmUPfv1p+KrdD1Dci04FbdEm/9wEMouFqxYoFl5aMkt0VMAUtYRQDyYvD41WJLukhq/ha3YuTw==}
@@ -648,7 +649,7 @@ packages:
     resolution: {integrity: sha512-YcT8jP5F8NzWeevWvcyrrLB3zcneVjzYY9ZDSMAMboI+2zR1qYWFhwsyOFVzT7Jorn67vqxC0FRiw8YyG9P1ww==}
     dependencies:
       '@types/node': 18.19.26
-    dev: true
+    dev: false
 
   /@types/ws@8.5.10:
     resolution: {integrity: sha512-vmQSUcfalpIq0R9q7uTo2lXs6eGIpt9wtnLdMv9LVpIjCA/+ufZRozlVoVelIYixx1ugCBKDhn89vnsEGOCx9A==}

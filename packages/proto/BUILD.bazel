@@ -698,6 +698,13 @@ strip_virtual_imports(
     srcs = ALL_PROTO,
 )
 
+strip_virtual_imports(
+    name = "build2",
+    srcs = [
+        "//proto/src/google/actions/sdk/v2:account_linking_proto_ts",
+    ],
+)
+
 npm_package(
     name = "proto",
     srcs = [
