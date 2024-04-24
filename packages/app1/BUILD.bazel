@@ -1,7 +1,9 @@
+load("@aspect_rules_js//js:defs.bzl", "js_binary")
 load("//bzl:defs.bzl", "monorepo_package")
 
 monorepo_package(
     name = "app1",
+    app = True,
     deps = [
         # These are taken from package.json
         ":node_modules/fastify",
@@ -10,4 +12,12 @@ monorepo_package(
         "//:node_modules/@nodemono2/lib2",
         "//:node_modules/@nodemono2/proto",
     ],
+)
+
+js_binary(
+    name = "server",
+    data = [
+        ":app1_ts",
+    ],
+    entry_point = "build/index.js",
 )

@@ -7,7 +7,8 @@ load("//bzl:private/ts_proto_library.bzl", ts_proto_library_rule = "ts_proto_lib
 
 def monorepo_package(
         name,
-        deps):
+        deps,
+        app = False):
     """
     Defines a monorepo package.
     """
@@ -38,16 +39,17 @@ def monorepo_package(
         deps = deps,
     )
 
-    npm_package(
-        name = name,
-        package = "@nodemono2/" + name,
-        srcs = [
-            "package.json",
-            ":" + ts_project_name,
-        ],
-        include_runfiles = False,
-        visibility = ["//visibility:public"],
-    )
+    if not app:
+        npm_package(
+            name = name,
+            package = "@nodemono2/" + name,
+            srcs = [
+                "package.json",
+                ":" + ts_project_name,
+            ],
+            include_runfiles = False,
+            visibility = ["//visibility:public"],
+        )
 
 ###################
 

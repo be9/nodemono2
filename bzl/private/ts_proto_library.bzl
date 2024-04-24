@@ -61,6 +61,7 @@ def _ts_proto_library_impl(ctx):
         "long_type_string",
         "keep_enum_prefix",
         "output_javascript",
+        "output_legacy_commonjs",
     ]
     if ctx.attr.has_services:
         protoc_options.append("client_generic")
