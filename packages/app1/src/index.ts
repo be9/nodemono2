@@ -8,8 +8,11 @@ const server = fastify({ logger: true });
 server.get('/', async (request, reply) => {
   const today = ProtoDate.fromJsDate(new Date());
 
+  // this starts up puppeteer every time but who cares
+  const lib1 = await (getPuppeteerVersion().catch((e) => `Error: ${e}`));
+
   return {
-    lib1: await getPuppeteerVersion(),      // this starts up puppeteer every time but who cares
+    lib1,
     lib2: await getSomeInfo(),
     today: ProtoDate.toJson(today),
   };

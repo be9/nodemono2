@@ -1,4 +1,5 @@
 load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_image_layer")
+load("@rules_apko//apko:defs.bzl", "apko_image")
 load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball")
 load("//bzl:defs.bzl", "monorepo_package")
 
@@ -38,12 +39,21 @@ js_image_layer(
     root = "/app",
 )
 
+apko_image(
+    name = "alpine_with_bash",
+    architecture = "amd64",
+    config = "//:alpine_with_bash.yaml",
+    contents = "@alpine_with_bash_lock//:contents",
+    tag = "alpine_with_bash:latest",
+)
+
 oci_image(
     name = "image",
-    #    base = "@distroless_node",
     base = "@debian_node",
+    #    base = "@alpine_node",
+    #    base = ":alpine_with_bash",
     cmd = ["/app/packages/app1/server"],
-    entrypoint = ["bash"],
+    entrypoint = ["/bin/bash"],
     tars = [
         ":layers",
     ],

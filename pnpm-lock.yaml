@@ -31,9 +31,6 @@ importers:
       '@nodemono2/proto':
         specifier: workspace:^
         version: link:../proto
-      '@protobuf-ts/runtime':
-        specifier: ^2.9.4
-        version: 2.9.4
       fastify:
         specifier: ^4.26.2
         version: 4.26.2

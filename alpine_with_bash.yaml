@@ -1,0 +1,16 @@
+contents:
+  repositories:
+    - https://dl-cdn.alpinelinux.org/alpine/v3.19/main
+  packages:
+    - alpine-base
+    - bash
+
+entrypoint:
+  command: /usr/bin/bash -l
+
+# optional environment configuration
+environment:
+  PATH: /usr/sbin:/sbin:/usr/bin:/bin
+
+archs:
+  - amd64

@@ -10,6 +10,7 @@ bazel_dep(name = "rules_go", version = "0.46.0")
 bazel_dep(name = "gazelle", version = "0.35.0")
 bazel_dep(name = "rules_proto", version = "6.0.0-rc2")
 bazel_dep(name = "protobuf", version = "23.1", repo_name = "com_google_protobuf")
+bazel_dep(name = "rules_apko", version = "1.2.3")
 bazel_dep(name = "rules_oci", version = "1.7.5")
 
 node = use_extension("@rules_nodejs//nodejs:extensions.bzl", "node")
@@ -67,10 +68,43 @@ oci.pull(
 use_repo(oci, "distroless_node")
 oci.pull(
     name = "debian_node",
-    digest = "sha256:bb4bbe2e5307ba2982c1263b26ee72593ba680280085ee39eaf631b8b2a57dcb",
-    image = "node",
+    image = "node:20-slim",
     platforms = [
         "linux/amd64",
     ],
 )
 use_repo(oci, "debian_node")
+oci.pull(
+    name = "alpine_node",
+    digest = "sha256:7a91aa397f2e2dfbfcdad2e2d72599f374e0b0172be1d86eeb73f1d33f36a4b2",
+    image = "node",  # "node:20-alpine"
+    platforms = [
+        "linux/amd64",
+        "linux/arm/v6",
+        "linux/arm/v7",
+        "linux/arm64/v8",
+        "linux/ppc64le",
+        "linux/s390x",
+    ],
+)
+use_repo(oci, "alpine_node")
+
+#############################
+
+toolchain = use_extension("@rules_apko//apko:extensions.bzl", "apko")
+toolchain.toolchain(apko_version = "v0.13.1")
+use_repo(toolchain, "apko_toolchains")
+
+register_toolchains("@apko_toolchains//:all")
+
+# locks
+apk = use_extension(
+    "@rules_apko//apko:extensions.bzl",
+    "apko",
+    dev_dependency = True,
+)
+apk.translate_lock(
+    name = "alpine_with_bash_lock",
+    lock = "//:alpine_with_bash.lock.json",
+)
+use_repo(apk, "alpine_with_bash_lock")
