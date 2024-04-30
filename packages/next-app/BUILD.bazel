@@ -1,4 +1,4 @@
-load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_image_layer")
+load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_image_layer", "js_run_devserver")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_config")
 load("@bazel_skylib//rules:build_test.bzl", "build_test")
 load("@npm//:defs.bzl", "npm_link_all_packages")
@@ -19,14 +19,17 @@ ts_config(
     visibility = ["//visibility:public"],
 )
 
-next(
-    name = "next",
+filegroup(
+    name = "sources",
     srcs = glob([
         "src/**",
         "public/**",
     ]),
-    data = [
-        "next.config.mjs",
+)
+
+filegroup(
+    name = "next_data",
+    srcs = [
         "package.json",
         ":node_modules/@nodemono2/proto",
         ":node_modules/@protobuf-ts/runtime",
@@ -41,6 +44,15 @@ next(
         ":node_modules/react-dom",
         ":node_modules/typescript",
     ],
+)
+
+next(
+    name = "next",
+    srcs = [":sources"],
+    data = [
+        "next.config.mjs",
+        ":next_data",
+    ],
     next_bin = "./node_modules/next/dist/bin/next",
     next_js_binary = ":next_js_binary",
 )
@@ -50,15 +62,23 @@ build_test(
     targets = [":next"],
 )
 
-js_binary(
+js_run_devserver(
     name = "server",
-    data = [":next"],
-    entry_point = "server/index.js",
+    chdir = package_name(),
+    command = "server/index.js",
+    data = [
+        "server/index.js",
+        "tsconfig.json",
+        ":next",
+        ":next_data",
+        ":sources",
+    ],
 )
 
 js_image_layer(
     name = "layers",
-    binary = ":next_start",
+    #    binary = ":next_start",
+    binary = ":server",
     platform = "//:amd64_linux",
     root = "/app",
 )
@@ -66,7 +86,7 @@ js_image_layer(
 oci_image(
     name = "image",
     base = "@debian_node",
-    cmd = ["/app/packages/next-app/next_start"],
+    cmd = ["/app/packages/next-app/server"],
     entrypoint = ["/bin/bash"],
     tars = [
         ":layers",
