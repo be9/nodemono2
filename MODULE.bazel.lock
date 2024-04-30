@@ -1,6 +1,6 @@
 {
   "lockFileVersion": 3,
-  "moduleFileHash": "87d80125f9dc57ceddbde544a4aff4c06d471d3a8cff49c39914f1d79983e0bc",
+  "moduleFileHash": "a10423760364c47f99e0d3aba22110d8d40368fb33fb17cc3867cc95e83d0ade",
   "flags": {
     "cmdRegistries": [
       "https://bcr.bazel.build/"
@@ -205,8 +205,7 @@
               "tagName": "pull",
               "attributeValues": {
                 "name": "debian_node",
-                "digest": "sha256:bb4bbe2e5307ba2982c1263b26ee72593ba680280085ee39eaf631b8b2a57dcb",
-                "image": "node",
+                "image": "node:20-slim",
                 "platforms": [
                   "linux/amd64"
                 ]
@@ -236,7 +235,7 @@
               "devDependency": false,
               "location": {
                 "file": "@@//:MODULE.bazel",
-                "line": 78,
+                "line": 77,
                 "column": 9
               }
             }
@@ -245,18 +244,21 @@
           "hasNonDevUseExtension": true
         },
         {
-          "extensionBzlFile": "@nodemono2//@rules_apko:extensions.bzl",
+          "extensionBzlFile": "@rules_apko//apko:extensions.bzl",
           "extensionName": "apko",
           "usingModule": "<root>",
           "location": {
             "file": "@@//:MODULE.bazel",
-            "line": 95,
+            "line": 94,
             "column": 26
           },
           "imports": {
-            "apko_toolchains": "apko_toolchains"
+            "apko_toolchains": "apko_toolchains",
+            "alpine_with_bash_lock": "alpine_with_bash_lock"
           },
-          "devImports": [],
+          "devImports": [
+            "alpine_with_bash_lock"
+          ],
           "tags": [
             {
               "tagName": "toolchain",
@@ -266,7 +268,7 @@
               "devDependency": false,
               "location": {
                 "file": "@@//:MODULE.bazel",
-                "line": 96,
+                "line": 95,
                 "column": 20
               }
             },
@@ -279,7 +281,7 @@
               "devDependency": true,
               "location": {
                 "file": "@@//:MODULE.bazel",
-                "line": 107,
+                "line": 106,
                 "column": 19
               }
             }
@@ -2661,7 +2663,7 @@
         "bzlTransitiveDigest": "YOqnOl0+hjkMVPhjeKa/YbtTnEBHJ0hx7k+zlePUyZU=",
         "accumulatedFileDigests": {
           "@@aspect_bazel_lib~2.7.0~toolchains~yq_darwin_arm64//:yq": "db8c11ca4c1dda8fe7c211e82e28191d48bd9ae83471b952003e819de79bcb51",
-          "@@//:pnpm-lock.yaml": "036a69a16f2c80f0ac2ab36d0129af3dd7b6df98034864a83a72769f05b56a1d"
+          "@@//:pnpm-lock.yaml": "05f7e10cbc5c8fe15df0e7b67638efb2c07ee5d6c042ed6d6648b0ee953611de"
         },
         "envVariables": {},
         "generatedRepoSpecs": {
@@ -16980,9 +16982,6 @@
               "dev": false,
               "root_package": "",
               "link_packages": {
-                "packages/app1": [
-                  "@protobuf-ts/runtime"
-                ],
                 "packages/next-app": [
                   "@protobuf-ts/runtime"
                 ],
@@ -51323,9 +51322,6 @@
               "root_package": "",
               "link_workspace": "",
               "link_packages": {
-                "packages/app1": [
-                  "@protobuf-ts/runtime"
-                ],
                 "packages/next-app": [
                   "@protobuf-ts/runtime"
                 ],
@@ -66765,6 +66761,588 @@
         ]
       }
     },
+    "@@rules_apko~1.2.3//apko:extensions.bzl%apko": {
+      "general": {
+        "bzlTransitiveDigest": "SBVGBC27on4w1H6MthtiESPnADW+VBVFXoGYfCJI9wg=",
+        "accumulatedFileDigests": {
+          "@@//:alpine_with_bash.lock.json": "7be4d5a645fb9e266c336e8c01af6420f171d15daf793c2cf60bcc97937444af"
+        },
+        "envVariables": {},
+        "generatedRepoSpecs": {
+          "apko_darwin_arm64": {
+            "bzlFile": "@@rules_apko~1.2.3//apko:repositories.bzl",
+            "ruleClassName": "apko_repositories",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~apko_darwin_arm64",
+              "platform": "darwin_arm64",
+              "apko_version": "v0.13.1"
+            }
+          },
+          "alpine_with_bash_lock_alpine-baselayout_x86_64_3.4.3-r2": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_alpine-baselayout_x86_64_3.4.3-r2",
+              "package_name": "alpine-baselayout",
+              "version": "3.4.3-r2",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/alpine-baselayout-3.4.3-r2.apk",
+              "signature_range": "bytes=0-663",
+              "signature_checksum": "sha1-CaDwlsd70d7l+W1CcNVzHTfj8xU=",
+              "control_range": "bytes=664-2189",
+              "control_checksum": "sha1-6vHLRZoP2NZ2lLj3reL8p+l/YE4=",
+              "data_range": "bytes=2190-331776",
+              "data_checksum": "sha256-JU6qdU0whOtUHgUzITTU0vmQA/JZp3XKKzCVP988hFM="
+            }
+          },
+          "alpine_with_bash_lock_alpine-keys_x86_64_2.4-r1": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_alpine-keys_x86_64_2.4-r1",
+              "package_name": "alpine-keys",
+              "version": "2.4-r1",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/alpine-keys-2.4-r1.apk",
+              "signature_range": "bytes=0-662",
+              "signature_checksum": "sha1-BpLIF44N+ZYS3pN+fhl6BoeX+DU=",
+              "control_range": "bytes=663-1185",
+              "control_checksum": "sha1-tL491cf/hUqLQi7fZ4MhT9Qmi9U=",
+              "data_range": "bytes=1186-159744",
+              "data_checksum": "sha256-TaX8wI9g5+eu7L8NwxMMC0mThZijGgnRO4UF4iGFUeE="
+            }
+          },
+          "alpine_with_bash_lock": {
+            "bzlFile": "@@rules_apko~1.2.3//apko:translate_lock.bzl",
+            "ruleClassName": "translate_apko_lock",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock",
+              "target_name": "alpine_with_bash_lock",
+              "lock": "@@//:alpine_with_bash.lock.json"
+            }
+          },
+          "alpine_with_bash_lock_busybox-suid_x86_64_1.36.1-r15": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_busybox-suid_x86_64_1.36.1-r15",
+              "package_name": "busybox-suid",
+              "version": "1.36.1-r15",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/busybox-suid-1.36.1-r15.apk",
+              "signature_range": "bytes=0-666",
+              "signature_checksum": "sha1-MQDOSXQFuuuRIYsk11lp8txVh+M=",
+              "control_range": "bytes=667-1264",
+              "control_checksum": "sha1-uefyNnHnanEbOtLa8pXKfz4VlpM=",
+              "data_range": "bytes=1265-24576",
+              "data_checksum": "sha256-wB8f4JTCyN05ZLsaAi8L/IlwicklgKxRjisCrbK30y8="
+            }
+          },
+          "alpine_with_bash_lock_ssl_client_x86_64_1.36.1-r15": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_ssl_client_x86_64_1.36.1-r15",
+              "package_name": "ssl_client",
+              "version": "1.36.1-r15",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/ssl_client-1.36.1-r15.apk",
+              "signature_range": "bytes=0-662",
+              "signature_checksum": "sha1-KmjSjmTs7J7QlGSoZDRRGUIW5GM=",
+              "control_range": "bytes=663-1292",
+              "control_checksum": "sha1-ghpY+ugZuaNDPDKibm/Uuw1UGr8=",
+              "data_range": "bytes=1293-28672",
+              "data_checksum": "sha256-xl1RFWcgOCmUCrVECdrHyQqnrrzTWE3k5TYsUUAjzus="
+            }
+          },
+          "alpine_with_bash_lock_alpine-base_x86_64_3.19.1-r0": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_alpine-base_x86_64_3.19.1-r0",
+              "package_name": "alpine-base",
+              "version": "3.19.1-r0",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/alpine-base-3.19.1-r0.apk",
+              "signature_range": "bytes=0-665",
+              "signature_checksum": "sha1-uScbTuxWzlCqBxnBnzGRkmDQ/+0=",
+              "control_range": "bytes=666-1244",
+              "control_checksum": "sha1-mcpyM8ftLHlvmaMjdLoBo6zq/Fo=",
+              "data_range": "bytes=1245-4096",
+              "data_checksum": "sha256-5l9l3rUwhWmBeD8d5gGC8FTpGkWV1KLEyPmdDOvaSHs="
+            }
+          },
+          "alpine_with_bash_lock_apk-tools_x86_64_2.14.4-r0": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_apk-tools_x86_64_2.14.4-r0",
+              "package_name": "apk-tools",
+              "version": "2.14.4-r0",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/apk-tools-2.14.4-r0.apk",
+              "signature_range": "bytes=0-665",
+              "signature_checksum": "sha1-AKctPHd2HxjsVVW8YYRlhW+dKAY=",
+              "control_range": "bytes=666-1305",
+              "control_checksum": "sha1-tfIgw5O/sAUba2odUOqWVSCRjdQ=",
+              "data_range": "bytes=1306-303104",
+              "data_checksum": "sha256-MjfxfWo78pcF+VmpKjPnNESo5C+BD5hby+4BF1P6SWU="
+            }
+          },
+          "apko_linux_amd64": {
+            "bzlFile": "@@rules_apko~1.2.3//apko:repositories.bzl",
+            "ruleClassName": "apko_repositories",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~apko_linux_amd64",
+              "platform": "linux_amd64",
+              "apko_version": "v0.13.1"
+            }
+          },
+          "apko_linux_arm64": {
+            "bzlFile": "@@rules_apko~1.2.3//apko:repositories.bzl",
+            "ruleClassName": "apko_repositories",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~apko_linux_arm64",
+              "platform": "linux_arm64",
+              "apko_version": "v0.13.1"
+            }
+          },
+          "alpine_with_bash_lock_musl_x86_64_1.2.4_git20230717-r4": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_musl_x86_64_1.2.4_git20230717-r4",
+              "package_name": "musl",
+              "version": "1.2.4_git20230717-r4",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/musl-1.2.4_git20230717-r4.apk",
+              "signature_range": "bytes=0-665",
+              "signature_checksum": "sha1-eYZMTINzIrwk0a8x0IhlLIN415g=",
+              "control_range": "bytes=666-1231",
+              "control_checksum": "sha1-kqFQHSGzXGq3k7gQTqb+GxbmnOw=",
+              "data_range": "bytes=1232-667648",
+              "data_checksum": "sha256-4YEzzFBPtctuAlxkzsNPmo8acvwk0sG4gsTNFTjGdE8="
+            }
+          },
+          "alpine_with_bash_lock_alpine-baselayout-data_x86_64_3.4.3-r2": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_alpine-baselayout-data_x86_64_3.4.3-r2",
+              "package_name": "alpine-baselayout-data",
+              "version": "3.4.3-r2",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/alpine-baselayout-data-3.4.3-r2.apk",
+              "signature_range": "bytes=0-664",
+              "signature_checksum": "sha1-On2+U6dP6XGABry3OMsP7ga2oNM=",
+              "control_range": "bytes=665-1223",
+              "control_checksum": "sha1-bC0czvEJH7WmK58XQiahmMdYqYg=",
+              "data_range": "bytes=1224-77824",
+              "data_checksum": "sha256-u7HpMfnbD5Ldx1BzAIGad8fKQ6z54jyPcIL31IBOGNg="
+            }
+          },
+          "alpine_with_bash_lock_libncursesw_x86_64_6.4_p20231125-r0": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_libncursesw_x86_64_6.4_p20231125-r0",
+              "package_name": "libncursesw",
+              "version": "6.4_p20231125-r0",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/libncursesw-6.4_p20231125-r0.apk",
+              "signature_range": "bytes=0-668",
+              "signature_checksum": "sha1-/slsLjgKudRjKGMmV/py3gh1wK0=",
+              "control_range": "bytes=669-1261",
+              "control_checksum": "sha1-GdDjdK3OfweB16Gn1m2TOlHseC0=",
+              "data_range": "bytes=1262-352256",
+              "data_checksum": "sha256-kKOti4Sxtfjbufxd5iJb4j2WlGwbtQ8oheisE1Ijd2c="
+            }
+          },
+          "alpine_with_bash_lock_dl-cdn.alpinelinux.org_alpine_v3.19_main_x86_64_x86_64": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_repository",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_dl-cdn.alpinelinux.org_alpine_v3.19_main_x86_64_x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/APKINDEX.tar.gz",
+              "architecture": "x86_64"
+            }
+          },
+          "alpine_with_bash_lock_ca-certificates-bundle_x86_64_20240226-r0": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_ca-certificates-bundle_x86_64_20240226-r0",
+              "package_name": "ca-certificates-bundle",
+              "version": "20240226-r0",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/ca-certificates-bundle-20240226-r0.apk",
+              "signature_range": "bytes=0-666",
+              "signature_checksum": "sha1-inFdmRACBI/jMMeWv8vpCQRKwV4=",
+              "control_range": "bytes=667-1285",
+              "control_checksum": "sha1-tDNp+qaLfSQ7oJnpMcdJxf6SMwM=",
+              "data_range": "bytes=1286-241664",
+              "data_checksum": "sha256-OdS4t5eSxF/l/rMoDtQN9N+kRUT48NMIVqyU0KRmBy8="
+            }
+          },
+          "alpine_with_bash_lock_bash_x86_64_5.2.21-r0": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_bash_x86_64_5.2.21-r0",
+              "package_name": "bash",
+              "version": "5.2.21-r0",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/bash-5.2.21-r0.apk",
+              "signature_range": "bytes=0-664",
+              "signature_checksum": "sha1-Ao3b4C644atigo51muXQsP2Xnk4=",
+              "control_range": "bytes=665-1428",
+              "control_checksum": "sha1-qMdd8YfapOr2ghkbqefkT/lqqfY=",
+              "data_range": "bytes=1429-1396736",
+              "data_checksum": "sha256-u9bUI1vdv8y1xWfarQ8LNhLklkj4OO1fxGsooFE3jKs="
+            }
+          },
+          "alpine_with_bash_lock_scanelf_x86_64_1.3.7-r2": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_scanelf_x86_64_1.3.7-r2",
+              "package_name": "scanelf",
+              "version": "1.3.7-r2",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/scanelf-1.3.7-r2.apk",
+              "signature_range": "bytes=0-666",
+              "signature_checksum": "sha1-zOqtmSy1foHEq+QCscxuBGc59fg=",
+              "control_range": "bytes=667-1262",
+              "control_checksum": "sha1-8Y1DJlDSna1erZEsWwiRhLpmv90=",
+              "data_range": "bytes=1263-81920",
+              "data_checksum": "sha256-M8fNePgs9gtCU7XEM2tdsHSrDofxa4KN3wxg+9cRl+w="
+            }
+          },
+          "alpine_with_bash_lock_musl-utils_x86_64_1.2.4_git20230717-r4": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_musl-utils_x86_64_1.2.4_git20230717-r4",
+              "package_name": "musl-utils",
+              "version": "1.2.4_git20230717-r4",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/musl-utils-1.2.4_git20230717-r4.apk",
+              "signature_range": "bytes=0-667",
+              "signature_checksum": "sha1-sox3UmWOYXO/L2sOea+Y6eZ1B+k=",
+              "control_range": "bytes=668-1321",
+              "control_checksum": "sha1-VD38+us9gqsMV19YuiIgIxZ0XLE=",
+              "data_range": "bytes=1322-131072",
+              "data_checksum": "sha256-UU4SRCiCnxPoxANzQrfgKhTcjL4k7QDMC80pNKllt3w="
+            }
+          },
+          "alpine_with_bash_lock_readline_x86_64_8.2.1-r2": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_readline_x86_64_8.2.1-r2",
+              "package_name": "readline",
+              "version": "8.2.1-r2",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/readline-8.2.1-r2.apk",
+              "signature_range": "bytes=0-664",
+              "signature_checksum": "sha1-GlUAOxWLyk1kXBWFcOePfwkuDdM=",
+              "control_range": "bytes=665-1253",
+              "control_checksum": "sha1-mcAsJO6ukFy7SiHyTIRBzr3+O4I=",
+              "data_range": "bytes=1254-303104",
+              "data_checksum": "sha256-b6+pfVne5YdAcKDTfD4cUdvyIWUYloF5an6dFswfl9w="
+            }
+          },
+          "alpine_with_bash_lock_alpine-release_x86_64_3.19.1-r0": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_alpine-release_x86_64_3.19.1-r0",
+              "package_name": "alpine-release",
+              "version": "3.19.1-r0",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/alpine-release-3.19.1-r0.apk",
+              "signature_range": "bytes=0-665",
+              "signature_checksum": "sha1-LtR77ogLYVuWde8CZbK9DCyRQ+o=",
+              "control_range": "bytes=666-1192",
+              "control_checksum": "sha1-Ca/UmaJczqxBUEW+3g5+ZHE/bds=",
+              "data_range": "bytes=1193-28672",
+              "data_checksum": "sha256-sYR8txb/LnCDVw9hxbll+ykLGw1m7ym/62MCGc8aufA="
+            }
+          },
+          "alpine_with_bash_lock_busybox-openrc_x86_64_1.36.1-r15": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_busybox-openrc_x86_64_1.36.1-r15",
+              "package_name": "busybox-openrc",
+              "version": "1.36.1-r15",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/busybox-openrc-1.36.1-r15.apk",
+              "signature_range": "bytes=0-663",
+              "signature_checksum": "sha1-wprmIOF4QzPqWriUF7v86mFq0yQ=",
+              "control_range": "bytes=664-1272",
+              "control_checksum": "sha1-NA/fsvFuwcg0Vuo/fqS0o111gCo=",
+              "data_range": "bytes=1273-90112",
+              "data_checksum": "sha256-2mr1jzTbk4TlWrgHiQwqTJAkWkYxoo0oqvcPjWGF79g="
+            }
+          },
+          "apko_darwin_amd64": {
+            "bzlFile": "@@rules_apko~1.2.3//apko:repositories.bzl",
+            "ruleClassName": "apko_repositories",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~apko_darwin_amd64",
+              "platform": "darwin_amd64",
+              "apko_version": "v0.13.1"
+            }
+          },
+          "alpine_with_bash_lock_alpine-conf_x86_64_3.17.2-r0": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_alpine-conf_x86_64_3.17.2-r0",
+              "package_name": "alpine-conf",
+              "version": "3.17.2-r0",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/alpine-conf-3.17.2-r0.apk",
+              "signature_range": "bytes=0-668",
+              "signature_checksum": "sha1-BJpsF1aChiTC/w+xiQDMMOD5SXg=",
+              "control_range": "bytes=669-1447",
+              "control_checksum": "sha1-mQ62BV9KjnzeyvrhFb5vxG8oxlw=",
+              "data_range": "bytes=1448-258048",
+              "data_checksum": "sha256-QVzDNnly++iWZrhIVUJIVWkahMAlTCJDyrNVfKlYcmo="
+            }
+          },
+          "alpine_with_bash_lock_zlib_x86_64_1.3.1-r0": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_zlib_x86_64_1.3.1-r0",
+              "package_name": "zlib",
+              "version": "1.3.1-r0",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/zlib-1.3.1-r0.apk",
+              "signature_range": "bytes=0-664",
+              "signature_checksum": "sha1-TmQ6PICRHg3J5GkfG7y1nJhiB9Q=",
+              "control_range": "bytes=665-1214",
+              "control_checksum": "sha1-1mV5+Yq5WHkhWIJP27rBrg7izKg=",
+              "data_range": "bytes=1215-110592",
+              "data_checksum": "sha256-lq/45Sot5OZ3I71mVN2f6ydFYIJStI7OPMXhU7qBA40="
+            }
+          },
+          "alpine_with_bash_lock_libc-utils_x86_64_0.7.2-r5": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_libc-utils_x86_64_0.7.2-r5",
+              "package_name": "libc-utils",
+              "version": "0.7.2-r5",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/libc-utils-0.7.2-r5.apk",
+              "signature_range": "bytes=0-663",
+              "signature_checksum": "sha1-SjGq/OXaOe+MS3D7bOUkoHWHfF4=",
+              "control_range": "bytes=664-1204",
+              "control_checksum": "sha1-lJjUjga9N2+T+wI4k4se3BhThIM=",
+              "data_range": "bytes=1205-4096",
+              "data_checksum": "sha256-cjoRQuPrhQMqkdqO9fot3Clq7NaPzQ6JpvdTZzo8n6Y="
+            }
+          },
+          "alpine_with_bash_lock_ncurses-terminfo-base_x86_64_6.4_p20231125-r0": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_ncurses-terminfo-base_x86_64_6.4_p20231125-r0",
+              "package_name": "ncurses-terminfo-base",
+              "version": "6.4_p20231125-r0",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/ncurses-terminfo-base-6.4_p20231125-r0.apk",
+              "signature_range": "bytes=0-669",
+              "signature_checksum": "sha1-JuE/SRIWMnG9pShSboqHkfO9PcM=",
+              "control_range": "bytes=670-1206",
+              "control_checksum": "sha1-3RZhxSY1s/pe34FFz7OE3WAZXYA=",
+              "data_range": "bytes=1207-217088",
+              "data_checksum": "sha256-Hu2gA3PwYPcnuCcdasx0F/7NMCHpdH1UqeC/DLeJLN4="
+            }
+          },
+          "alpine_with_bash_lock_mdev-conf_x86_64_4.6-r0": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_mdev-conf_x86_64_4.6-r0",
+              "package_name": "mdev-conf",
+              "version": "4.6-r0",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/mdev-conf-4.6-r0.apk",
+              "signature_range": "bytes=0-666",
+              "signature_checksum": "sha1-E72qXevP1N+SgBQW30AfvEb1rTY=",
+              "control_range": "bytes=667-1210",
+              "control_checksum": "sha1-/uBi2ga/IuCnfPilArMtHTo2LF0=",
+              "data_range": "bytes=1211-40960",
+              "data_checksum": "sha256-JlaMKxoerytplLTTZWT21p9RRuA5jWJJgYyYObn4q5E="
+            }
+          },
+          "alpine_with_bash_lock_openrc_x86_64_0.52.1-r2": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_openrc_x86_64_0.52.1-r2",
+              "package_name": "openrc",
+              "version": "0.52.1-r2",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/openrc-0.52.1-r2.apk",
+              "signature_range": "bytes=0-662",
+              "signature_checksum": "sha1-w3mIYQ9C5k9kr+MUdpv7VkOiG34=",
+              "control_range": "bytes=663-2358",
+              "control_checksum": "sha1-urOkFc0v3UMIUinTRpXFGTUcz0Y=",
+              "data_range": "bytes=2359-1785856",
+              "data_checksum": "sha256-V+mdjXj7Kwi2BeamqEhCA41znnHDwEk0GrxTDaUfJyE="
+            }
+          },
+          "alpine_with_bash_lock_busybox_x86_64_1.36.1-r15": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_busybox_x86_64_1.36.1-r15",
+              "package_name": "busybox",
+              "version": "1.36.1-r15",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/busybox-1.36.1-r15.apk",
+              "signature_range": "bytes=0-661",
+              "signature_checksum": "sha1-nbpyg9Ojz84oTx3uHmtC3GXjSvk=",
+              "control_range": "bytes=662-2299",
+              "control_checksum": "sha1-AYNx2pLOAHRYZQgv3nM8TNtvRWY=",
+              "data_range": "bytes=2300-946176",
+              "data_checksum": "sha256-OCx14tGi4rnSgeh5t2Ozs2NQhADXzHltlEjEantro0I="
+            }
+          },
+          "apko_linux_i386": {
+            "bzlFile": "@@rules_apko~1.2.3//apko:repositories.bzl",
+            "ruleClassName": "apko_repositories",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~apko_linux_i386",
+              "platform": "linux_i386",
+              "apko_version": "v0.13.1"
+            }
+          },
+          "apko_toolchains": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:toolchains_repo.bzl",
+            "ruleClassName": "toolchains_repo",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~apko_toolchains",
+              "user_repository_name": "apko"
+            }
+          },
+          "alpine_with_bash_lock_libssl3_x86_64_3.1.4-r6": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_libssl3_x86_64_3.1.4-r6",
+              "package_name": "libssl3",
+              "version": "3.1.4-r6",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/libssl3-3.1.4-r6.apk",
+              "signature_range": "bytes=0-665",
+              "signature_checksum": "sha1-KYbg/cBjpjHtoVeEoj5bq3bO4E8=",
+              "control_range": "bytes=666-1241",
+              "control_checksum": "sha1-sA2Ryx/sFDNnMz7pGrCuZQxcGeA=",
+              "data_range": "bytes=1242-561152",
+              "data_checksum": "sha256-1pMEjbtPsAMCK5WijpCcnWVgcQBSJS4zWz4Xdt11yX4="
+            }
+          },
+          "alpine_with_bash_lock_busybox-ifupdown_x86_64_1.36.1-r15": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_busybox-ifupdown_x86_64_1.36.1-r15",
+              "package_name": "busybox-ifupdown",
+              "version": "1.36.1-r15",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/busybox-ifupdown-1.36.1-r15.apk",
+              "signature_range": "bytes=0-665",
+              "signature_checksum": "sha1-BIeDAqtDdK9p4z+QJ813vqUFRAU=",
+              "control_range": "bytes=666-1252",
+              "control_checksum": "sha1-SBCGm4Bo4So04r4gueEyiTjq9o8=",
+              "data_range": "bytes=1253-4096",
+              "data_checksum": "sha256-gc+zZxmoY6z+t1myYAfzGi4rH2pOnLMDlHnjizxBSeM="
+            }
+          },
+          "alpine_with_bash_lock_libcrypto3_x86_64_3.1.4-r6": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_libcrypto3_x86_64_3.1.4-r6",
+              "package_name": "libcrypto3",
+              "version": "3.1.4-r6",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/libcrypto3-3.1.4-r6.apk",
+              "signature_range": "bytes=0-665",
+              "signature_checksum": "sha1-QQKTrn43QqRxV0r4fQx5H6XbI+I=",
+              "control_range": "bytes=666-1241",
+              "control_checksum": "sha1-HVy6F4Gtrlkcw0pGkRGPbEPGzns=",
+              "data_range": "bytes=1242-4608000",
+              "data_checksum": "sha256-a51vkBVcc9K4CahfikEM/PIIWCj61DypUoUGdFPTu08="
+            }
+          },
+          "alpine_with_bash_lock_busybox-binsh_x86_64_1.36.1-r15": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_busybox-binsh_x86_64_1.36.1-r15",
+              "package_name": "busybox-binsh",
+              "version": "1.36.1-r15",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/busybox-binsh-1.36.1-r15.apk",
+              "signature_range": "bytes=0-666",
+              "signature_checksum": "sha1-Jd9ORjDrjuz+bTTWG4tQw6X+SNs=",
+              "control_range": "bytes=667-1258",
+              "control_checksum": "sha1-oLisfZGMCPUKyVfkRHKxsHWJ/Fg=",
+              "data_range": "bytes=1259-8192",
+              "data_checksum": "sha256-/aDsh5LP7fS3Ox9Y0gnfMtPEhcZlKD+erKmDwbNskY0="
+            }
+          },
+          "alpine_with_bash_lock_libcap2_x86_64_2.69-r1": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_libcap2_x86_64_2.69-r1",
+              "package_name": "libcap2",
+              "version": "2.69-r1",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/libcap2-2.69-r1.apk",
+              "signature_range": "bytes=0-663",
+              "signature_checksum": "sha1-WE/GF0CjtGoXIQ7NPYOv9m72qkk=",
+              "control_range": "bytes=664-1277",
+              "control_checksum": "sha1-RENAZvtW1ukGFlhCLx0ec5SiHSM=",
+              "data_range": "bytes=1278-69632",
+              "data_checksum": "sha256-rpvOUgUaKthxi75u2cHRMdrn00G6UBAl1hfM4ZpPBXo="
+            }
+          },
+          "alpine_with_bash_lock_busybox-mdev-openrc_x86_64_1.36.1-r15": {
+            "bzlFile": "@@rules_apko~1.2.3//apko/private:apk.bzl",
+            "ruleClassName": "apk_import",
+            "attributes": {
+              "name": "rules_apko~1.2.3~apko~alpine_with_bash_lock_busybox-mdev-openrc_x86_64_1.36.1-r15",
+              "package_name": "busybox-mdev-openrc",
+              "version": "1.36.1-r15",
+              "architecture": "x86_64",
+              "url": "https://dl-cdn.alpinelinux.org/alpine/v3.19/main/x86_64/busybox-mdev-openrc-1.36.1-r15.apk",
+              "signature_range": "bytes=0-663",
+              "signature_checksum": "sha1-fxuhccqZhJjm4xK8HckMUEAv12s=",
+              "control_range": "bytes=664-1289",
+              "control_checksum": "sha1-BIroX6GgWNZlY+JBrasvRp8fm2M=",
+              "data_range": "bytes=1290-16384",
+              "data_checksum": "sha256-3SrhcGLxhXCBYj/AM1wylvjfHbiic6gCsZcqsTQpkJE="
+            }
+          }
+        },
+        "recordedRepoMappingEntries": [
+          [
+            "rules_apko~1.2.3",
+            "bazel_tools",
+            "bazel_tools"
+          ]
+        ]
+      }
+    },
     "@@rules_buf~0.1.1//buf:extensions.bzl%ext": {
       "general": {
         "bzlTransitiveDigest": "+opT3S3Uq1Jv9SRn79PC3xP4IMlTWGXpXakUIi70oE0=",
@@ -67635,6 +68213,593 @@
           }
         },
         "recordedRepoMappingEntries": []
+      }
+    },
+    "@@rules_oci~1.7.5//oci:extensions.bzl%oci": {
+      "general": {
+        "bzlTransitiveDigest": "0DqHYPannzEUNXo0v7rBLjycxDqULQDLHimCuzIKKKo=",
+        "accumulatedFileDigests": {},
+        "envVariables": {},
+        "generatedRepoSpecs": {
+          "alpine_node": {
+            "bzlFile": "@@rules_oci~1.7.5//oci/private:pull.bzl",
+            "ruleClassName": "oci_alias",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~alpine_node",
+              "target_name": "alpine_node",
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "library/node",
+              "identifier": "sha256:7a91aa397f2e2dfbfcdad2e2d72599f374e0b0172be1d86eeb73f1d33f36a4b2",
+              "platforms": {
+                "@@platforms//cpu:x86_64": "@alpine_node_linux_amd64",
+                "@@platforms//cpu:armv7": "@alpine_node_linux_arm_v7",
+                "@@platforms//cpu:arm64": "@alpine_node_linux_arm64_v8",
+                "@@platforms//cpu:ppc": "@alpine_node_linux_ppc64le",
+                "@@platforms//cpu:s390x": "@alpine_node_linux_s390x"
+              },
+              "bzlmod_repository": "alpine_node",
+              "reproducible": true
+            }
+          },
+          "oci_crane_registry_toolchains": {
+            "bzlFile": "@@rules_oci~1.7.5//oci/private:toolchains_repo.bzl",
+            "ruleClassName": "toolchains_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~oci_crane_registry_toolchains",
+              "toolchain_type": "@rules_oci//oci:registry_toolchain_type",
+              "toolchain": "@oci_crane_{platform}//:registry_toolchain"
+            }
+          },
+          "copy_to_directory_windows_amd64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:copy_to_directory_toolchain.bzl",
+            "ruleClassName": "copy_to_directory_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~copy_to_directory_windows_amd64",
+              "platform": "windows_amd64"
+            }
+          },
+          "jq_darwin_amd64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:jq_toolchain.bzl",
+            "ruleClassName": "jq_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~jq_darwin_amd64",
+              "platform": "darwin_amd64",
+              "version": "1.7"
+            }
+          },
+          "distroless_node_linux_s390x": {
+            "bzlFile": "@@rules_oci~1.7.5//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~distroless_node_linux_s390x",
+              "scheme": "https",
+              "registry": "gcr.io",
+              "repository": "distroless/nodejs20-debian12",
+              "identifier": "sha256:6d0f50681aab846e8c005ee864324ef2cbea464fd10a09e3b02876cdc0696543",
+              "platform": "linux/s390x",
+              "target_name": "distroless_node_linux_s390x"
+            }
+          },
+          "copy_to_directory_freebsd_amd64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:copy_to_directory_toolchain.bzl",
+            "ruleClassName": "copy_to_directory_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~copy_to_directory_freebsd_amd64",
+              "platform": "freebsd_amd64"
+            }
+          },
+          "alpine_node_linux_amd64": {
+            "bzlFile": "@@rules_oci~1.7.5//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~alpine_node_linux_amd64",
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "library/node",
+              "identifier": "sha256:7a91aa397f2e2dfbfcdad2e2d72599f374e0b0172be1d86eeb73f1d33f36a4b2",
+              "platform": "linux/amd64",
+              "target_name": "alpine_node_linux_amd64"
+            }
+          },
+          "oci_crane_linux_arm64": {
+            "bzlFile": "@@rules_oci~1.7.5//oci:repositories.bzl",
+            "ruleClassName": "crane_repositories",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~oci_crane_linux_arm64",
+              "platform": "linux_arm64",
+              "crane_version": "v0.18.0"
+            }
+          },
+          "jq_linux_arm64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:jq_toolchain.bzl",
+            "ruleClassName": "jq_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~jq_linux_arm64",
+              "platform": "linux_arm64",
+              "version": "1.7"
+            }
+          },
+          "coreutils_darwin_arm64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:coreutils_toolchain.bzl",
+            "ruleClassName": "coreutils_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~coreutils_darwin_arm64",
+              "platform": "darwin_arm64",
+              "version": "0.0.23"
+            }
+          },
+          "debian_node_linux_amd64": {
+            "bzlFile": "@@rules_oci~1.7.5//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~debian_node_linux_amd64",
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "library/node",
+              "identifier": "20-slim",
+              "platform": "linux/amd64",
+              "target_name": "debian_node_linux_amd64"
+            }
+          },
+          "copy_to_directory_linux_arm64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:copy_to_directory_toolchain.bzl",
+            "ruleClassName": "copy_to_directory_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~copy_to_directory_linux_arm64",
+              "platform": "linux_arm64"
+            }
+          },
+          "oci_crane_linux_amd64": {
+            "bzlFile": "@@rules_oci~1.7.5//oci:repositories.bzl",
+            "ruleClassName": "crane_repositories",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~oci_crane_linux_amd64",
+              "platform": "linux_amd64",
+              "crane_version": "v0.18.0"
+            }
+          },
+          "coreutils_darwin_amd64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:coreutils_toolchain.bzl",
+            "ruleClassName": "coreutils_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~coreutils_darwin_amd64",
+              "platform": "darwin_amd64",
+              "version": "0.0.23"
+            }
+          },
+          "coreutils_linux_arm64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:coreutils_toolchain.bzl",
+            "ruleClassName": "coreutils_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~coreutils_linux_arm64",
+              "platform": "linux_arm64",
+              "version": "0.0.23"
+            }
+          },
+          "distroless_node_linux_arm64_v8": {
+            "bzlFile": "@@rules_oci~1.7.5//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~distroless_node_linux_arm64_v8",
+              "scheme": "https",
+              "registry": "gcr.io",
+              "repository": "distroless/nodejs20-debian12",
+              "identifier": "sha256:6d0f50681aab846e8c005ee864324ef2cbea464fd10a09e3b02876cdc0696543",
+              "platform": "linux/arm64/v8",
+              "target_name": "distroless_node_linux_arm64_v8"
+            }
+          },
+          "yq_linux_s390x": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:yq_toolchain.bzl",
+            "ruleClassName": "yq_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~yq_linux_s390x",
+              "platform": "linux_s390x",
+              "version": "4.25.2"
+            }
+          },
+          "yq": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:yq_toolchain.bzl",
+            "ruleClassName": "yq_host_alias_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~yq"
+            }
+          },
+          "oci_crane_darwin_arm64": {
+            "bzlFile": "@@rules_oci~1.7.5//oci:repositories.bzl",
+            "ruleClassName": "crane_repositories",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~oci_crane_darwin_arm64",
+              "platform": "darwin_arm64",
+              "crane_version": "v0.18.0"
+            }
+          },
+          "jq_darwin_arm64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:jq_toolchain.bzl",
+            "ruleClassName": "jq_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~jq_darwin_arm64",
+              "platform": "darwin_arm64",
+              "version": "1.7"
+            }
+          },
+          "yq_darwin_amd64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:yq_toolchain.bzl",
+            "ruleClassName": "yq_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~yq_darwin_amd64",
+              "platform": "darwin_amd64",
+              "version": "4.25.2"
+            }
+          },
+          "alpine_node_linux_arm_v7": {
+            "bzlFile": "@@rules_oci~1.7.5//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~alpine_node_linux_arm_v7",
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "library/node",
+              "identifier": "sha256:7a91aa397f2e2dfbfcdad2e2d72599f374e0b0172be1d86eeb73f1d33f36a4b2",
+              "platform": "linux/arm/v7",
+              "target_name": "alpine_node_linux_arm_v7"
+            }
+          },
+          "oci_crane_linux_i386": {
+            "bzlFile": "@@rules_oci~1.7.5//oci:repositories.bzl",
+            "ruleClassName": "crane_repositories",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~oci_crane_linux_i386",
+              "platform": "linux_i386",
+              "crane_version": "v0.18.0"
+            }
+          },
+          "alpine_node_linux_arm64_v8": {
+            "bzlFile": "@@rules_oci~1.7.5//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~alpine_node_linux_arm64_v8",
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "library/node",
+              "identifier": "sha256:7a91aa397f2e2dfbfcdad2e2d72599f374e0b0172be1d86eeb73f1d33f36a4b2",
+              "platform": "linux/arm64/v8",
+              "target_name": "alpine_node_linux_arm64_v8"
+            }
+          },
+          "alpine_node_linux_arm_v6": {
+            "bzlFile": "@@rules_oci~1.7.5//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~alpine_node_linux_arm_v6",
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "library/node",
+              "identifier": "sha256:7a91aa397f2e2dfbfcdad2e2d72599f374e0b0172be1d86eeb73f1d33f36a4b2",
+              "platform": "linux/arm/v6",
+              "target_name": "alpine_node_linux_arm_v6"
+            }
+          },
+          "oci_crane_windows_armv6": {
+            "bzlFile": "@@rules_oci~1.7.5//oci:repositories.bzl",
+            "ruleClassName": "crane_repositories",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~oci_crane_windows_armv6",
+              "platform": "windows_armv6",
+              "crane_version": "v0.18.0"
+            }
+          },
+          "oci_crane_toolchains": {
+            "bzlFile": "@@rules_oci~1.7.5//oci/private:toolchains_repo.bzl",
+            "ruleClassName": "toolchains_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~oci_crane_toolchains",
+              "toolchain_type": "@rules_oci//oci:crane_toolchain_type",
+              "toolchain": "@oci_crane_{platform}//:crane_toolchain"
+            }
+          },
+          "copy_to_directory_darwin_amd64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:copy_to_directory_toolchain.bzl",
+            "ruleClassName": "copy_to_directory_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~copy_to_directory_darwin_amd64",
+              "platform": "darwin_amd64"
+            }
+          },
+          "yq_toolchains": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:yq_toolchain.bzl",
+            "ruleClassName": "yq_toolchains_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~yq_toolchains",
+              "user_repository_name": "yq"
+            }
+          },
+          "oci_crane_windows_amd64": {
+            "bzlFile": "@@rules_oci~1.7.5//oci:repositories.bzl",
+            "ruleClassName": "crane_repositories",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~oci_crane_windows_amd64",
+              "platform": "windows_amd64",
+              "crane_version": "v0.18.0"
+            }
+          },
+          "oci_crane_linux_s390x": {
+            "bzlFile": "@@rules_oci~1.7.5//oci:repositories.bzl",
+            "ruleClassName": "crane_repositories",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~oci_crane_linux_s390x",
+              "platform": "linux_s390x",
+              "crane_version": "v0.18.0"
+            }
+          },
+          "alpine_node_linux_s390x": {
+            "bzlFile": "@@rules_oci~1.7.5//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~alpine_node_linux_s390x",
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "library/node",
+              "identifier": "sha256:7a91aa397f2e2dfbfcdad2e2d72599f374e0b0172be1d86eeb73f1d33f36a4b2",
+              "platform": "linux/s390x",
+              "target_name": "alpine_node_linux_s390x"
+            }
+          },
+          "distroless_node_linux_amd64": {
+            "bzlFile": "@@rules_oci~1.7.5//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~distroless_node_linux_amd64",
+              "scheme": "https",
+              "registry": "gcr.io",
+              "repository": "distroless/nodejs20-debian12",
+              "identifier": "sha256:6d0f50681aab846e8c005ee864324ef2cbea464fd10a09e3b02876cdc0696543",
+              "platform": "linux/amd64",
+              "target_name": "distroless_node_linux_amd64"
+            }
+          },
+          "jq": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:jq_toolchain.bzl",
+            "ruleClassName": "jq_host_alias_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~jq"
+            }
+          },
+          "oci_crane_darwin_amd64": {
+            "bzlFile": "@@rules_oci~1.7.5//oci:repositories.bzl",
+            "ruleClassName": "crane_repositories",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~oci_crane_darwin_amd64",
+              "platform": "darwin_amd64",
+              "crane_version": "v0.18.0"
+            }
+          },
+          "copy_to_directory_linux_amd64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:copy_to_directory_toolchain.bzl",
+            "ruleClassName": "copy_to_directory_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~copy_to_directory_linux_amd64",
+              "platform": "linux_amd64"
+            }
+          },
+          "coreutils_linux_amd64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:coreutils_toolchain.bzl",
+            "ruleClassName": "coreutils_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~coreutils_linux_amd64",
+              "platform": "linux_amd64",
+              "version": "0.0.23"
+            }
+          },
+          "yq_linux_amd64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:yq_toolchain.bzl",
+            "ruleClassName": "yq_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~yq_linux_amd64",
+              "platform": "linux_amd64",
+              "version": "4.25.2"
+            }
+          },
+          "oci_crane_linux_armv6": {
+            "bzlFile": "@@rules_oci~1.7.5//oci:repositories.bzl",
+            "ruleClassName": "crane_repositories",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~oci_crane_linux_armv6",
+              "platform": "linux_armv6",
+              "crane_version": "v0.18.0"
+            }
+          },
+          "copy_to_directory_darwin_arm64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:copy_to_directory_toolchain.bzl",
+            "ruleClassName": "copy_to_directory_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~copy_to_directory_darwin_arm64",
+              "platform": "darwin_arm64"
+            }
+          },
+          "coreutils_toolchains": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:coreutils_toolchain.bzl",
+            "ruleClassName": "coreutils_toolchains_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~coreutils_toolchains",
+              "user_repository_name": "coreutils"
+            }
+          },
+          "distroless_node": {
+            "bzlFile": "@@rules_oci~1.7.5//oci/private:pull.bzl",
+            "ruleClassName": "oci_alias",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~distroless_node",
+              "target_name": "distroless_node",
+              "scheme": "https",
+              "registry": "gcr.io",
+              "repository": "distroless/nodejs20-debian12",
+              "identifier": "sha256:6d0f50681aab846e8c005ee864324ef2cbea464fd10a09e3b02876cdc0696543",
+              "platforms": {
+                "@@platforms//cpu:x86_64": "@distroless_node_linux_amd64",
+                "@@platforms//cpu:armv7": "@distroless_node_linux_arm_v7",
+                "@@platforms//cpu:arm64": "@distroless_node_linux_arm64_v8",
+                "@@platforms//cpu:ppc": "@distroless_node_linux_ppc64le",
+                "@@platforms//cpu:s390x": "@distroless_node_linux_s390x"
+              },
+              "bzlmod_repository": "distroless_node",
+              "reproducible": true
+            }
+          },
+          "jq_linux_amd64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:jq_toolchain.bzl",
+            "ruleClassName": "jq_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~jq_linux_amd64",
+              "platform": "linux_amd64",
+              "version": "1.7"
+            }
+          },
+          "distroless_node_linux_arm_v7": {
+            "bzlFile": "@@rules_oci~1.7.5//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~distroless_node_linux_arm_v7",
+              "scheme": "https",
+              "registry": "gcr.io",
+              "repository": "distroless/nodejs20-debian12",
+              "identifier": "sha256:6d0f50681aab846e8c005ee864324ef2cbea464fd10a09e3b02876cdc0696543",
+              "platform": "linux/arm/v7",
+              "target_name": "distroless_node_linux_arm_v7"
+            }
+          },
+          "yq_windows_amd64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:yq_toolchain.bzl",
+            "ruleClassName": "yq_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~yq_windows_amd64",
+              "platform": "windows_amd64",
+              "version": "4.25.2"
+            }
+          },
+          "jq_windows_amd64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:jq_toolchain.bzl",
+            "ruleClassName": "jq_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~jq_windows_amd64",
+              "platform": "windows_amd64",
+              "version": "1.7"
+            }
+          },
+          "debian_node": {
+            "bzlFile": "@@rules_oci~1.7.5//oci/private:pull.bzl",
+            "ruleClassName": "oci_alias",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~debian_node",
+              "target_name": "debian_node",
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "library/node",
+              "identifier": "20-slim",
+              "platforms": {
+                "@@platforms//cpu:x86_64": "@debian_node_linux_amd64"
+              },
+              "bzlmod_repository": "debian_node",
+              "reproducible": true
+            }
+          },
+          "yq_linux_ppc64le": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:yq_toolchain.bzl",
+            "ruleClassName": "yq_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~yq_linux_ppc64le",
+              "platform": "linux_ppc64le",
+              "version": "4.25.2"
+            }
+          },
+          "jq_toolchains": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:jq_toolchain.bzl",
+            "ruleClassName": "jq_toolchains_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~jq_toolchains",
+              "user_repository_name": "jq"
+            }
+          },
+          "copy_to_directory_toolchains": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:copy_to_directory_toolchain.bzl",
+            "ruleClassName": "copy_to_directory_toolchains_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~copy_to_directory_toolchains",
+              "user_repository_name": "copy_to_directory"
+            }
+          },
+          "yq_darwin_arm64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:yq_toolchain.bzl",
+            "ruleClassName": "yq_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~yq_darwin_arm64",
+              "platform": "darwin_arm64",
+              "version": "4.25.2"
+            }
+          },
+          "alpine_node_linux_ppc64le": {
+            "bzlFile": "@@rules_oci~1.7.5//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~alpine_node_linux_ppc64le",
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "library/node",
+              "identifier": "sha256:7a91aa397f2e2dfbfcdad2e2d72599f374e0b0172be1d86eeb73f1d33f36a4b2",
+              "platform": "linux/ppc64le",
+              "target_name": "alpine_node_linux_ppc64le"
+            }
+          },
+          "distroless_node_linux_ppc64le": {
+            "bzlFile": "@@rules_oci~1.7.5//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~distroless_node_linux_ppc64le",
+              "scheme": "https",
+              "registry": "gcr.io",
+              "repository": "distroless/nodejs20-debian12",
+              "identifier": "sha256:6d0f50681aab846e8c005ee864324ef2cbea464fd10a09e3b02876cdc0696543",
+              "platform": "linux/ppc64le",
+              "target_name": "distroless_node_linux_ppc64le"
+            }
+          },
+          "coreutils_windows_amd64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:coreutils_toolchain.bzl",
+            "ruleClassName": "coreutils_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~coreutils_windows_amd64",
+              "platform": "windows_amd64",
+              "version": "0.0.23"
+            }
+          },
+          "yq_linux_arm64": {
+            "bzlFile": "@@aspect_bazel_lib~2.7.0//lib/private:yq_toolchain.bzl",
+            "ruleClassName": "yq_platform_repo",
+            "attributes": {
+              "name": "rules_oci~1.7.5~oci~yq_linux_arm64",
+              "platform": "linux_arm64",
+              "version": "4.25.2"
+            }
+          }
+        },
+        "recordedRepoMappingEntries": [
+          [
+            "aspect_bazel_lib~2.7.0",
+            "bazel_tools",
+            "bazel_tools"
+          ],
+          [
+            "rules_oci~1.7.5",
+            "aspect_bazel_lib",
+            "aspect_bazel_lib~2.7.0"
+          ],
+          [
+            "rules_oci~1.7.5",
+            "bazel_skylib",
+            "bazel_skylib~1.5.0"
+          ]
+        ]
       }
     }
   }

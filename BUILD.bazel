@@ -35,6 +35,15 @@ npm_link_package(
     visibility = ["//visibility:public"],
 )
 
+platform(
+    name = "amd64_linux",
+    constraint_values = [
+        "@platforms//os:linux",
+        "@platforms//cpu:x86_64",
+    ],
+    visibility = ["//visibility:public"],
+)
+
 npm_link_all_packages(name = "node_modules")
 
 # gazelle:prefix github.com/be9/nodemono2

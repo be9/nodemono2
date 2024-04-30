@@ -1,0 +1,80 @@
+load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_image_layer")
+load("@aspect_rules_ts//ts:defs.bzl", "ts_config")
+load("@bazel_skylib//rules:build_test.bzl", "build_test")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("@npm//packages/next-app:next/package_json.bzl", next_bin = "bin")
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball")
+load("//bzl:next.bzl", "next")
+
+npm_link_all_packages(name = "node_modules")
+
+next_bin.next_binary(
+    name = "next_js_binary",
+    visibility = ["//visibility:public"],
+)
+
+ts_config(
+    name = "tsconfig",
+    src = "tsconfig.json",
+    visibility = ["//visibility:public"],
+)
+
+next(
+    name = "next",
+    srcs = glob([
+        "src/**",
+        "public/**",
+    ]),
+    data = [
+        "next.config.mjs",
+        "package.json",
+        ":node_modules/@nodemono2/proto",
+        ":node_modules/@protobuf-ts/runtime",
+        ":node_modules/@types/cpu-features",
+        ":node_modules/@types/node",
+        ":node_modules/@types/react",
+        ":node_modules/@types/react-dom",
+        ":node_modules/cpu-features",
+        ":node_modules/next",
+        ":node_modules/nextjs-node-loader",
+        ":node_modules/react",
+        ":node_modules/react-dom",
+        ":node_modules/typescript",
+    ],
+    next_bin = "./node_modules/next/dist/bin/next",
+    next_js_binary = ":next_js_binary",
+)
+
+build_test(
+    name = "build_test",
+    targets = [":next"],
+)
+
+js_binary(
+    name = "server",
+    data = [":next"],
+    entry_point = "server/index.js",
+)
+
+js_image_layer(
+    name = "layers",
+    binary = ":next_start",
+    platform = "//:amd64_linux",
+    root = "/app",
+)
+
+oci_image(
+    name = "image",
+    base = "@debian_node",
+    cmd = ["/app/packages/next-app/next_start"],
+    entrypoint = ["/bin/bash"],
+    tars = [
+        ":layers",
+    ],
+)
+
+oci_tarball(
+    name = "image_tarball",
+    image = ":image",
+    repo_tags = ["nodemono2_next:latest"],
+)

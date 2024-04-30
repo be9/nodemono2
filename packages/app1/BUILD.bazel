@@ -24,18 +24,10 @@ js_binary(
     entry_point = "build/index.js",
 )
 
-platform(
-    name = "amd64_linux",
-    constraint_values = [
-        "@platforms//os:linux",
-        "@platforms//cpu:x86_64",
-    ],
-)
-
 js_image_layer(
     name = "layers",
     binary = ":server",
-    platform = ":amd64_linux",
+    platform = "//:amd64_linux",
     root = "/app",
 )
 
