@@ -13,7 +13,8 @@ bazel_dep(name = "protobuf", version = "23.1", repo_name = "com_google_protobuf"
 bazel_dep(name = "rules_apko", version = "1.2.3")
 bazel_dep(name = "rules_oci", version = "1.7.5")
 
-node = use_extension("@rules_nodejs//nodejs:extensions.bzl", "node")
+node = use_extension("@rules_nodejs//nodejs:extensions.bzl", "node", dev_dependency = True)
+use_repo(node, "nodejs_toolchains")
 
 # 20.12.0 is not released yet https://github.com/bazelbuild/rules_nodejs/commit/6199ad0804cb9cf54deb73f761e0ec4f18347ccb
 node.toolchain(node_version = "20.11.1")

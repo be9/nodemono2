@@ -62,22 +62,34 @@ build_test(
     targets = [":next"],
 )
 
-js_run_devserver(
+js_binary(
     name = "server",
     chdir = package_name(),
-    command = "server/index.js",
     data = [
         "server/index.js",
-        "tsconfig.json",
         ":next",
         ":next_data",
-        ":sources",
     ],
+    entry_point = "server/index.js",
+    env = {
+        "NODE_ENV": "production",
+    },
+    log_level = "debug",
+)
+
+next_bin.next_binary(
+    name = "next_js_start",
+    chdir = package_name(),
+    data = [
+        ":next",
+        ":next_data",
+    ],
+    fixed_args = ["start"],
 )
 
 js_image_layer(
     name = "layers",
-    #    binary = ":next_start",
+    #    binary = ":next_js_start",
     binary = ":server",
     platform = "//:amd64_linux",
     root = "/app",
@@ -86,11 +98,14 @@ js_image_layer(
 oci_image(
     name = "image",
     base = "@debian_node",
+    #    cmd = ["/app/packages/next-app/next_js_start"],
     cmd = ["/app/packages/next-app/server"],
     entrypoint = ["/bin/bash"],
     tars = [
         ":layers",
     ],
+    #    workdir = "/app/packages/next-app/next_js_start.runfiles/_main",
+    workdir = "/app/packages/next-app/server.runfiles/_main",
 )
 
 oci_tarball(
