@@ -1,6 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "pipeline": {
+  "tasks": {
     "build:self": {
       "dependsOn": [
         "^build:self"
@@ -15,5 +15,8 @@
   },
   "globalDependencies": [
     "tsconfig.json"
-  ]
+  ],
+  "remoteCache": {
+    "signature": true
+  }
 }
